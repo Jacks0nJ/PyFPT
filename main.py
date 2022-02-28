@@ -131,9 +131,25 @@ def classical_end_cond(matrices, N, phi_end_infl = phi_end):
 
 
     
-phi_sqaured_cosmo = \
-    sm.Stochastic_Inflation(V, V_dif, V_ddif,\
-                            classical_end_cond, a_i)
+analytic_N_var =\
+    cosfuncs.delta_N_squared_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
+analytic_N_st = np.sqrt(analytic_N_var)
+analytic_N_mean = cosfuncs.mean_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
+analytic_N_skew =\
+    cosfuncs.skewness_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
+analytic_N_kurtosis =\
+    cosfuncs.kurtosis_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
+analytic_N_4th_cmoment =\
+    cosfuncs.fourth_central_moment_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
+eta_criterion = cosfuncs.classicality_criterion(V, V_dif, V_ddif, phi_i)
+
+        
+N_star = analytic_N_mean + 4*analytic_N_st
+
+analytic_gauss_deviation_pos =\
+    cosfuncs.gaussian_deviation(analytic_N_mean, analytic_N_var**0.5,\
+    analytic_N_skew*analytic_N_var**1.5,\
+    analytic_N_4th_cmoment-3*analytic_N_var**2, nu=fit_threshold/100)
 '''
 #Running the simulation many times
 '''
@@ -253,26 +269,6 @@ sim_skew_error = cosfuncs.jackknife(sim_N_dist, num_sub_samples,\
 sim_kurtosis_error = cosfuncs.jackknife(sim_N_dist, num_sub_samples,\
                 cosfuncs.importance_sampling_kurtosis, weights = w_values)
 
-
-#Expected values in the near the classical limit
-analytic_N_var =\
-    phi_sqaured_cosmo.delta_N_squared_sto_limit(phi_i, phi_end)
-analytic_N_st = np.sqrt(analytic_N_var)
-analytic_N_mean = phi_sqaured_cosmo.mean_N_sto_limit(phi_i, phi_end)
-analytic_N_skew = phi_sqaured_cosmo.skewness_N_sto_limit(phi_i, phi_end)
-analytic_N_kurtosis = phi_sqaured_cosmo.kurtosis_N_sto_limit(phi_i, phi_end)
-analytic_N_4th_cmoment =\
-    cosfuncs.fourth_central_moment_N_sto_limit(V,V_dif, V_ddif, phi_i, phi_end)
-analytic_power_spectrum = phi_sqaured_cosmo.power_spectrum_sto_limit(phi_i)
-eta_criterion = phi_sqaured_cosmo.classicality_criterion(phi_i)
-
-        
-N_star = analytic_N_mean + 4*analytic_N_st
-
-analytic_gauss_deviation_pos =\
-    cosfuncs.gaussian_deviation(analytic_N_mean, analytic_N_var**0.5,\
-    analytic_N_skew*analytic_N_var**1.5,\
-    analytic_N_4th_cmoment-3*analytic_N_var**2, nu=fit_threshold/100)
 
 
 

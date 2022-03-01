@@ -1,19 +1,180 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Oct 13 10:08:37 2021
+Created on 28/02/22
 
 @author: jjackson
 """
+from timeit import default_timer as timer
+import multiprocessing as mp
+from multiprocessing import Process, Queue
 
 import inflation_functions_e_foldings as cosfuncs
+import importance_sampling_sr_cython12 as is_code
+
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 import scipy.stats as sci_stat
-from scipy import optimize
+
+
 #M_PL = 2.435363*10**18 old value
 M_PL = 1.0# Using units of M_PL
 PI = np.pi
+
+
+def IS_simulation(phi_i, phi_end, V, V_dif, V_ddif, num_sims, bias, bins=50,\
+                  dN = False, min_bin_size = 400, num_sub_samples=20,\
+                  reconstruction = 'lognormal', save_data = False, N_f = 100,
+                  phi_UV = False):
+    #If no argument for dN is given, using the classical std to define it
+    if dN == False:
+        if isinstance(bins, int) == True:
+            std =\
+                cosfuncs.delta_N_squared_sto_limit(V, V_dif, V_ddif, phi_i,\
+                                                   phi_end)
+            dN = std/(3*bins)
+        elif isinstance(bins, int) == False:
+            std =\
+                cosfuncs.delta_N_squared_sto_limit(V, V_dif, V_ddif, phi_i,\
+                                                   phi_end)
+            num_bins = len(bins)-1
+            dN = std/(3*bins)
+    elif isinstance(dN, float) != True and isinstance(dN, int) != True:
+        raise ValueError('dN is not a number')
+        
+        
+    #Default to the naive method
+    if reconstruction == 'lognormal':
+        log_normal = True
+    elif reconstruction == 'naive':
+        log_normal = False
+    else:
+        print('Invalid reconstruction argument, defaulting to naive method')
+        log_normal = False
+        
+    if phi_UV == False:
+        phi_UV = 10000*phi_i
+    elif isinstance(dN, float) != True and isinstance(dN, int) != True:
+        raise ValueError('phi_UV is not a number')
+        
+        
+    #The number of sims per core, so the total is correct
+    num_sims_per_core = int(num_sims/mp.cpu_count())
+    
+    
+    
+    start = timer()
+    
+    
+    def multi_processing_func(phi_i, phi_UV, phi_end, N_i, N_f, dN, bias,\
+                              num_sims, queue_Ns, queue_ws, queue_refs):
+        results =\
+                is_code.many_simulations_importance_sampling(phi_i, phi_UV, phi_end,\
+                         N_i, N_f, dN, bias, num_sims, V, V_dif, V_ddif,\
+                             bias_type = 'diffusion', count_refs = False)
+        Ns = np.array(results[0][:])
+        ws = np.array(results[1][:])
+        queue_Ns.put(Ns)
+        queue_ws.put(ws)
+
+    
+
+    queue_Ns = Queue()
+    queue_ws = Queue()
+    queue_refs = Queue()
+    cores = int(mp.cpu_count()/1)
+
+    print('Number of cores used: '+str(cores))
+    processes = [Process(target=multi_processing_func,\
+                args=(phi_i, phi_UV,  phi_end, 0.0, N_f, dN, bias,\
+                num_sims_per_core, queue_Ns, queue_ws, queue_refs)) for i in range(cores)]
+        
+    for p in processes:
+        p.start()
+    
+    #for p in processes:
+     #   p.join()
+    
+    Ns_array = np.array([queue_Ns.get() for p in processes])
+    ws_array = np.array([queue_ws.get() for p in processes])
+    end = timer()
+    print(f'The simulations took: {end - start}')
+        
+    #Combine into columns into 1
+    sim_N_dist  = Ns_array.flatten()
+    w_values = ws_array.flatten()
+    
+    
+    #Sort in order of increasing Ns
+    sort_idx = np.argsort(sim_N_dist)
+    sim_N_dist = sim_N_dist[sort_idx]
+    w_values = w_values[sort_idx]
+        
+    #Checking if multipprocessing error occured, by looking at correlation
+    pearson_corr = np.corrcoef(sim_N_dist, np.log10(w_values))
+    pearson_corr = pearson_corr[0,1]
+    
+    if pearson_corr > -0.55:#Data is uncorrelated
+        print(len(sim_N_dist))
+        print(sim_N_dist)
+        raise ValueError('Possible multiprocessing error occured, terminating')
+
+    
+    '''
+    Truncating the data
+    '''
+    sim_N_dist, w_values = cosfuncs.histogram_data_truncation(sim_N_dist,\
+                              N_f, weights=w_values,\
+                              num_sub_samples = num_sub_samples)
+    
+    '''
+    #Post processesing
+    '''
+    
+    if save_data == True:
+        data_dict_raw = {}
+        data_dict_raw['N'] = sim_N_dist
+        if bias>0:
+            data_dict_raw['w'] = w_values
+        
+        data_pandas_raw = pd.DataFrame(data_dict_raw)
+        
+        raw_file_name = 'IS_data_phi_i_'+('%s' % float('%.3g' % phi_i))+\
+            '_iterations_'+str(num_sims)+'_bias_'+\
+            ('%s' % float('%.3g' % bias))+'.csv'
+        #Saving to a directory for the language used
+
+        data_pandas_raw.to_csv(raw_file_name)
+
+    
+    #
+    #Now analysisng creating the PDF data
+    #
+    
+    if bias>0.2:
+        bin_centres,heights,errors,num_sims_used, bin_edges_untruncated =\
+            data_points_pdf(sim_N_dist, w_values, num_sub_samples,\
+            bins=bins, include_std_w_plot = False,\
+            min_bin_size = min_bin_size, log_normal = log_normal,\
+            num_sims = num_sims, log_normal_method='ML', w_hist_num = 10,\
+            p_value_plot = True)
+    #I'm not convinced 
+    elif bias<=0.2:
+        bin_centres,heights,errors,num_sims_used,_ =\
+            data_points_pdf(sim_N_dist, w_values, num_sub_samples,\
+            bins=bins, min_bin_size = min_bin_size, log_normal = False,\
+            num_sims = num_sims)
+        #If using log normal, need to make the errors asymmetric for later
+        #data analysis
+        if log_normal == True:
+            errors_new = np.zeros((2,len(errors)))
+            errors_new[0,:] = errors
+            errors_new[1:] = errors
+            errors = errors_new
+
+    return bin_centres, heights, errors
+
 
 
 def data_points_pdf(Ns, ws, num_sub_samples, min_bin_size = None, bins = 50,\

@@ -899,6 +899,28 @@ def chaotic_inflation_characteristic_function(t, phi, phi_end, V):
     chi = np.complex(float(nstr(chi_mp.real, n=12)), float(nstr(chi_mp.imag, n=12)))
     return chi
 
+def large_mass_pdf(bin_centres, phi_i, phi_end, V):
+    def chi(t):
+        return chaotic_inflation_characteristic_function(t,phi_i,\
+                                                                  phi_end,V)
+    
+    
+    #Use integral symmetric to simplfy to only do the positive half, then double
+    #Remember they use a different fourier 2pi convention to be, hence the extra one
+    v = V(phi_i)/(24*(PI**2)*(M_PL**4))
+    
+    #Stolen from Chris' quadratic code, no idea why this is a thing!
+    if v<10:
+        t0max = 1000.
+    if v<0.1:
+        t0max = 6000.
+    if v<0.04:
+        t0max = 10.**7
+    PDF_analytical_test =\
+        np.array([2*continuous_ft(N,chi, component = 'real',t_lower = 0,\
+                t_upper = t0max)/(2*PI)**0.5 for N in bin_centres])
+    return PDF_analytical_test
+
 '''
 Importance sampling equations
 '''
@@ -1364,8 +1386,8 @@ Log-normal equations
 '''   
 
 #The data provided needs to be raw data - the log is then taken in the function
-#Defaults to method proposed by Shen 2006 Statist. Med. 2006; 25:3023–3038
-def log_normal_mean(data, method = 'ML', position = None):
+#uses the maximum likelihood Shen 2006 Statist. Med. 2006; 25:3023–3038
+def log_normal_mean(data, position = None):
     data_log = np.log(data)
     data_log_mean = np.mean(data_log)
     data_log_std = np.std(data_log, ddof = 1)#Unbiased standard deviation
@@ -1376,158 +1398,26 @@ def log_normal_mean(data, method = 'ML', position = None):
                   str(position))
         else:
             print('Possible convergance error in Shen2006 method')
-            
-    if method == 'naive':
-        mean = np.mean(data)
-        
-    elif method == 'Shen':
-        fraction = np.divide((n-1)*n*data_log_std**2,\
-                             2*(n+4)*(n-1)+3*n*data_log_std**2)
-        mean = np.exp(data_log_mean+fraction)
-        
-    elif method == 'skewed_log_normal':
-        #Using scistat to calculate the cumulants
-        cumulant_3 = stats.kstat(data_log, n=3)
-        cumulant_4= stats.kstat(data_log, n=4)
-        
-        amplitude = np.exp(data_log_mean+0.5*data_log_std**2)
-        
-        #This is the mean of the skewed log-normal distribution.
-        #I.e. if we use a Edgeworth expansion rather than a normal distribution
-        #I found this, see "Mean of Skewed Log-Normal Distribution.pdf"
-        mean = amplitude*(1+cumulant_3/6+cumulant_4/24+\
-                          (cumulant_3**2)/72)
-        if mean<0 and isinstance(position, float):
-            print('skewed log-normal mean error at '+str(position))
-            
-    elif method == 'skewed_log_normal_numcal':
-        #Using scistat to calculate the cumulants
-        cumulant_3 = stats.kstat(data_log, n=3)
-        cumulant_4 = stats.kstat(data_log, n=4)
-
-        def skewed_log_normal_integrand(lnx):
-            return np.exp(lnx)*pdf_gaussian_skew_kurtosis(lnx, data_log_mean,\
-                                data_log_std, cumulant_3, cumulant_4)
-            
-        mean,_ = integrate.quad(skewed_log_normal_integrand, -np.inf, np.inf)
-        
-    elif method == 'skewed_log_normal_fitting':
-        #Using scistat to calculate the cumulants
-        cumulant3_guess = stats.kstat(data_log, n=3)
-        cumulant4_guess = stats.kstat(data_log, n=4)
-        
-        def edgeworth_expansion(x, cum3, cum4):
-            return pdf_gaussian_skew_kurtosis(x, data_log_mean,\
-                                data_log_std, cum3, cum4)
-
-        def skewed_log_normal_integrand(lnx, cum3, cum4):
-            return np.exp(lnx)*pdf_gaussian_skew_kurtosis(lnx, data_log_mean,\
-                                data_log_std, cum3, cum4)
-                
-        heights, bins = np.histogram(data_log, bins=50, density=True)
-        bin_centres =\
-            np.array([(bins[i]+bins[i+1])/2 for i in range(len(bins)-1)])
-
-            
-        edgeworth_params, cv =\
-            optimize.curve_fit(edgeworth_expansion, bin_centres,\
-                                 heights,\
-                                p0 = (cumulant3_guess, cumulant4_guess))
-            
-        mean,_ =\
-            integrate.quad(skewed_log_normal_integrand, -np.inf, np.inf,\
-                           args = (edgeworth_params[0], edgeworth_params[1]))
-        
-        
-    elif method == 'skewed_log_normal2':
-        
-        #Using Andrew's formula, with sign changed. This is based on the
-        #skew normal distribution, from the wikipedia page
-        #https://en.wikipedia.org/wiki/Skew_normal_distribution
-        data_log_skew = stats.skew(data_log)
-        skew_mod = np.abs(data_log_skew)
-        delta = np.sign(data_log_skew)*np.sqrt( 0.5*PI*np.divide(skew_mod**(2/3),\
-                                    skew_mod**(2/3) + (2+0.5*PI)**(2/3)) )
-        omega = data_log_std/np.sqrt(1-2*(delta**2)/PI)
-        xi = data_log_mean - omega*delta*np.sqrt(2/PI)
-        
-        mean = np.exp(xi-0.5*omega**2)*(1+special.erf(omega*delta/(2**0.5)))
-            
-    elif method == 'skewed_log_normal_numcal2':
-        data_log_skew = stats.skew(data_log)
-        skew_mod = np.abs(data_log_skew)
-        delta = np.sign(data_log_skew)*np.sqrt( 0.5*PI*np.divide(skew_mod**(2/3),\
-                                    skew_mod**(2/3) + (2+0.5*PI)**(2/3)) )
-        alpha = delta/np.sqrt(1-delta**2)
-        omega = data_log_std/np.sqrt(1-2*(delta**2)/PI)
-        xi = data_log_mean - omega*delta*np.sqrt(2/PI)
-        
-        def skewed_log_normal_integrand(lnx):
-            return np.exp(lnx)*stats.skewnorm.pdf(lnx, alpha, xi,
-            omega)
-            
-        mean,_ = integrate.quad(skewed_log_normal_integrand, -np.inf, np.inf)
-    elif method == 'UMVU':
-        def g_term(t, i, n):
-            #largest allowed isgamma(171)
-            if (0.5*n-0.5+i)<171:
-                numerator = special.gamma(0.5*n-0.5)
-                denominator = np.math.factorial(i)*special.gamma(0.5*n-0.5+i)
-                                
-                return (numerator/denominator)*((n-1)/(2*n)*t)**i
-            #Have to use 5.11.12 of DLMF
-            else:
-                ratio = (0.5*n-0.5)**i
-                return (ratio*((n-1)/(2*n)*t)**i)/np.math.factorial(i)
-        
-        i_array = np.arange(0,10)
-        g_term_values = [g_term(0.5*n*data_log_std**2,i,n) for i in i_array]
-        mean = np.exp(data_log_mean)*np.sum(g_term_values)
-    elif method == 'MSE1':
-        def g_term(t, i, n):
-            #largest allowed isgamma(171)
-            if (0.5*n-0.5+i)<171:
-                numerator = special.gamma(0.5*n-0.5)
-                denominator = np.math.factorial(i)*special.gamma(0.5*n-0.5+i)
-                                
-                return (numerator/denominator)*((n-1)/(2*n)*t)**i
-            #Have to use 5.11.12 of DLMF
-            else:
-                ratio = (0.5*n-0.5)**i
-                return (ratio*((n-1)/(2*n)*t)**i)/np.math.factorial(i)
-
-        cofficent = np.divide(n-3,2*n-2)
-        i_array = np.arange(0,10)
-        g_term_values =\
-            [g_term(cofficent*n*data_log_std**2,i,n) for i in i_array]
-        mean = np.exp(data_log_mean)*np.sum(g_term_values)
-        
-    elif method == 'MSE2':
-        def g_term(t, i, n):
-            #largest allowed isgamma(171)
-            if (0.5*n-0.5+i)<171:
-                numerator = special.gamma(0.5*n-0.5)
-                denominator = np.math.factorial(i)*special.gamma(0.5*n-0.5+i)
-                                
-                return (numerator/denominator)*((n-1)/(2*n)*t)**i
-            #Have to use 5.11.12 of DLMF
-            else:
-                ratio = (0.5*n-0.5)**i
-                return (ratio*((n-1)/(2*n)*t)**i)/np.math.factorial(i)
-
-        cofficent = np.divide(n-4,2*n-2)
-        i_array = np.arange(0,10)
-        g_term_values =\
-            [g_term(cofficent*n*data_log_std**2,i,n) for i in i_array]
-        mean = np.exp(data_log_mean)*np.sum(g_term_values)
-    
-    else:           
-        mean = np.exp(data_log_mean+0.5*data_log_std**2)
+                     
+    mean = np.exp(data_log_mean+0.5*data_log_std**2)
         
     return mean
     
-    
-    
+def log_normal_height(w, position = None):
+    return len(w)*log_normal_mean(w, position = position)
+
+#The most basic way to estimate the error, assuming symmetric errors
+#SHOULD THIS USE n-1 or n IN THE STD??????????????????????????
+def log_normal_errors(ws, Z_alpha=1):
+    log_w = np.log(ws)
+    log_var = np.var(log_w, ddof = 1)#unbiased variance
+    log_mean = np.mean(log_w)
+    n = len(ws)
+    log_err = Z_alpha*np.sqrt(log_var/n+(log_var**2)/(2*n-2))
+    upper_err = n*np.exp(log_mean+log_var/2)*(np.exp(log_err)-1)
+    lower_err = n*np.exp(log_mean+log_var/2)*(1-np.exp(-log_err))
+    return np.array([lower_err, upper_err])
+
     
 '''
 Misc

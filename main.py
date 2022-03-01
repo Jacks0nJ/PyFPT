@@ -14,7 +14,7 @@ import scipy.optimize
 
 
 import inflation_functions_e_foldings as cosfuncs
-import is_data_analysis2 as isfuncs
+import is_data_analysis as isfuncs
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 import mpl_style
@@ -143,7 +143,7 @@ bin_centres_analytical =\
 
 if m>0.6:#Less than this it breaks down:
     start = timer()
-    PDF_analytical_test = isfuncs.large_mass_pdf(bin_centres_analytical,phi_i,phi_end,V)
+    PDF_analytical_test = cosfuncs.large_mass_pdf(bin_centres_analytical,phi_i,phi_end,V)
     end = timer()
     print(f'The analytical answer took: {end - start}') 
     best_fit_line2 = PDF_analytical_test
@@ -154,7 +154,6 @@ else:
     best_fit_line2 = sci_stat.norm.pdf(bin_centres_analytical, analytic_N_mean,\
                                       analytic_N_st)
     dist_fit_label2 = r'Gaussian $\sqrt{\delta \mathcal{N}^2}$='+str(round(analytic_N_st,4))
-    plt.plot(bin_centres_analytical, best_fit_line2, label='{0}'.format(dist_fit_label2))
     
 '''
 Saving data

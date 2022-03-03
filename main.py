@@ -10,30 +10,29 @@ import pandas as pd
 
 import scipy.stats as sci_stat
 from timeit import default_timer as timer
-import scipy.optimize
 
 
 import inflation_functions_e_foldings as cosfuncs
-import is_data_analysis2 as isfuncs
+import is_data_analysis as isfuncs
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 import mpl_style
 plt.style.use(mpl_style.style1)
 
-#M_PL = 2.435363*10**18 old value
-M_PL = 1.0# Using units of M_PL
+# M_PL = 2.435363*10**18 old value
+M_PL = 1.0  # Using units of M_PL
 PI = np.pi
-#m = 10**(-6)*M_PL#Based on John McDonald's calculations in PHYS461
-m = 0.1*M_PL#4*PI*6**0.5
+# m = 10**(-6)*M_PL#Based on John McDonald's calculations in PHYS461
+m = 0.1*M_PL  # 4*PI*6**0.5
 
-###Intial conditions and tolerances
-N_starting = 10#In some sense, this should techically be negative
+# Intial conditions and tolerances
+N_starting = 10  # In some sense, this should techically be negative
 phi_end = M_PL*2**0.5
-phi_i = M_PL*(4*N_starting+2)**0.5#M_PL*(4*N_starting+2)**0.5
+phi_i = M_PL*(4*N_starting+2)**0.5  # M_PL*(4*N_starting+2)**0.5
 phi_r = 100*phi_i
 N_cut_off = 300
 N_f = 100
-dN = 0.02*m#Assuming std(N) is proportional to m, was dN=0.02m
+dN = 0.02*m  # Assuming std(N) is proportional to m, was dN=0.02m
 num_sims = 100000
 num_bins = 50
 num_sub_samples = 20
@@ -45,12 +44,7 @@ CB_color_cycle = ['#377eb8', '#ff7f00', '#4daf4a',
 
 min_bin_size = 400
 fit_threshold = 100
-#Minimum number of std before exponential tail can be fit
-min_tail_start = 4
 
-
-include_errors = 'yes'
-tail_analysis = False
 edgeworth_series = False
 manual_norm = True
 w_hist = False
@@ -68,7 +62,7 @@ wind_type = 'diffusion'
 bias = 1
 
 
-if (m == 2 or m==1) and phi_i==phi_r:
+if ( m == 2 or m == 1 ) and phi_i == phi_r:
     kazuya_pdf = True
     vincent = False
     
@@ -107,7 +101,6 @@ analytic_N_kurtosis =\
     cosfuncs.kurtosis_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
 analytic_N_4th_cmoment =\
     cosfuncs.fourth_central_moment_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
-eta_criterion = cosfuncs.classicality_criterion(V, V_dif, V_ddif, phi_i)
 
         
 N_star = analytic_N_mean + 4*analytic_N_st
@@ -119,11 +112,18 @@ analytic_gauss_deviation_pos =\
 '''
 #Running the simulation many times
 '''
-
+if log_normal == True:
+    reconstruction = 'lognormal'
+else:
+    reconstruction = 'naive'
+    
+    
 bin_centres,heights,errors =\
     isfuncs.IS_simulation(phi_i, phi_end, V, V_dif, V_ddif, num_sims, bias,\
-    bins=50, dN = dN, reconstruction = 'lognormal', save_data = True,\
+    bins=50, dN = dN, reconstruction = reconstruction, save_data = True,\
     phi_UV = False)
+        
+        
         
 '''
 Reading the saved data
@@ -143,7 +143,7 @@ bin_centres_analytical =\
 
 if m>0.6:#Less than this it breaks down:
     start = timer()
-    PDF_analytical_test = isfuncs.large_mass_pdf(bin_centres_analytical,phi_i,phi_end,V)
+    PDF_analytical_test = cosfuncs.large_mass_pdf(bin_centres_analytical,phi_i,phi_end,V)
     end = timer()
     print(f'The analytical answer took: {end - start}') 
     best_fit_line2 = PDF_analytical_test
@@ -154,7 +154,6 @@ else:
     best_fit_line2 = sci_stat.norm.pdf(bin_centres_analytical, analytic_N_mean,\
                                       analytic_N_st)
     dist_fit_label2 = r'Gaussian $\sqrt{\delta \mathcal{N}^2}$='+str(round(analytic_N_st,4))
-    plt.plot(bin_centres_analytical, best_fit_line2, label='{0}'.format(dist_fit_label2))
     
 '''
 Saving data
@@ -190,161 +189,10 @@ if save_results == True:
         errors = np.zeros((2, len(heights)))
         errors[0,:] = np.array(sim_data['errors_lower'])
         errors[1,:] = np.array(sim_data['errors_upper'])
-    
-
-
-    
-
-
-
-'''
-Fitting models to the tail
-'''
-
-
-        
-        
-if tail_analysis == True:
-    #The classical prediction of Gaussian with skewness and
-    #kurtosis
-    if edgeworth_series == True:
-        classical_prediction =\
-            cosfuncs.pdf_gaussian_skew_kurtosis(bin_centres, analytic_N_mean,\
-            analytic_N_var**0.5, analytic_N_skew*analytic_N_var**1.5,\
-            analytic_N_4th_cmoment-3*analytic_N_var**2)
-    else:
-        classical_prediction = sci_stat.norm.pdf(bin_centres, analytic_N_mean,\
-                                      analytic_N_st)
-    percentage_diff =\
-        100*np.divide(np.abs(heights-classical_prediction),classical_prediction)
-        
-    #Now finding when the deviation from prediction first occurs
-    tail_start_idx = len(heights)+1
-    for i in range(len(heights)):
-        #The tail is if this differance is greater than fit_threshold
-        if percentage_diff[i]>fit_threshold and bin_centres[i]>analytic_N_mean+min_tail_start*analytic_N_var**0.5:
-            tail_start_idx = i
-            break;
-    
-    #If there was a value with deviation greater than fit_threshold and a has
-    #a few data points
-    if len(heights)-tail_start_idx>5:
-        print(str(len(heights)-tail_start_idx)+' data points deviated by more'+
-              ' than '+str(fit_threshold)+'% from classical prediction: fitting exponential')
-        heights_tail =  heights[tail_start_idx:]
-        bin_centres_tail = bin_centres[tail_start_idx:]
-        if log_normal == True:
-            errors_tail = errors[:,tail_start_idx:]
-        else:
-            errors_tail = errors[tail_start_idx:]
-        
-        def expo_model(x, a, b):
-            return a*np.exp(b*x-b*N_starting)
-        
-        def log_of_expo_model(x, log_a, b):
-            return log_a+b*(x-N_starting)
-        
-        #Using data points to make an initial parameter guess
-        b_guess = np.log(heights_tail[0]/heights_tail[-1])/\
-            (bin_centres_tail[0]-bin_centres_tail[-1])
-        log_a_guess =\
-            np.log(heights_tail[0])-b_guess*(bin_centres_tail[0]-N_starting)
-        log_expo_params_guess = (log_a_guess, b_guess)
-        
-        #Now fitting the expo model to the tail
-        if include_errors == 'no':#Not including the errors in the fit
-            expo_fit_params, cv =\
-                scipy.optimize.curve_fit(log_of_expo_model, bin_centres_tail,\
-                                         np.log(heights_tail),\
-                                             p0 = log_expo_params_guess)
-            a_expo = np.exp(expo_fit_params[0])
-            b_expo = expo_fit_params[1]
-        elif include_errors == 'yes':#Including errors in the fit
-            #As using log of data, need to explictly caclulate the errors
-            if log_normal == True:
-                errors_lower = errors_tail[0,:]
-                    
-                errors_upper = errors_tail[1,:]
-                    
-            else:
-                errors_lower = errors_tail
-                errors_upper = errors_tail
-                
-            log_error_lower =\
-                np.log(heights_tail)-np.log(heights_tail-errors_lower)
-                
-            log_error_upper =\
-                np.log(heights_tail+errors_upper)-np.log(heights_tail)
-                    
-
-            #Taking the average for now, as scipy can only have one error   
-            log_error_tail = (log_error_lower+log_error_upper)/2
-                    
-            expo_fit_params, cv =\
-                scipy.optimize.curve_fit(log_of_expo_model, bin_centres_tail,\
-                                         np.log(heights_tail),\
-                                         sigma = log_error_tail,\
-                                         p0 = log_expo_params_guess)
-            a_expo = np.exp(expo_fit_params[0])
-            b_expo = expo_fit_params[1]
-            
-            #error in parameter estimation
-            expo_fit_params_errs = np.sqrt(np.diag(cv))
-            #Doing explicit error calculation
-            a_expo_err = a_expo*(np.exp(expo_fit_params_errs[0])-1)
-            b_expo_err = expo_fit_params_errs[1]
-
-        '''
-        #Modified expo fit
-        def modified_expo_model(x, a, b, c):
-            return a*np.exp(b*x)/(x**c)
-        
-        #Using data points to make an initial parameter guess
-        c_guess_numerator = np.log(heights_tail[0]/heights_tail[-1])/\
-                        (bin_centres_tail[0]-bin_centres_tail[-1])-\
-                            np.log(heights_tail[0]/heights_tail[1])/\
-                        (bin_centres_tail[0]-bin_centres_tail[1])
-        c_guess_denominator = np.log(bin_centres_tail[0]/bin_centres_tail[-1])/\
-                        (bin_centres_tail[0]-bin_centres_tail[-1])-\
-                            np.log(bin_centres_tail[0]/bin_centres_tail[1])/\
-                        (bin_centres_tail[0]-bin_centres_tail[1])
-                        
-        c_m_guess = c_guess_numerator/c_guess_denominator
-        
-        b_m_guess = np.log(heights_tail[0]/heights_tail[-1])/\
-            (bin_centres_tail[0]-bin_centres_tail[-1])+\
-                c_m_guess*np.log(bin_centres_tail[0]/bin_centres_tail[-1])/\
-            (bin_centres_tail[0]-bin_centres_tail[-1])
-            
-        a_m_guess = heights_tail[0]*np.exp(-b_m_guess*bin_centres_tail[0])*\
-            (bin_centres_tail[0]**c_m_guess)
-            
-        log_m_expo_params_guess = (np.log(a_m_guess), b_m_guess, c_m_guess)
-        
-        #Now fitting the expo model to the tail
-        m_expo_fit_params, cv =\
-            scipy.optimize.curve_fit(modified_expo_model, bin_centres_tail,\
-                                     np.log(heights_tail), log_m_expo_params_guess)
-        a_m_expo = np.exp(m_expo_fit_params[0])
-        b_m_expo = m_expo_fit_params[1]
-        c_m_expo = m_expo_fit_params[2]
-        '''
-        
-    elif len(heights)-tail_start_idx>1:
-        print('Only '+str(len(heights)-tail_start_idx)+' data points deviated by more'+
-              ' than '+str(fit_threshold)+'% from classical prediction: no enough to fit data')
-        tail_analysis = False
-    else:
-        print('No deviated from classical prediction greater than '+str(fit_threshold)+'%')
-        tail_analysis = False
-    
-
 
 '''
  Plotting
 '''
-
-
 
 if bias != 0:
     _,_,_ = plt.hist(sim_N_dist, num_bins, weights = w_values,\
@@ -500,17 +348,11 @@ if bias != 0:
     plt.close()
     
 if bias == 0:
-    if include_errors == 'yes':
-        plt.errorbar(bin_centres, heights, yerr = errors, fmt =".k",\
-                     capsize=3, label='{0}'.format('Sim'))
-        plt.ylim(bottom = np.min(heights[heights>0])) 
-    else:
-    #Plotting the log of the distribution
-        bin_height,bins,_ =\
-            plt.hist(sim_N_dist, num_bins,\
-                         density=True, label='{0}'.format('Data'),\
-                             histtype="step" )
-        plt.ylim(bottom = np.min(bin_height[bin_height>0])) 
+
+    plt.errorbar(bin_centres, heights, yerr = errors, fmt =".k",\
+                 capsize=3, label='{0}'.format('Sim'))
+    plt.ylim(bottom = np.min(heights[heights>0])) 
+
         
     if m>=1:
         plt.plot(bin_centres_analytical, best_fit_line2, label='{0}'.format('Pattison 2017'))
@@ -524,7 +366,7 @@ if bias == 0:
         plt.ylim(bottom = np.min(best_fit_line2)) 
         plt.xlim(right = N_cut_off)
     else:
-        plt.plot(bins, sci_stat.skewnorm.pdf(bins, analytic_N_skew,\
+        plt.plot(bin_centres, sci_stat.skewnorm.pdf(bin_centres, analytic_N_skew,\
                 loc = analytic_N_mean,scale = analytic_N_st),\
                  label='{0}'.format('Gaussian+Skew'))
         plt.axvline(N_star, color='k', linestyle='dashed', linewidth=2,\

@@ -6,6 +6,11 @@
 Welcome to Stochastic_IS_CODE's documentation!
 ==============================================
 
+This is the documentation for a Python/Cython package to run numerical simulations of stochastic inflation using importance sampling. This package will let you numerically investigate the tail of the PDF for first passage times for potential in slow-roll inflation.
+
+This package also comes with functionality to compare the numerical results with analytical expectations. 
+
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

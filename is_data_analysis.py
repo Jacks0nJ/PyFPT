@@ -117,31 +117,13 @@ def IS_simulation(phi_i, phi_end, V, V_dif, V_ddif, num_sims, bias, bins=50,
         print(sim_N_dist)
         raise ValueError('Possible multiprocessing error occured, terminating')
 
-    '''
-    Truncating the data
-    '''
+    # Truncating the data
     sim_N_dist, w_values =\
         cosfuncs.histogram_data_truncation(sim_N_dist, N_f, weights=w_values,
                                            num_sub_samples=num_sub_samples)
-
-    '''
-    # Post processesing
-    '''
-
+    # Saving the data
     if save_data is True:
-        data_dict_raw = {}
-        data_dict_raw['N'] = sim_N_dist
-        if bias > 0:
-            data_dict_raw['w'] = w_values
-
-        data_pandas_raw = pd.DataFrame(data_dict_raw)
-
-        raw_file_name = 'IS_data_phi_i_' + ('%s' % float('%.3g' % phi_i)) +\
-            '_iterations_' + str(num_sims) + '_bias_' +\
-            ('%s' % float('%.3g' % bias)) + '.csv'
-        # Saving to a directory for the language used
-
-        data_pandas_raw.to_csv(raw_file_name)
+        save_data_to_file(sim_N_dist, w_values, phi_i, num_sims, bias=bias)
 
     # Now analysisng creating the PDF data
     bin_centres, heights, errors, num_sims_used, bin_edges_untruncated =\
@@ -285,3 +267,19 @@ def data_points_pdf(Ns, ws, num_sub_samples, reconstruction,
         raise ValueError('log_normal must be boolean')
 
     return bin_centres, heights, errors, num_sims_used, bins
+
+
+def save_data_to_file(sim_N_dist, w_values, phi_i, num_sims, bias=0):
+    data_dict_raw = {}
+    data_dict_raw['N'] = sim_N_dist
+    if bias > 0:
+        data_dict_raw['w'] = w_values
+
+    data_pandas_raw = pd.DataFrame(data_dict_raw)
+
+    raw_file_name = 'IS_data_phi_i_' + ('%s' % float('%.3g' % phi_i)) +\
+        '_iterations_' + str(num_sims) + '_bias_' +\
+        ('%s' % float('%.3g' % bias)) + '.csv'
+    # Saving to a directory for the language used
+
+    data_pandas_raw.to_csv(raw_file_name)

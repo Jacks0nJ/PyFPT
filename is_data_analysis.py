@@ -290,4 +290,3 @@ def lognormality_check(bin_centres, weights_in_bins, filled_bins, num_bins):
         plt.ylabel('p-values', fontsize=22)
         plt.show()
         plt.clf()
-    

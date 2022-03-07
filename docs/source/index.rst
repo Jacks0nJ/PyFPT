@@ -14,6 +14,8 @@ This package also comes with functionality to compare the numerical results with
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   
+   importance_sampling_functions
 
 
 

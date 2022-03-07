@@ -112,8 +112,8 @@ def IS_simulation(phi_i, phi_end, V, V_dif, V_ddif, num_sims, bias, bins=50,
 
     # Truncating the data
     sim_N_dist, w_values =\
-        cosfuncs.histogram_data_truncation(sim_N_dist, N_f, weights=w_values,
-                                           num_sub_samples=num_sub_samples)
+        histogram_data_truncation(sim_N_dist, N_f, weights=w_values,
+                                  num_sub_samples=num_sub_samples)
     # Saving the data
     if save_data is True:
         save_data_to_file(sim_N_dist, w_values, phi_i, num_sims, bias=bias)
@@ -149,10 +149,10 @@ def data_points_pdf(Ns, ws, num_sub_samples, reconstruction,
         plt.clf()
 
     analytical_norm =\
-        cosfuncs.histogram_analytical_normalisation(bins, num_sims)
+        histogram_analytical_normalisation(bins, num_sims)
 
     data_in_bins, weights_in_bins =\
-        cosfuncs.histogram_data_in_bins(Ns, ws, bins)
+        histogram_data_in_bins(Ns, ws, bins)
 
     # Predictions need the bin centre to make comparison
     bin_centres = np.array([(bins[i]+bins[i+1])/2 for i in range(len(bins)-1)])
@@ -181,9 +181,8 @@ def data_points_pdf(Ns, ws, num_sub_samples, reconstruction,
 
     if reconstruction == 'naive':
         heights = heights_raw/analytical_norm
-        errors =\
-            cosfuncs.histogram_weighted_bin_errors_jackknife(Ns, ws, bins,
-                                                             num_sub_samples)
+        errors = histogram_weighted_bin_errors_jackknife(Ns, ws, bins,
+                                                         num_sub_samples)
         if isinstance(min_bin_size, int) is True:
             heights = heights[filled_bins]
             errors = errors[filled_bins]
@@ -200,9 +199,8 @@ def data_points_pdf(Ns, ws, num_sub_samples, reconstruction,
                  is False):
                 w = w[w > 0]
                 heights_est[i] =\
-                    cosfuncs.log_normal_height(w,
-                                               position=bin_centres_uncut[i])
-                errors_est[:, i] = cosfuncs.log_normal_errors(w)
+                    log_normal_height(w, position=bin_centres_uncut[i])
+                errors_est[:, i] = log_normal_errors(w)
 
         # Include only filled values
         # Remember to normalise errors as well
@@ -290,3 +288,153 @@ def lognormality_check(bin_centres, weights_in_bins, filled_bins, num_bins):
         plt.ylabel('p-values', fontsize=22)
         plt.show()
         plt.clf()
+
+
+# Returns the data used in histogram bars as columns.
+def histogram_data_in_bins(data, weights, bins):
+    data_columned = np.zeros([len(data), len(bins)-1])
+    weights_columned = np.zeros([len(data), len(bins)-1])
+    # The bins have the same range until the end
+    for i in range(len(bins)-2):
+        data_logic = (data >= bins[i]) & (data < bins[i+1])
+        data_slice = data[data_logic]
+        data_columned[0:len(data_slice), i] = data_slice
+        weights_columned[0:len(data_slice), i] = weights[data_logic]
+    # The final bin also includes the last value, so has an equals in less than
+    data_logic = (data >= bins[len(bins)-2]) & (data <= bins[len(bins)-1])
+    data_slice = data[data_logic]
+    data_columned[0:len(data_slice), len(bins)-2] = data_slice
+    weights_columned[0:len(data_slice), len(bins)-2] = weights[data_logic]
+    return data_columned, weights_columned
+
+
+# Alternative method for calculating the errors of the histogram bars by using
+# the simplified jackknife analysis. The data is sub-sampled into many
+# histograms with the same bins. This way a distribution for the different
+# heights can be done. Takes the bins used as general argument
+# Arguments must be numpy arrays
+def histogram_weighted_bin_errors_jackknife(data_input, weights_input, bins,
+                                            num_sub_samps, density=True):
+    # Make an array of random indexs
+    indx = np.arange(0, len(data_input), 1)
+    np.random.shuffle(indx)
+    # This allows the data to be randomised and keep the weights matched
+    data = data_input[indx]
+    weights = weights_input[indx]
+    num_bins = len(bins)-1  # bins is an array of the side, so one less
+
+    height_array = np.zeros((num_bins, num_sub_samps))  # Storage
+
+    # Next organise into subsamples
+    data =\
+        np.reshape(data, (int(data.shape[0]/num_sub_samps), num_sub_samps))
+    weights =\
+        np.reshape(weights, (int(weights.shape[0]/num_sub_samps),
+                             num_sub_samps))
+
+    # Find the heights of the histograms, for each sample
+    for i in range(num_sub_samps):
+        _, ws = histogram_data_in_bins(data[:, i], weights[:, i], bins)
+        heights = np.sum(ws, axis=0)
+        if density is True:
+            norm = len(data[:, i])*np.diff(bins)[0]
+        else:
+            norm = 1
+        height_array[:, i] = heights/norm
+
+    error = np.zeros(num_bins)
+    sqrt_sub_samples = np.sqrt(num_sub_samps)
+
+    # Now can find the standard deviation of the heights, as the bins are the
+    # same. Then divide by the sqaure root of the number of samples by
+    # jackknife and you have the error
+    for j in range(num_bins):
+        bars = height_array[j, :]
+        if np.any([bars > 0]):
+            # Used to be just np.std(bars)
+            error[j] = np.std(bars[bars > 0])/sqrt_sub_samples
+        else:
+            error[j] = 0  # Remove any empty histogram bars
+
+    return error
+
+
+# Trucates data above a certain threshold. Has options for both weights and if
+# a the trucation needs to be rounded up to a certain value.
+def histogram_data_truncation(data, threshold, weights=0,
+                              num_sub_samples=None):
+    if isinstance(weights, int):
+        if num_sub_samples is None:
+            return data[data < threshold]
+        elif isinstance(num_sub_samples, int):
+            data = np.sort(data)
+            num_above_threshold = len(data[data > threshold])
+            # Want to remove a full subsamples worth
+            rounded_num_above_threshold =\
+                round(num_above_threshold/num_sub_samples)+1
+            return data[:-rounded_num_above_threshold]
+
+    else:
+        if num_sub_samples is None:
+            data_remove_logic = data < threshold
+            return data[data_remove_logic], weights[data_remove_logic]
+        elif isinstance(num_sub_samples, int):
+            # Sort in order of increasing Ns
+            sort_idx = np.argsort(data)
+            data = data[sort_idx]
+            weights = weights[sort_idx]
+            num_above_threshold = len(data[data > threshold])
+            # Want to remove a full subsamples worth
+            if num_above_threshold > 0:
+                rounded = round(num_above_threshold/num_sub_samples)+1
+                rounded_num_above_threshold = rounded*num_sub_samples
+                return data[:-rounded_num_above_threshold],
+                weights[:-rounded_num_above_threshold]
+            else:
+                return data, weights
+
+
+# Returns the normalisation factor for a histogram, including one with weights
+def histogram_analytical_normalisation(bins, num_sims):
+    return num_sims*np.diff(bins)[0]
+
+
+'''
+Log-normal equations
+'''
+
+
+# The data provided needs to be raw data - the log is then taken in the
+# function uses the maximum likelihood
+# Shen 2006 Statist. Med. 2006; 25:3023–3038
+def log_normal_mean(data, position=None):
+    data_log = np.log(data)
+    data_log_mean = np.mean(data_log)
+    data_log_std = np.std(data_log, ddof=1)  # Unbiased standard deviation
+    n = len(data_log)
+    if data_log_std**2 >= (n+4)/2:
+        if isinstance(position, float):
+            print('Possible convergance error in Shen2006 method at ' +
+                  str(position))
+        else:
+            print('Possible convergance error in Shen2006 method')
+
+    mean = np.exp(data_log_mean+0.5*data_log_std**2)
+    return mean
+
+
+def log_normal_height(w, position=None):
+    return len(w)*log_normal_mean(w, position=position)
+
+
+# The most basic way to estimate the error, assuming symmetric errors
+# SHOULD THIS USE n-1 or n IN THE STD??????????????????????????
+def log_normal_errors(ws, Z_alpha=1):
+    log_w = np.log(ws)
+    log_var = np.var(log_w, ddof=1)  # unbiased variance
+    log_mean = np.mean(log_w)
+    n = len(ws)
+    log_err = Z_alpha*np.sqrt(log_var/n+(log_var**2)/(2*n-2))
+    upper_err = n*np.exp(log_mean+log_var/2)*(np.exp(log_err)-1)
+    lower_err = n*np.exp(log_mean+log_var/2)*(1-np.exp(-log_err))
+    return np.array([lower_err, upper_err])

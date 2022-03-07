@@ -2,7 +2,6 @@
 #  -*- coding: utf-8 -*-
 """
 Created on 28/02/22
-
 @author: jjackson
 """
 from timeit import default_timer as timer

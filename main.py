@@ -11,19 +11,20 @@ import pandas as pd
 import scipy.stats as sci_stat
 from timeit import default_timer as timer
 
+from pystoc.numerics import is_simulation
 
-import inflation_functions_e_foldings as cosfuncs
-import is_data_analysis as isfuncs
+import pystoc.analytics as cosfuncs
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 import mpl_style
 plt.style.use(mpl_style.style1)
 
+
 # M_PL = 2.435363*10**18 old value
 M_PL = 1.0  # Using units of M_PL
 PI = np.pi
 # m = 10**(-6)*M_PL#Based on John McDonald's calculations in PHYS461
-m = 0.1*M_PL  # 4*PI*6**0.5
+m = 1*M_PL  # 4*PI*6**0.5
 
 # Intial conditions and tolerances
 N_starting = 10  # In some sense, this should techically be negative
@@ -50,7 +51,7 @@ manual_norm = True
 w_hist = False
 save_results = True
 save_raw_data = True
-log_normal = True
+log_normal = False
 contour = False
 fontsize = 20
 include_std_w_plot = True
@@ -59,7 +60,7 @@ count_refs = False
 scater_density_plot = True
 
 wind_type = 'diffusion'
-bias = 1
+bias = 0.2
 
 
 if (m == 2 or m == 1) and phi_i == phi_r:
@@ -119,9 +120,9 @@ else:
     reconstruction = 'naive'
 
 bin_centres, heights, errors =\
-    isfuncs.IS_simulation(phi_i, phi_end, V, V_dif, V_ddif, num_sims, bias,
-                          bins=50, dN=dN, reconstruction=reconstruction,
-                          save_data=True, phi_UV=100, min_bin_size=100)
+    is_simulation(phi_i, phi_end, V, V_dif, V_ddif, num_sims, bias,
+                  bins=50, dN=dN, reconstruction=reconstruction,
+                  save_data=True, phi_UV=100, min_bin_size=100)
 
 
 '''
@@ -141,14 +142,13 @@ bin_centres_analytical = np.linspace(bin_centres[0], bin_centres[-1],
 
 if m > 0.6:  # Less than this it breaks down:
     start = timer()
-    PDF_analytical_test = cosfuncs.large_mass_pdf(bin_centres_analytical,
-                                                  phi_i, phi_end, V)
+    PDF_analytical_test =\
+        cosfuncs.quadratic_inflation_large_mass_pdf(bin_centres_analytical,
+                                                    phi_i, phi_end, V)
     end = timer()
     print(f'The analytical answer took: {end - start}')
     best_fit_line2 = PDF_analytical_test
     dist_fit_label2 = r'Pattison 2017'
-    plt.plot(bin_centres_analytical, best_fit_line2,
-             label='{0}'.format(dist_fit_label2))
 else:
     best_fit_line2 = sci_stat.norm.pdf(bin_centres_analytical,
                                        analytic_N_mean, analytic_N_st)
@@ -282,9 +282,9 @@ else:
 if vincent is True and bin_centres[-1] > 15 and phi_r > phi_i:
     bins_in_tail = bin_centres[bin_centres > 15]
     vincent_near_tail =\
-        np.array([cosfuncs.vincent_near_tail_fit(bin_tail, m, phi_i,
-                  numerical_integration=False) for bin_tail in
-                  bins_in_tail])
+        np.array([cosfuncs.quadratic_inflation_near_tail_pdf(bin_tail, m,
+                 phi_i, numerical_integration=False) for bin_tail in
+                 bins_in_tail])
 
     plt.plot(bins_in_tail, vincent_near_tail, color=CB_color_cycle[3],
              label='{0}'.format('Near tail approx.'), linewidth=2.5)

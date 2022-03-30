@@ -143,8 +143,8 @@ bin_centres_analytical = np.linspace(bin_centres[0], bin_centres[-1],
 if m > 0.6:  # Less than this it breaks down:
     start = timer()
     PDF_analytical_test =\
-        cosfuncs.quadratic_inflation_large_mass_pdf(bin_centres_analytical,
-                                                    phi_i, phi_end, V)
+        cosfuncs.quadratic_inflation_large_mass_pdf(bin_centres_analytical, m,
+                                                    phi_i)
     end = timer()
     print(f'The analytical answer took: {end - start}')
     best_fit_line2 = PDF_analytical_test

@@ -10,8 +10,6 @@ This is the documentation for a Python/Cython package to run numerical simulatio
 
 This package also comes with functionality to compare the numerical results with analytical expectations. 
 
-.. automodule:: test_sphinx
-    :members:
 
 .. toctree::
    :maxdepth: 2

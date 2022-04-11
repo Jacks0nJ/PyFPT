@@ -1,10 +1,11 @@
 .. _numerics:
 
-Simulation Functions and Data Analysis
-======================================
+Numerics
+========
 
-This page gives an overview of the different functions in the importance sampling file.
+This page gives an overview of the functions which both run the importance sampling simulations and perform the data analysis. 
 
 
-
+.. automodule:: numerics.is_simulation
+    :members:
 

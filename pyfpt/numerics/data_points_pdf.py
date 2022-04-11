@@ -29,8 +29,8 @@ def data_points_pdf(Ns, ws, num_sub_samples, reconstruction,
     else:
         num_bins = len(bins)-1  # as bins is the bin edges, so plus 1
         # Want raw heights of histogram bars
-        heights_raw, bins, _ =\
-            plt.hist(Ns, bins=bins, weights=ws)
+        heights_raw, bins =\
+            np.histogram(Ns, bins=bins, weights=ws)
         plt.clf()
 
     analytical_norm =\
@@ -89,9 +89,12 @@ def data_points_pdf(Ns, ws, num_sub_samples, reconstruction,
 
         # Include only filled values
         # Remember to normalise errors as well
-        heights = heights_est[errors_est[0, :] > 0]/analytical_norm
+        heights = heights_est/analytical_norm
+        heights = heights[errors_est[0, :] > 0]
+
         # The errors are a 2D array, so need to slice correctly
-        errors = errors_est[:, errors_est[0, :] > 0]/analytical_norm
+        errors = errors_est/analytical_norm
+        errors = errors[:, errors_est[0, :] > 0]
 
         # Checking p-values if lognormal was used
         lognormality_check(bin_centres, weights_in_bins, filled_bins,

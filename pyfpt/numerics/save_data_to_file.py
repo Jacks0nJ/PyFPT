@@ -15,3 +15,5 @@ def save_data_to_file(sim_N_dist, w_values, phi_i, num_sims, bias=0):
     # Saving to a directory for the language used
 
     data_pandas_raw.to_csv(raw_file_name)
+
+    print('Saved data to file '+raw_file_name)

@@ -14,18 +14,20 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../pystoc'))
+sys.path.insert(0, os.path.abspath('../../pyfpt'))
 sys.path.insert(0, os.path.abspath('../..'))
+sys.path.insert(0, os.path.abspath('../../pyfpt/analytics/variance_N_sto_limit'))
+sys.path.insert(0, os.path.abspath('../../pyfpt/cython_code/importance_sampling_sr_cython12'))
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'PyStoc'
+project = 'PyFPT'
 copyright = '2022, Joe Jackson'
 author = 'Joe Jackson'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1'
+release = '0.2'
 
 
 # -- General configuration ---------------------------------------------------
@@ -38,7 +40,7 @@ napoleon_google_docstring = False
 napoleon_use_param = False
 napoleon_use_ivar = True
 
-autodoc_mock_imports = ["numpy", "scipy", "matplotlib","mpmath"]
+autodoc_mock_imports = ["numpy", "scipy", "matplotlib", "mpmath", "pandas"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

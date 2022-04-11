@@ -1,10 +1,12 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar  7 15:37:36 2022
+'''
+Importance Sampling Simulation
+---------------------------------
+This module calculates the variance of the number of e-folds in low diffusion
+limit using equation 3.35 from `Vennin-Starobinsky 2015`_.
 
-@author: jjackson
-"""
+.. _Vennin-Starobinsky 2015: https://arxiv.org/abs/1506.04732
+'''
+
 from timeit import default_timer as timer
 import multiprocessing as mp
 from multiprocessing import Process, Queue
@@ -22,10 +24,31 @@ from ..cython_code.importance_sampling_sr_cython12 import\
     many_simulations_importance_sampling
 
 
-def is_simulation(phi_i, phi_end, V, V_dif, V_ddif, num_sims, bias, bins=50,
+def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_sims, bias, bins=50,
                   dN=None, min_bin_size=400, num_sub_samples=20,
                   reconstruction='lognormal', save_data=False, N_f=100,
                   phi_UV=None):
+    """Returns the variance of the number of e-folds.
+
+    Parameters
+    ----------
+    V : function
+        The potential.
+    V_dif : function
+        The potential's first derivative.
+    V_ddif : function
+        The potential second derivative.
+    phi_i : float
+        The initial scalar field value.
+    phi_end : float
+        The end scalar field value.
+
+    Returns
+    -------
+    var_N : float
+        the variance of the number of e-folds.
+s
+    """
     # If no argument for dN is given, using the classical std to define it
     if dN is None:
         if isinstance(bins, int) is True:
@@ -34,7 +57,7 @@ def is_simulation(phi_i, phi_end, V, V_dif, V_ddif, num_sims, bias, bins=50,
         elif isinstance(bins, int) is False:
             std = variance_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
             num_bins = len(bins)-1
-            dN = std/(3*num_bins)
+            dN = std/(num_bins)
     elif isinstance(dN, float) is not True and isinstance(dN, int) is not True:
         raise ValueError('dN is not a number')
 

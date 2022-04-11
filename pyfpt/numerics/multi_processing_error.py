@@ -10,4 +10,4 @@ def multi_processing_error(sim_N_dist, w_values):
     pearson_corr = pearson_corr[0, 1]
 
     if pearson_corr > -0.55:  # Data is uncorrelated
-        print('Possible multiprocessing error occured, terminating')
+        print('Possible multiprocessing error occured')

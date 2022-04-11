@@ -11,9 +11,9 @@ import pandas as pd
 import scipy.stats as sci_stat
 from timeit import default_timer as timer
 
-from pystoc.numerics import is_simulation
+from pyfpt.numerics import is_simulation
 
-import pystoc.analytics as cosfuncs
+import pyfpt.analytics as cosfuncs
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 import mpl_style
@@ -24,13 +24,13 @@ plt.style.use(mpl_style.style1)
 M_PL = 1.0  # Using units of M_PL
 PI = np.pi
 # m = 10**(-6)*M_PL#Based on John McDonald's calculations in PHYS461
-m = 1*M_PL  # 4*PI*6**0.5
+m = 0.1*M_PL  # 4*PI*6**0.5
 
 # Intial conditions and tolerances
 N_starting = 10  # In some sense, this should techically be negative
 phi_end = M_PL*2**0.5
 phi_i = M_PL*(4*N_starting+2)**0.5  # M_PL*(4*N_starting+2)**0.5
-phi_r = 100*phi_i
+phi_r = 1*phi_i
 N_cut_off = 300
 N_f = 100
 dN = 0.02*m  # Assuming std(N) is proportional to m, was dN=0.02m
@@ -51,7 +51,7 @@ manual_norm = True
 w_hist = False
 save_results = True
 save_raw_data = True
-log_normal = False
+log_normal = True
 contour = False
 fontsize = 20
 include_std_w_plot = True
@@ -60,7 +60,7 @@ count_refs = False
 scater_density_plot = True
 
 wind_type = 'diffusion'
-bias = 0.2
+bias = 1.
 
 
 if (m == 2 or m == 1) and phi_i == phi_r:
@@ -120,7 +120,7 @@ else:
     reconstruction = 'naive'
 
 bin_centres, heights, errors =\
-    is_simulation(phi_i, phi_end, V, V_dif, V_ddif, num_sims, bias,
+    is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_sims, bias,
                   bins=50, dN=dN, reconstruction=reconstruction,
                   save_data=True, phi_UV=100, min_bin_size=100)
 

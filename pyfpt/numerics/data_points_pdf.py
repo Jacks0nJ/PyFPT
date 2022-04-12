@@ -1,43 +1,83 @@
-import matplotlib.pyplot as plt
+'''
+Probability Density of the Data
+-------------------------------
+This module post proceeses the first-passage times and weights to estimate the
+probability density of the target distribution.
+'''
+
+
 import numpy as np
 
 
-from .histogram_analytical_normalisation import\
-    histogram_analytical_normalisation
-from .histogram_data_in_bins import histogram_data_in_bins
+from .histogram_normalisation import histogram_normalisation
+from .data_in_histogram_bins import data_in_histogram_bins
 from .histogram_weighted_bin_errors_jackknife import\
     histogram_weighted_bin_errors_jackknife
 from .log_normal_height import log_normal_height
-from .log_normal_errors import log_normal_errors
+from .log_normal_error import log_normal_error
 from .lognormality_check import lognormality_check
 
 
-def data_points_pdf(Ns, ws, num_sub_samples, reconstruction,
-                    min_bin_size=None, bins=50, num_sims=None):
-    # If no number of simulations argument is passed.
-    if isinstance(num_sims, int) is not True:
-        num_sims = len(Ns)
+def data_points_pdf(data, weights, estimator,
+                    bins=50, min_bin_size=400, num_sub_samples=20):
+    """Returns the (truncated) histogram bin centres, heights and errors, using
+    the provided estimator method.
+
+    Parameters
+    ----------
+    data : numpy.ndarray
+        Input first-passage time data.
+    weights : numpy.ndarray
+        Associated weights to the first-passage time data. Must be a one-to-one
+        correspondance between them.
+    estimator : string
+        The estimator used ot reconstruct the target distribution probability
+        density from the importance sample. If ``'lognormal'``, it assumes the
+        weights in each bin follow a lognomral distribution. If ``'naive'``, no
+        assumption is made but more runs are required for convergance.
+    bins : int or list, optional
+        If bins is an integer, it defines the number equal width bins for the
+        first-passage times. If bins is a list or numpy array, it defines the
+        bin edges, including the left edge of the first bin and the right edge
+        of the last bin. The widths can vary. Defaults to 50 evenly spaced
+        bins.
+    min_bin_size : int, optional
+        The minimum number of runs per bin to included in the data analysis.
+        If a bin has less than this number, it is truncated. Defaults to 400.
+    num_sub_samples : int, optional
+        The number of subsamples used in naive estimator error estimation.
+        Defaults to 20 when ``estimator`` is ``'naive'``.
+    Returns
+    -------
+    bin_centres : numpy.ndarray
+        The centres of the histogram bins.
+    heights : numpy.ndarray
+        The heights of the normalised histogram bars.
+    errors : numpy.ndarray
+        The errors in estimating the heights.
+    """
+    num_runs = len(data)
 
     # If the number of bins used has been specified
     if isinstance(bins, int) is True:
         num_bins = bins
         # Want raw heights of histogram bars
-        heights_raw, bins, _ =\
-            plt.hist(Ns, num_bins, weights=ws)
-        plt.clf()
+        heights_raw, bins =\
+            np.histogram(data, num_bins, weights=weights)
     # If the bins have been specified
     else:
         num_bins = len(bins)-1  # as bins is the bin edges, so plus 1
         # Want raw heights of histogram bars
         heights_raw, bins =\
-            np.histogram(Ns, bins=bins, weights=ws)
-        plt.clf()
+            np.histogram(data, bins=bins, weights=weights)
 
-    analytical_norm =\
-        histogram_analytical_normalisation(bins, num_sims)
+    # Calculate the normalisation of the histogram
+    histogram_norm =\
+        histogram_normalisation(bins, num_runs)
 
+    # Need to know the data and weights in each bin to estimate the errors
     data_in_bins, weights_in_bins =\
-        histogram_data_in_bins(Ns, ws, bins)
+        data_in_histogram_bins(data, weights, bins)
 
     # Predictions need the bin centre to make comparison
     bin_centres = np.array([(bins[i]+bins[i+1])/2 for i in range(len(bins)-1)])
@@ -46,7 +86,8 @@ def data_points_pdf(Ns, ws, num_sub_samples, reconstruction,
     if isinstance(min_bin_size, int) is True:
         # Then loop through to find where length is greater than min_bin_size
         filled_bins = []
-        num_sims_used = len(Ns)
+        num_runs_used = len(data)
+
         for i in range(len(bins)-1):
             data_in_bin = data_in_bins[:, i]
             data_in_bin = data_in_bin[data_in_bin > 0]
@@ -60,18 +101,20 @@ def data_points_pdf(Ns, ws, num_sub_samples, reconstruction,
             else:
                 filled_bins.append(False)
                 # Reflect in number of succesful simulatios
-                num_sims_used -= len(data_in_bin)
-        bin_centres_uncut = bin_centres
+                num_runs_used -= len(data_in_bin)
         bin_centres = bin_centres[filled_bins]
+    else:
+        print('min_bin_size is not an integrer, defaulting to 0')
 
-    if reconstruction == 'naive':
-        heights = heights_raw/analytical_norm
-        errors = histogram_weighted_bin_errors_jackknife(Ns, ws, bins,
+    # Now estimating the probability density function
+    if estimator == 'naive':
+        heights = heights_raw/histogram_norm
+        errors = histogram_weighted_bin_errors_jackknife(data, weights, bins,
                                                          num_sub_samples)
         if isinstance(min_bin_size, int) is True:
             heights = heights[filled_bins]
             errors = errors[filled_bins]
-    elif reconstruction == 'lognormal':
+    elif estimator == 'lognormal':
 
         heights_est = np.zeros(num_bins)
         # The errors for the log-normal case are asymmetric
@@ -83,24 +126,23 @@ def data_points_pdf(Ns, ws, num_sub_samples, reconstruction,
                 (np.any([w > 0]) is True and isinstance(min_bin_size, int)
                  is False):
                 w = w[w > 0]
-                heights_est[i] =\
-                    log_normal_height(w, position=bin_centres_uncut[i])
-                errors_est[:, i] = log_normal_errors(w)
+                heights_est[i] = log_normal_height(w)
+                errors_est[:, i] = log_normal_error(w)
 
         # Include only filled values
         # Remember to normalise errors as well
-        heights = heights_est/analytical_norm
+        heights = heights_est/histogram_norm
         heights = heights[errors_est[0, :] > 0]
 
         # The errors are a 2D array, so need to slice correctly
-        errors = errors_est/analytical_norm
+        errors = errors_est/histogram_norm
         errors = errors[:, errors_est[0, :] > 0]
 
-        # Checking p-values if lognormal was used
-        lognormality_check(bin_centres, weights_in_bins, filled_bins,
-                           num_bins)
+        # Checking p-values if lognormal was used.
+        # Need to provide only weights of the filled bins
+        lognormality_check(bin_centres, weights_in_bins[:, filled_bins])
 
     else:
-        raise ValueError('Not valid reconstrcution method')
+        raise ValueError('Not valid estimator method')
 
-    return bin_centres, heights, errors, num_sims_used, bins
+    return bin_centres, heights, errors, num_runs_used, bins

@@ -10,7 +10,6 @@ assumes UV cutoff at infinity.
 .. _<insert our paper>: https://arxiv.org/abs/1707.00537
 '''
 
-
 import numpy as np
 from scipy import integrate
 

@@ -2,9 +2,9 @@
 Mean Number of e-folds
 ----------------------
 This module calculates the mean number of e-folds in low diffusion limit
-using equation 3.28 from `Vennin-Starobinsky 2015`_.
+using equation 3.28 from `Vennin--Starobinsky 2015`_.
 
-.. _Vennin-Starobinsky 2015: https://arxiv.org/abs/1506.04732
+.. _Vennin--Starobinsky 2015: https://arxiv.org/abs/1506.04732
 '''
 
 import numpy as np

@@ -15,9 +15,8 @@ This package also comes with functionality to compare the numerical results with
    :maxdepth: 2
    :caption: Contents:
    
-   numerics
    analytics
-   cython
+   numerics
 
 
 

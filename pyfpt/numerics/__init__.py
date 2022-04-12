@@ -1,14 +1,15 @@
 from .data_points_pdf import data_points_pdf
-from .histogram_analytical_normalisation import\
-    histogram_analytical_normalisation
-from .histogram_data_in_bins import histogram_data_in_bins
+from .histogram_normalisation import\
+    histogram_normalisation
+from .data_in_histogram_bins import data_in_histogram_bins
 from .histogram_data_truncation import histogram_data_truncation
 from .histogram_weighted_bin_errors_jackknife import\
     histogram_weighted_bin_errors_jackknife
 from .is_simulation import is_simulation
-from .log_normal_errors import log_normal_errors
+from .log_normal_error import log_normal_error
 from .log_normal_height import log_normal_height
 from .lognormality_check import lognormality_check
 from .log_normal_mean import log_normal_mean
 from .multi_processing_error import multi_processing_error
 from .save_data_to_file import save_data_to_file
+

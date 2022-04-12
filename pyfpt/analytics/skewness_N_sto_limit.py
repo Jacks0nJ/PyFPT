@@ -2,10 +2,10 @@
 Skewness of the Number of e-folds
 ---------------------------------
 This module calculates the skewness of the number of e-folds in low diffusion
-limit using equation 3.37 (from `Vennin-Starobinsky 2015`_) for the third
+limit using equation 3.37 (from `Vennin--Starobinsky 2015`_) for the third
 central moment and equation 3.33 for the variance.
 
-.. _Vennin-Starobinsky 2015: https://arxiv.org/abs/1506.04732
+.. _Vennin--Starobinsky 2015: https://arxiv.org/abs/1506.04732
 '''
 
 

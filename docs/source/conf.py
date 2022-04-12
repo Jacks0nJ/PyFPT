@@ -15,9 +15,9 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../../pyfpt'))
-sys.path.insert(0, os.path.abspath('../..'))
-sys.path.insert(0, os.path.abspath('../../pyfpt/analytics/variance_N_sto_limit'))
-sys.path.insert(0, os.path.abspath('../../pyfpt/cython_code/importance_sampling_sr_cython12'))
+#sys.path.insert(0, os.path.abspath('../../..'))
+#sys.path.insert(0, os.path.abspath('../../pyfpt/analytics/variance_N_sto_limit'))
+#sys.path.insert(0, os.path.abspath('../../pyfpt/cython_code/importance_sampling_sr_cython12'))
 
 
 # -- Project information -----------------------------------------------------
@@ -40,7 +40,8 @@ napoleon_google_docstring = False
 napoleon_use_param = False
 napoleon_use_ivar = True
 
-autodoc_mock_imports = ["numpy", "scipy", "matplotlib", "mpmath", "pandas"]
+autodoc_mock_imports = ["numpy", "scipy", "matplotlib", "mpmath", "pandas",
+			"timeit", "multiprocessing"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

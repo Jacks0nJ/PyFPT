@@ -2,9 +2,9 @@
 Fourth Central Moment of the Number of e-folds
 ----------------------------------------------
 This module calculates the fourth central moment of the number of e-folds in
-low diffusion limit using equation 3.40 from `Vennin-Starobinsky 2015`_.
+low diffusion limit using equation 3.40 from `Vennin--Starobinsky 2015`_.
 
-.. _Vennin-Starobinsky 2015: https://arxiv.org/abs/1506.04732
+.. _Vennin--Starobinsky 2015: https://arxiv.org/abs/1506.04732
 '''
 
 

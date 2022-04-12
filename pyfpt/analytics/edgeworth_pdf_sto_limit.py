@@ -3,10 +3,10 @@ Edgeworth PDF
 -------------
 This module returns the `Edgeworth series`_ probability density function (PDF)
 for first-passage times in the low-diffusion limit, using the results from
-`Vennin-Starobinsky 2015`_ to calcuate the required moments, as a function.
+`Vennin--Starobinsky 2015`_ to calcuate the required moments, as a function.
 
 .. _Edgeworth series: https://en.wikipedia.org/wiki/Edgeworth_series
-.. _Vennin-Starobinsky 2015: https://arxiv.org/abs/1506.04732
+.. _Vennin--Starobinsky 2015: https://arxiv.org/abs/1506.04732
 '''
 import numpy as np
 

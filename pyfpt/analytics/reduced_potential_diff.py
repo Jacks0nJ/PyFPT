@@ -2,9 +2,9 @@
 Reduced Potential Derivative
 ----------------------------
 This module reduces the passed potential derivative function to its
-dimensionless form given in equation 2.1 of `Vennin-Starobinsky 2015`_.
+dimensionless form given in equation 2.1 of `Vennin--Starobinsky 2015`_.
 
-.. _Vennin-Starobinsky 2015: https://arxiv.org/abs/1506.04732
+.. _Vennin--Starobinsky 2015: https://arxiv.org/abs/1506.04732
 '''
 
 import numpy as np

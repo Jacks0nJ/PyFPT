@@ -1,15 +1,15 @@
 import numpy as np
 
-from .histogram_data_in_bins import histogram_data_in_bins
+from .histogram_normalisation import histogram_normalisation
 
 
-# Alternative method for calculating the errors of the histogram bars by using
+# Method for calculating the errors of the histogram bars by using
 # the simplified jackknife analysis. The data is sub-sampled into many
 # histograms with the same bins. This way a distribution for the different
 # heights can be done. Takes the bins used as general argument
 # Arguments must be numpy arrays
 def histogram_weighted_bin_errors_jackknife(data_input, weights_input, bins,
-                                            num_sub_samps, density=True):
+                                            num_sub_samps):
     # Make an array of random indexs
     indx = np.arange(0, len(data_input), 1)
     np.random.shuffle(indx)
@@ -29,13 +29,10 @@ def histogram_weighted_bin_errors_jackknife(data_input, weights_input, bins,
 
     # Find the heights of the histograms, for each sample
     for i in range(num_sub_samps):
-        _, ws = histogram_data_in_bins(data[:, i], weights[:, i], bins)
-        heights = np.sum(ws, axis=0)
-        if density is True:
-            norm = len(data[:, i])*np.diff(bins)[0]
-        else:
-            norm = 1
-        height_array[:, i] = heights/norm
+        heights_raw, _ =\
+            np.histogram(data[:, i], bins, weights=weights[:, i])
+        norm = histogram_normalisation(bins, len(data[:, i]))
+        height_array[:, i] = heights_raw/norm
 
     error = np.zeros(num_bins)
     sqrt_sub_samples = np.sqrt(num_sub_samps)

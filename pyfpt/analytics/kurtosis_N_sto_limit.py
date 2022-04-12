@@ -2,10 +2,10 @@
 Kurtosis of the Number of e-folds
 ---------------------------------
 This module calculates the skewness of the number of e-folds in low diffusion
-limit using equation 3.40 (from `Vennin-Starobinsky 2015`_) for the fourth
+limit using equation 3.40 (from `Vennin--Starobinsky 2015`_) for the fourth
 central moment and equation 3.33 for the variance.
 
-.. _Vennin-Starobinsky 2015: https://arxiv.org/abs/1506.04732
+.. _Vennin--Starobinsky 2015: https://arxiv.org/abs/1506.04732
 '''
 
 

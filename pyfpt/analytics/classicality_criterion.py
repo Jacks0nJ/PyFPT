@@ -2,12 +2,12 @@
 Classicality Criterion
 ----------------------
 This module uses the classicality criterion (equation 3.27) from
-`Vennin-Starobinsky 2015`_ to see if the inflation model investigated will
+`Vennin--Starobinsky 2015`_ to see if the inflation model investigated will
 have dynamics which will deviate strongly from classical prediction. If the
 returned :math:`{\\eta}` parameter is of order unity, stochastic effects
 dominate.
 
-.. _Vennin-Starobinsky 2015: https://arxiv.org/abs/1506.04732
+.. _Vennin--Starobinsky 2015: https://arxiv.org/abs/1506.04732
 '''
 
 from .reduced_potential import reduced_potential

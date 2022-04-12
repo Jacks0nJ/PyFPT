@@ -24,7 +24,7 @@ plt.style.use(mpl_style.style1)
 M_PL = 1.0  # Using units of M_PL
 PI = np.pi
 # m = 10**(-6)*M_PL#Based on John McDonald's calculations in PHYS461
-m = 0.1*M_PL  # 4*PI*6**0.5
+m = 1.*M_PL  # 4*PI*6**0.5
 
 # Intial conditions and tolerances
 N_starting = 10  # In some sense, this should techically be negative
@@ -34,7 +34,7 @@ phi_r = 1*phi_i
 N_cut_off = 300
 N_f = 100
 dN = 0.02*m  # Assuming std(N) is proportional to m, was dN=0.02m
-num_sims = 50000
+num_runs = 40000
 num_bins = 50
 num_sub_samples = 20
 
@@ -60,13 +60,13 @@ count_refs = False
 scater_density_plot = True
 
 wind_type = 'diffusion'
-bias = 1.
+bias = 0.5
 
 
 if (m == 2 or m == 1) and phi_i == phi_r:
     kazuya_pdf = True
     vincent = False
-elif m > 0.6:
+if m > 0.6:
     vincent = True
     kazuya_pdf = False
     if log_normal is True:
@@ -115,21 +115,24 @@ if edgeworth_series is True:
 
 
 if log_normal is True:
-    reconstruction = 'lognormal'
+    estimator = 'lognormal'
 else:
-    reconstruction = 'naive'
+    estimator = 'naive'
 
 bin_centres, heights, errors =\
-    is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_sims, bias,
-                  bins=50, dN=dN, reconstruction=reconstruction,
-                  save_data=True, phi_UV=100, min_bin_size=100)
+    is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias,
+                  bins=50, dN=dN, estimator=estimator,
+                  save_data=True, min_bin_size=100, phi_UV=phi_r)
 
+bin_centres = np.array(bin_centres)
+heights = np.array(heights)
+errors = np.array(errors)
 
 '''
 Reading the saved data
 '''
 raw_file_name = 'IS_data_phi_i_' + ('%s' % float('%.3g' % phi_i)) +\
-            '_iterations_'+str(num_sims) + '_bias_' +\
+            '_iterations_'+str(num_runs) + '_bias_' +\
             ('%s' % float('%.3g' % bias))+'.csv'
 raw_data = pd.read_csv(raw_file_name, index_col=0)
 sim_N_dist = np.array(raw_data['N'])
@@ -140,7 +143,7 @@ if bias > 0:
 bin_centres_analytical = np.linspace(bin_centres[0], bin_centres[-1],
                                      2*num_bins)
 
-if m > 0.6:  # Less than this it breaks down:
+if m > 0.6 and phi_r > phi_i:  # Less than this it breaks down:
     start = timer()
     PDF_analytical_test =\
         cosfuncs.quadratic_inflation_large_mass_pdf(bin_centres_analytical, m,
@@ -171,7 +174,7 @@ if save_results is True:
     data_pandas_results = pd.DataFrame(data_dict)
 
     my_file_name = 'results_for_N_' + str(N_starting) + '_dN_'+str(dN) + '_m_'\
-        + ('%s' % float('%.3g' % m)) + '_iterations_' + str(num_sims) +\
+        + ('%s' % float('%.3g' % m)) + '_iterations_' + str(num_runs) +\
         '_bias_'+str(bias)+'_phi_UV_'+str(phi_r/phi_i)+'phi_i'+'.csv'
     # Saving to a directory for the language used
 
@@ -198,7 +201,7 @@ if bias != 0:
                        label='{0}'.format('Weighted bins'))
     histogram_name = 'N_distribution_for_' + 'IS_near_' +\
         str(N_starting)+'_dN_' + str(dN) + '_m_' + ('%s' % float('%.3g' % m))\
-        + '_Is_shift_' + str(bias) + '_iterations_' + str(num_sims) +\
+        + '_Is_shift_' + str(bias) + '_iterations_' + str(num_runs) +\
         '_wighted.pdf'
     if m <= 0.6:
         dist_fit_label2 = r'Analytical $\sqrt{\delta \mathcal{N}^2}$=' +\
@@ -207,7 +210,7 @@ if bias != 0:
         dist_fit_label2 = r'Pattison 2017'
     plt.plot(bin_centres_analytical, best_fit_line2,
              label='{0}'.format(dist_fit_label2))
-    plt.title(r'bias=' + str(bias) + ', ' + str(num_sims) + ' sims, ' +
+    plt.title(r'bias=' + str(bias) + ', ' + str(num_runs) + ' sims, ' +
               r'dN=' + ('%s' % float('%.3g' % dN)) +
               r', $m$=' + ('%s' % float('%.3g' % m)))
     plt.xlabel(r'$\mathcal{N}$')
@@ -225,7 +228,7 @@ if bias != 0:
 scatter_name = '_dN_' + str(dN) + '_m_' +\
         ('%s' % float('%.3g' % m)) + '_phi_UV_' +\
         str(phi_r/phi_i) + '_m_' + ('%s' % float('%.3g' % m)) +\
-        '_iterations_' + str(num_sims)+'_bias_' + str(bias)
+        '_iterations_' + str(num_runs)+'_bias_' + str(bias)
 if contour is True:
     h, xedges, yedges, _ =\
         plt.hist2d(sim_N_dist, np.log10(w_values), (50, 50))
@@ -267,7 +270,7 @@ plt.clf()
 histogram_name = 'publishable_error_bar_IS_near_' + str(N_starting) +\
     '_dN_' + ('%s' % float('%.2g' % dN)) + '_m_' +\
     ('%s' % float('%.3g' % m)) + '_phi_UV_'+str(phi_r/phi_i) + 'phi_i' +\
-    '_bias_'+str(bias) + '_iters_' + str(num_sims) + '_bin_size_' +\
+    '_bias_'+str(bias) + '_iters_' + str(num_runs) + '_bin_size_' +\
     str(min_bin_size)
 if bias == 0:
     plt.errorbar(bin_centres, heights, yerr=errors, fmt=".", ms=7,

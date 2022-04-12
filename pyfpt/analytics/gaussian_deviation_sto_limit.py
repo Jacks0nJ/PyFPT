@@ -4,12 +4,12 @@ Gaussian Deviation
 This module calculates the point of deviation from Gaussian behaviour for the
 first-passage times in the number of e-folds for a provided threshold value
 using the `Edgeworth series`_ in low diffusion limit
-and the relations for the central moments given in `Vennin-Starobinsky 2015`_.
+and the relations for the central moments given in `Vennin--Starobinsky 2015`_.
 This is calculated by using root finding to find the point at which the higher
 order terms of the Edgeworth series first equals the threshold.
 
 .. _Edgeworth series: https://en.wikipedia.org/wiki/Edgeworth_series
-.. _Vennin-Starobinsky 2015: https://arxiv.org/abs/1506.04732
+.. _Vennin--Starobinsky 2015: https://arxiv.org/abs/1506.04732
 '''
 
 

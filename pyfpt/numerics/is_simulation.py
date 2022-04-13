@@ -17,8 +17,8 @@ from .histogram_data_truncation import histogram_data_truncation
 from .save_data_to_file import save_data_to_file
 from .data_points_pdf import data_points_pdf
 
-from .importance_sampling_sr_cython12 import\
-    many_simulations_importance_sampling
+from .importance_sampling_sr_cython import\
+    importance_sampling_simulations
 
 
 def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias, bins=50,
@@ -125,12 +125,10 @@ def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias, bins=50,
     def multi_processing_func(phi_i, phi_UV, phi_end, N_i, N_f, dN, bias,
                               num_runs, queue_Ns, queue_ws, queue_refs):
         results =\
-            many_simulations_importance_sampling(phi_i, phi_UV,
-                                                 phi_end, N_i, N_f, dN,
-                                                 bias, num_runs, V,
-                                                 V_dif, V_ddif,
-                                                 bias_type='diffusion',
-                                                 count_refs=False)
+            importance_sampling_simulations(phi_i, phi_UV, phi_end, N_i, N_f,
+                                            dN, bias, num_runs, V, V_dif,
+                                            V_ddif, bias_type='diffusion',
+                                            count_refs=False)
         Ns = np.array(results[0][:])
         ws = np.array(results[1][:])
         queue_Ns.put(Ns)

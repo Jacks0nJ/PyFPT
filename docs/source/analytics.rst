@@ -56,6 +56,11 @@ This page gives an overview of the different functions in the importance samplin
     
 ----
 
+.. automodule:: analytics.gaussian_pdf_sto_limit
+    :members:
+    
+----
+
 .. automodule:: analytics.edgeworth_pdf_sto_limit
     :members:
 

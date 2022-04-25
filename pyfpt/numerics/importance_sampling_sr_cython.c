@@ -3,12 +3,12 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "name": "importance_sampling_sr_cython",
+        "name": "PyFPT.pyfpt.numerics.importance_sampling_sr_cython",
         "sources": [
             "importance_sampling_sr_cython.pyx"
         ]
     },
-    "module_name": "importance_sampling_sr_cython"
+    "module_name": "PyFPT.pyfpt.numerics.importance_sampling_sr_cython"
 }
 END: Cython Metadata */
 
@@ -614,8 +614,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__importance_sampling_sr_cython
-#define __PYX_HAVE_API__importance_sampling_sr_cython
+#define __PYX_HAVE__PyFPT__pyfpt__numerics__importance_sampling_sr_cython
+#define __PYX_HAVE_API__PyFPT__pyfpt__numerics__importance_sampling_sr_cython
 /* Early includes */
 #ifdef _OPENMP
 #include <omp.h>
@@ -829,42 +829,42 @@ static const char *__pyx_f[] = {
 };
 
 /*--- Type declarations ---*/
-struct __pyx_opt_args_29importance_sampling_sr_cython_simulation_i_s_diff_bias;
-struct __pyx_opt_args_29importance_sampling_sr_cython_simulation_i_s_bias_func;
-struct __pyx_opt_args_29importance_sampling_sr_cython_importance_sampling_simulations;
+struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_diff_bias;
+struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_bias_func;
+struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_importance_sampling_simulations;
 
-/* "importance_sampling_sr_cython.pyx":102
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":102
  * #the importance sample path.
  * #See Eq. (33) of arXiv:nucl-th/9809075v1 for more info
  * cdef list simulation_i_s_diff_bias(double phi_i, double phi_r, double phi_end,\             # <<<<<<<<<<<<<<
  *                        double N_i, double N_f, double dN, double bias, V, V_p,\
  *                            V_pp, count_refs = False):
  */
-struct __pyx_opt_args_29importance_sampling_sr_cython_simulation_i_s_diff_bias {
+struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_diff_bias {
   int __pyx_n;
   PyObject *count_refs;
 };
 
-/* "importance_sampling_sr_cython.pyx":154
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":154
  * #the importance sample path.
  * #See Eq. (33) of arXiv:nucl-th/9809075v1 for more info
  * cdef list simulation_i_s_bias_func(double phi_i, double phi_r, double phi_end,\             # <<<<<<<<<<<<<<
  *                        double N_i, double N_f, double dN, bias, V, V_p,\
  *                            V_pp, count_refs = False):
  */
-struct __pyx_opt_args_29importance_sampling_sr_cython_simulation_i_s_bias_func {
+struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_bias_func {
   int __pyx_n;
   PyObject *count_refs;
 };
 
-/* "importance_sampling_sr_cython.pyx":205
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":205
  * 
  * 
  * cpdef importance_sampling_simulations(double phi_i, double phi_r, double phi_end,\             # <<<<<<<<<<<<<<
  *                      double N_i, double N_f, double dN, bias,\
  *                      int num_runs, V, V_p, V_pp, bias_type = 'diffusion',\
  */
-struct __pyx_opt_args_29importance_sampling_sr_cython_importance_sampling_simulations {
+struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_importance_sampling_simulations {
   int __pyx_n;
   PyObject *bias_type;
   PyObject *count_refs;
@@ -1425,27 +1425,27 @@ static int __Pyx_check_binary_version(void);
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
-/* Module declarations from 'importance_sampling_sr_cython' */
-static double __pyx_v_29importance_sampling_sr_cython_M_PL;
-static double __pyx_v_29importance_sampling_sr_cython_PI;
-static double __pyx_v_29importance_sampling_sr_cython_e;
-static int __pyx_f_29importance_sampling_sr_cython_end_condition(double, double, double); /*proto*/
-static int __pyx_f_29importance_sampling_sr_cython_reflect_condition(double, double, double); /*proto*/
-static double __pyx_f_29importance_sampling_sr_cython_reflection(double, double); /*proto*/
-static double __pyx_f_29importance_sampling_sr_cython_hubble_sr(double, PyObject *); /*proto*/
-static double __pyx_f_29importance_sampling_sr_cython_diffusion_term(double, double); /*proto*/
-static double __pyx_f_29importance_sampling_sr_cython_drift_term_sr(double, double, PyObject *); /*proto*/
-static double __pyx_f_29importance_sampling_sr_cython_i_s_A_step(double, double, double, double, double, double); /*proto*/
-static PyObject *__pyx_f_29importance_sampling_sr_cython_step(double, double, double, double, double, double, double, PyObject *, PyObject *, PyObject *); /*proto*/
-static PyObject *__pyx_f_29importance_sampling_sr_cython_diffusion_step(double, double, double, double, double, double, double, PyObject *, PyObject *, PyObject *); /*proto*/
-static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bias(double, double, double, double, double, double, double, PyObject *, PyObject *, PyObject *, struct __pyx_opt_args_29importance_sampling_sr_cython_simulation_i_s_diff_bias *__pyx_optional_args); /*proto*/
-static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_func(double, double, double, double, double, double, PyObject *, PyObject *, PyObject *, PyObject *, struct __pyx_opt_args_29importance_sampling_sr_cython_simulation_i_s_bias_func *__pyx_optional_args); /*proto*/
-static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_simulations(double, double, double, double, double, double, PyObject *, int, PyObject *, PyObject *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_29importance_sampling_sr_cython_importance_sampling_simulations *__pyx_optional_args); /*proto*/
-#define __Pyx_MODULE_NAME "importance_sampling_sr_cython"
-extern int __pyx_module_is_main_importance_sampling_sr_cython;
-int __pyx_module_is_main_importance_sampling_sr_cython = 0;
+/* Module declarations from 'PyFPT.pyfpt.numerics.importance_sampling_sr_cython' */
+static double __pyx_v_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_M_PL;
+static double __pyx_v_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_PI;
+static double __pyx_v_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_e;
+static int __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_end_condition(double, double, double); /*proto*/
+static int __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_reflect_condition(double, double, double); /*proto*/
+static double __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_reflection(double, double); /*proto*/
+static double __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_hubble_sr(double, PyObject *); /*proto*/
+static double __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_diffusion_term(double, double); /*proto*/
+static double __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_drift_term_sr(double, double, PyObject *); /*proto*/
+static double __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_i_s_A_step(double, double, double, double, double, double); /*proto*/
+static PyObject *__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_step(double, double, double, double, double, double, double, PyObject *, PyObject *, PyObject *); /*proto*/
+static PyObject *__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_diffusion_step(double, double, double, double, double, double, double, PyObject *, PyObject *, PyObject *); /*proto*/
+static PyObject *__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_diff_bias(double, double, double, double, double, double, double, PyObject *, PyObject *, PyObject *, struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_diff_bias *__pyx_optional_args); /*proto*/
+static PyObject *__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_bias_func(double, double, double, double, double, double, PyObject *, PyObject *, PyObject *, PyObject *, struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_bias_func *__pyx_optional_args); /*proto*/
+static PyObject *__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_importance_sampling_simulations(double, double, double, double, double, double, PyObject *, int, PyObject *, PyObject *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_importance_sampling_simulations *__pyx_optional_args); /*proto*/
+#define __Pyx_MODULE_NAME "PyFPT.pyfpt.numerics.importance_sampling_sr_cython"
+extern int __pyx_module_is_main_PyFPT__pyfpt__numerics__importance_sampling_sr_cython;
+int __pyx_module_is_main_PyFPT__pyfpt__numerics__importance_sampling_sr_cython = 0;
 
-/* Implementation of 'importance_sampling_sr_cython' */
+/* Implementation of 'PyFPT.pyfpt.numerics.importance_sampling_sr_cython' */
 static PyObject *__pyx_builtin_range;
 static PyObject *__pyx_builtin_ValueError;
 static const char __pyx_k_V[] = "V";
@@ -1499,13 +1499,13 @@ static PyObject *__pyx_n_s_phi_r;
 static PyObject *__pyx_n_s_random;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_test;
-static PyObject *__pyx_pf_29importance_sampling_sr_cython_importance_sampling_simulations(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_phi_i, double __pyx_v_phi_r, double __pyx_v_phi_end, double __pyx_v_N_i, double __pyx_v_N_f, double __pyx_v_dN, PyObject *__pyx_v_bias, int __pyx_v_num_runs, PyObject *__pyx_v_V, PyObject *__pyx_v_V_p, PyObject *__pyx_v_V_pp, PyObject *__pyx_v_bias_type, PyObject *__pyx_v_count_refs); /* proto */
+static PyObject *__pyx_pf_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_importance_sampling_simulations(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_phi_i, double __pyx_v_phi_r, double __pyx_v_phi_end, double __pyx_v_N_i, double __pyx_v_N_f, double __pyx_v_dN, PyObject *__pyx_v_bias, int __pyx_v_num_runs, PyObject *__pyx_v_V, PyObject *__pyx_v_V_p, PyObject *__pyx_v_V_pp, PyObject *__pyx_v_bias_type, PyObject *__pyx_v_count_refs); /* proto */
 static PyObject *__pyx_float_0_0;
 static PyObject *__pyx_float_0_5;
 static PyObject *__pyx_tuple_;
 /* Late includes */
 
-/* "importance_sampling_sr_cython.pyx":24
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":24
  * 
  * 
  * cdef int end_condition(double phi, double N, double phi_end):             # <<<<<<<<<<<<<<
@@ -1513,7 +1513,7 @@ static PyObject *__pyx_tuple_;
  *         return 0
  */
 
-static int __pyx_f_29importance_sampling_sr_cython_end_condition(double __pyx_v_phi, CYTHON_UNUSED double __pyx_v_N, double __pyx_v_phi_end) {
+static int __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_end_condition(double __pyx_v_phi, CYTHON_UNUSED double __pyx_v_N, double __pyx_v_phi_end) {
   int __pyx_r;
   __Pyx_TraceDeclarations
   __Pyx_RefNannyDeclarations
@@ -1524,7 +1524,7 @@ static int __pyx_f_29importance_sampling_sr_cython_end_condition(double __pyx_v_
   __Pyx_RefNannySetupContext("end_condition", 0);
   __Pyx_TraceCall("end_condition", __pyx_f[0], 24, 0, __PYX_ERR(0, 24, __pyx_L1_error));
 
-  /* "importance_sampling_sr_cython.pyx":25
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":25
  * 
  * cdef int end_condition(double phi, double N, double phi_end):
  *     if phi>phi_end:             # <<<<<<<<<<<<<<
@@ -1534,7 +1534,7 @@ static int __pyx_f_29importance_sampling_sr_cython_end_condition(double __pyx_v_
   __pyx_t_1 = ((__pyx_v_phi > __pyx_v_phi_end) != 0);
   if (__pyx_t_1) {
 
-    /* "importance_sampling_sr_cython.pyx":26
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":26
  * cdef int end_condition(double phi, double N, double phi_end):
  *     if phi>phi_end:
  *         return 0             # <<<<<<<<<<<<<<
@@ -1544,7 +1544,7 @@ static int __pyx_f_29importance_sampling_sr_cython_end_condition(double __pyx_v_
     __pyx_r = 0;
     goto __pyx_L0;
 
-    /* "importance_sampling_sr_cython.pyx":25
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":25
  * 
  * cdef int end_condition(double phi, double N, double phi_end):
  *     if phi>phi_end:             # <<<<<<<<<<<<<<
@@ -1553,7 +1553,7 @@ static int __pyx_f_29importance_sampling_sr_cython_end_condition(double __pyx_v_
  */
   }
 
-  /* "importance_sampling_sr_cython.pyx":27
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":27
  *     if phi>phi_end:
  *         return 0
  *     elif phi<=phi_end:             # <<<<<<<<<<<<<<
@@ -1563,7 +1563,7 @@ static int __pyx_f_29importance_sampling_sr_cython_end_condition(double __pyx_v_
   __pyx_t_1 = ((__pyx_v_phi <= __pyx_v_phi_end) != 0);
   if (__pyx_t_1) {
 
-    /* "importance_sampling_sr_cython.pyx":28
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":28
  *         return 0
  *     elif phi<=phi_end:
  *         return 1             # <<<<<<<<<<<<<<
@@ -1573,7 +1573,7 @@ static int __pyx_f_29importance_sampling_sr_cython_end_condition(double __pyx_v_
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "importance_sampling_sr_cython.pyx":27
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":27
  *     if phi>phi_end:
  *         return 0
  *     elif phi<=phi_end:             # <<<<<<<<<<<<<<
@@ -1582,7 +1582,7 @@ static int __pyx_f_29importance_sampling_sr_cython_end_condition(double __pyx_v_
  */
   }
 
-  /* "importance_sampling_sr_cython.pyx":24
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":24
  * 
  * 
  * cdef int end_condition(double phi, double N, double phi_end):             # <<<<<<<<<<<<<<
@@ -1594,7 +1594,7 @@ static int __pyx_f_29importance_sampling_sr_cython_end_condition(double __pyx_v_
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_WriteUnraisable("importance_sampling_sr_cython.end_condition", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("PyFPT.pyfpt.numerics.importance_sampling_sr_cython.end_condition", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_TraceReturn(Py_None, 0);
@@ -1602,7 +1602,7 @@ static int __pyx_f_29importance_sampling_sr_cython_end_condition(double __pyx_v_
   return __pyx_r;
 }
 
-/* "importance_sampling_sr_cython.pyx":31
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":31
  * 
  * 
  * cdef int reflect_condition(double phi, double N, double phi_r):             # <<<<<<<<<<<<<<
@@ -1610,7 +1610,7 @@ static int __pyx_f_29importance_sampling_sr_cython_end_condition(double __pyx_v_
  *         return 0
  */
 
-static int __pyx_f_29importance_sampling_sr_cython_reflect_condition(double __pyx_v_phi, CYTHON_UNUSED double __pyx_v_N, double __pyx_v_phi_r) {
+static int __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_reflect_condition(double __pyx_v_phi, CYTHON_UNUSED double __pyx_v_N, double __pyx_v_phi_r) {
   int __pyx_r;
   __Pyx_TraceDeclarations
   __Pyx_RefNannyDeclarations
@@ -1621,7 +1621,7 @@ static int __pyx_f_29importance_sampling_sr_cython_reflect_condition(double __py
   __Pyx_RefNannySetupContext("reflect_condition", 0);
   __Pyx_TraceCall("reflect_condition", __pyx_f[0], 31, 0, __PYX_ERR(0, 31, __pyx_L1_error));
 
-  /* "importance_sampling_sr_cython.pyx":32
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":32
  * 
  * cdef int reflect_condition(double phi, double N, double phi_r):
  *     if phi<phi_r:             # <<<<<<<<<<<<<<
@@ -1631,7 +1631,7 @@ static int __pyx_f_29importance_sampling_sr_cython_reflect_condition(double __py
   __pyx_t_1 = ((__pyx_v_phi < __pyx_v_phi_r) != 0);
   if (__pyx_t_1) {
 
-    /* "importance_sampling_sr_cython.pyx":33
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":33
  * cdef int reflect_condition(double phi, double N, double phi_r):
  *     if phi<phi_r:
  *         return 0             # <<<<<<<<<<<<<<
@@ -1641,7 +1641,7 @@ static int __pyx_f_29importance_sampling_sr_cython_reflect_condition(double __py
     __pyx_r = 0;
     goto __pyx_L0;
 
-    /* "importance_sampling_sr_cython.pyx":32
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":32
  * 
  * cdef int reflect_condition(double phi, double N, double phi_r):
  *     if phi<phi_r:             # <<<<<<<<<<<<<<
@@ -1650,7 +1650,7 @@ static int __pyx_f_29importance_sampling_sr_cython_reflect_condition(double __py
  */
   }
 
-  /* "importance_sampling_sr_cython.pyx":34
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":34
  *     if phi<phi_r:
  *         return 0
  *     elif phi>=phi_r:             # <<<<<<<<<<<<<<
@@ -1660,7 +1660,7 @@ static int __pyx_f_29importance_sampling_sr_cython_reflect_condition(double __py
   __pyx_t_1 = ((__pyx_v_phi >= __pyx_v_phi_r) != 0);
   if (__pyx_t_1) {
 
-    /* "importance_sampling_sr_cython.pyx":35
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":35
  *         return 0
  *     elif phi>=phi_r:
  *         return 1             # <<<<<<<<<<<<<<
@@ -1670,7 +1670,7 @@ static int __pyx_f_29importance_sampling_sr_cython_reflect_condition(double __py
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "importance_sampling_sr_cython.pyx":34
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":34
  *     if phi<phi_r:
  *         return 0
  *     elif phi>=phi_r:             # <<<<<<<<<<<<<<
@@ -1679,7 +1679,7 @@ static int __pyx_f_29importance_sampling_sr_cython_reflect_condition(double __py
  */
   }
 
-  /* "importance_sampling_sr_cython.pyx":31
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":31
  * 
  * 
  * cdef int reflect_condition(double phi, double N, double phi_r):             # <<<<<<<<<<<<<<
@@ -1691,7 +1691,7 @@ static int __pyx_f_29importance_sampling_sr_cython_reflect_condition(double __py
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_WriteUnraisable("importance_sampling_sr_cython.reflect_condition", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("PyFPT.pyfpt.numerics.importance_sampling_sr_cython.reflect_condition", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_TraceReturn(Py_None, 0);
@@ -1699,7 +1699,7 @@ static int __pyx_f_29importance_sampling_sr_cython_reflect_condition(double __py
   return __pyx_r;
 }
 
-/* "importance_sampling_sr_cython.pyx":37
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":37
  *         return 1
  * 
  * cdef double reflection(double phi, double phi_r):             # <<<<<<<<<<<<<<
@@ -1707,7 +1707,7 @@ static int __pyx_f_29importance_sampling_sr_cython_reflect_condition(double __py
  * 
  */
 
-static double __pyx_f_29importance_sampling_sr_cython_reflection(double __pyx_v_phi, double __pyx_v_phi_r) {
+static double __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_reflection(double __pyx_v_phi, double __pyx_v_phi_r) {
   double __pyx_r;
   __Pyx_TraceDeclarations
   __Pyx_RefNannyDeclarations
@@ -1717,7 +1717,7 @@ static double __pyx_f_29importance_sampling_sr_cython_reflection(double __pyx_v_
   __Pyx_RefNannySetupContext("reflection", 0);
   __Pyx_TraceCall("reflection", __pyx_f[0], 37, 0, __PYX_ERR(0, 37, __pyx_L1_error));
 
-  /* "importance_sampling_sr_cython.pyx":38
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":38
  * 
  * cdef double reflection(double phi, double phi_r):
  *     return 2*phi_r - phi             # <<<<<<<<<<<<<<
@@ -1727,7 +1727,7 @@ static double __pyx_f_29importance_sampling_sr_cython_reflection(double __pyx_v_
   __pyx_r = ((2.0 * __pyx_v_phi_r) - __pyx_v_phi);
   goto __pyx_L0;
 
-  /* "importance_sampling_sr_cython.pyx":37
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":37
  *         return 1
  * 
  * cdef double reflection(double phi, double phi_r):             # <<<<<<<<<<<<<<
@@ -1737,7 +1737,7 @@ static double __pyx_f_29importance_sampling_sr_cython_reflection(double __pyx_v_
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_WriteUnraisable("importance_sampling_sr_cython.reflection", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("PyFPT.pyfpt.numerics.importance_sampling_sr_cython.reflection", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_TraceReturn(Py_None, 0);
@@ -1745,7 +1745,7 @@ static double __pyx_f_29importance_sampling_sr_cython_reflection(double __pyx_v_
   return __pyx_r;
 }
 
-/* "importance_sampling_sr_cython.pyx":43
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":43
  * #Defining the more general functions
  * 
  * cdef double hubble_sr(double phi, V):             # <<<<<<<<<<<<<<
@@ -1753,7 +1753,7 @@ static double __pyx_f_29importance_sampling_sr_cython_reflection(double __pyx_v_
  *     return H
  */
 
-static double __pyx_f_29importance_sampling_sr_cython_hubble_sr(double __pyx_v_phi, PyObject *__pyx_v_V) {
+static double __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_hubble_sr(double __pyx_v_phi, PyObject *__pyx_v_V) {
   double __pyx_v_H;
   double __pyx_r;
   __Pyx_TraceDeclarations
@@ -1769,7 +1769,7 @@ static double __pyx_f_29importance_sampling_sr_cython_hubble_sr(double __pyx_v_p
   __Pyx_RefNannySetupContext("hubble_sr", 0);
   __Pyx_TraceCall("hubble_sr", __pyx_f[0], 43, 0, __PYX_ERR(0, 43, __pyx_L1_error));
 
-  /* "importance_sampling_sr_cython.pyx":44
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":44
  * 
  * cdef double hubble_sr(double phi, V):
  *     cdef double H = (V(phi)/(3*M_PL**2))**0.5             # <<<<<<<<<<<<<<
@@ -1795,7 +1795,7 @@ static double __pyx_f_29importance_sampling_sr_cython_hubble_sr(double __pyx_v_p
   if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyFloat_FromDouble((3.0 * pow(__pyx_v_29importance_sampling_sr_cython_M_PL, 2.0))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble((3.0 * pow(__pyx_v_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_M_PL, 2.0))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -1808,7 +1808,7 @@ static double __pyx_f_29importance_sampling_sr_cython_hubble_sr(double __pyx_v_p
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_H = __pyx_t_5;
 
-  /* "importance_sampling_sr_cython.pyx":45
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":45
  * cdef double hubble_sr(double phi, V):
  *     cdef double H = (V(phi)/(3*M_PL**2))**0.5
  *     return H             # <<<<<<<<<<<<<<
@@ -1818,7 +1818,7 @@ static double __pyx_f_29importance_sampling_sr_cython_hubble_sr(double __pyx_v_p
   __pyx_r = __pyx_v_H;
   goto __pyx_L0;
 
-  /* "importance_sampling_sr_cython.pyx":43
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":43
  * #Defining the more general functions
  * 
  * cdef double hubble_sr(double phi, V):             # <<<<<<<<<<<<<<
@@ -1832,7 +1832,7 @@ static double __pyx_f_29importance_sampling_sr_cython_hubble_sr(double __pyx_v_p
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_WriteUnraisable("importance_sampling_sr_cython.hubble_sr", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("PyFPT.pyfpt.numerics.importance_sampling_sr_cython.hubble_sr", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_TraceReturn(Py_None, 0);
@@ -1840,7 +1840,7 @@ static double __pyx_f_29importance_sampling_sr_cython_hubble_sr(double __pyx_v_p
   return __pyx_r;
 }
 
-/* "importance_sampling_sr_cython.pyx":49
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":49
  * 
  * 
  * cdef double diffusion_term(double phi, double H):             # <<<<<<<<<<<<<<
@@ -1848,7 +1848,7 @@ static double __pyx_f_29importance_sampling_sr_cython_hubble_sr(double __pyx_v_p
  * 
  */
 
-static double __pyx_f_29importance_sampling_sr_cython_diffusion_term(CYTHON_UNUSED double __pyx_v_phi, double __pyx_v_H) {
+static double __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_diffusion_term(CYTHON_UNUSED double __pyx_v_phi, double __pyx_v_H) {
   double __pyx_r;
   __Pyx_TraceDeclarations
   __Pyx_RefNannyDeclarations
@@ -1859,14 +1859,14 @@ static double __pyx_f_29importance_sampling_sr_cython_diffusion_term(CYTHON_UNUS
   __Pyx_RefNannySetupContext("diffusion_term", 0);
   __Pyx_TraceCall("diffusion_term", __pyx_f[0], 49, 0, __PYX_ERR(0, 49, __pyx_L1_error));
 
-  /* "importance_sampling_sr_cython.pyx":50
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":50
  * 
  * cdef double diffusion_term(double phi, double H):
  *     return H/(2*PI)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = (2.0 * __pyx_v_29importance_sampling_sr_cython_PI);
+  __pyx_t_1 = (2.0 * __pyx_v_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_PI);
   if (unlikely(__pyx_t_1 == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
     __PYX_ERR(0, 50, __pyx_L1_error)
@@ -1874,7 +1874,7 @@ static double __pyx_f_29importance_sampling_sr_cython_diffusion_term(CYTHON_UNUS
   __pyx_r = (__pyx_v_H / __pyx_t_1);
   goto __pyx_L0;
 
-  /* "importance_sampling_sr_cython.pyx":49
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":49
  * 
  * 
  * cdef double diffusion_term(double phi, double H):             # <<<<<<<<<<<<<<
@@ -1884,7 +1884,7 @@ static double __pyx_f_29importance_sampling_sr_cython_diffusion_term(CYTHON_UNUS
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_WriteUnraisable("importance_sampling_sr_cython.diffusion_term", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("PyFPT.pyfpt.numerics.importance_sampling_sr_cython.diffusion_term", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_TraceReturn(Py_None, 0);
@@ -1892,7 +1892,7 @@ static double __pyx_f_29importance_sampling_sr_cython_diffusion_term(CYTHON_UNUS
   return __pyx_r;
 }
 
-/* "importance_sampling_sr_cython.pyx":54
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":54
  * 
  * #This assumes SR
  * cdef double drift_term_sr(double phi, double H, V_p):             # <<<<<<<<<<<<<<
@@ -1900,7 +1900,7 @@ static double __pyx_f_29importance_sampling_sr_cython_diffusion_term(CYTHON_UNUS
  * 
  */
 
-static double __pyx_f_29importance_sampling_sr_cython_drift_term_sr(double __pyx_v_phi, double __pyx_v_H, PyObject *__pyx_v_V_p) {
+static double __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_drift_term_sr(double __pyx_v_phi, double __pyx_v_H, PyObject *__pyx_v_V_p) {
   double __pyx_r;
   __Pyx_TraceDeclarations
   __Pyx_RefNannyDeclarations
@@ -1915,7 +1915,7 @@ static double __pyx_f_29importance_sampling_sr_cython_drift_term_sr(double __pyx
   __Pyx_RefNannySetupContext("drift_term_sr", 0);
   __Pyx_TraceCall("drift_term_sr", __pyx_f[0], 54, 0, __PYX_ERR(0, 54, __pyx_L1_error));
 
-  /* "importance_sampling_sr_cython.pyx":55
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":55
  * #This assumes SR
  * cdef double drift_term_sr(double phi, double H, V_p):
  *     return (-V_p(phi)/(3*H**2))             # <<<<<<<<<<<<<<
@@ -1955,7 +1955,7 @@ static double __pyx_f_29importance_sampling_sr_cython_drift_term_sr(double __pyx
   __pyx_r = __pyx_t_5;
   goto __pyx_L0;
 
-  /* "importance_sampling_sr_cython.pyx":54
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":54
  * 
  * #This assumes SR
  * cdef double drift_term_sr(double phi, double H, V_p):             # <<<<<<<<<<<<<<
@@ -1969,7 +1969,7 @@ static double __pyx_f_29importance_sampling_sr_cython_drift_term_sr(double __pyx
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_WriteUnraisable("importance_sampling_sr_cython.drift_term_sr", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("PyFPT.pyfpt.numerics.importance_sampling_sr_cython.drift_term_sr", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_TraceReturn(Py_None, 0);
@@ -1977,7 +1977,7 @@ static double __pyx_f_29importance_sampling_sr_cython_drift_term_sr(double __pyx
   return __pyx_r;
 }
 
-/* "importance_sampling_sr_cython.pyx":61
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":61
  * #This is the discreate version of calculating the bias variable, which uses
  * #the discreat, see Esq. (18) and (19) of arXiv:nucl-th/9809075v1
  * cdef double i_s_A_step(double A, double D, double phi_step, double v,\             # <<<<<<<<<<<<<<
@@ -1985,7 +1985,7 @@ static double __pyx_f_29importance_sampling_sr_cython_drift_term_sr(double __pyx
  *     return A+delta_v*(phi_step-v*dN-0.5*delta_v*dN)/D
  */
 
-static double __pyx_f_29importance_sampling_sr_cython_i_s_A_step(double __pyx_v_A, double __pyx_v_D, double __pyx_v_phi_step, double __pyx_v_v, double __pyx_v_delta_v, double __pyx_v_dN) {
+static double __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_i_s_A_step(double __pyx_v_A, double __pyx_v_D, double __pyx_v_phi_step, double __pyx_v_v, double __pyx_v_delta_v, double __pyx_v_dN) {
   double __pyx_r;
   __Pyx_TraceDeclarations
   __Pyx_RefNannyDeclarations
@@ -1996,7 +1996,7 @@ static double __pyx_f_29importance_sampling_sr_cython_i_s_A_step(double __pyx_v_
   __Pyx_RefNannySetupContext("i_s_A_step", 0);
   __Pyx_TraceCall("i_s_A_step", __pyx_f[0], 61, 0, __PYX_ERR(0, 61, __pyx_L1_error));
 
-  /* "importance_sampling_sr_cython.pyx":63
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":63
  * cdef double i_s_A_step(double A, double D, double phi_step, double v,\
  *                        double delta_v, double dN):
  *     return A+delta_v*(phi_step-v*dN-0.5*delta_v*dN)/D             # <<<<<<<<<<<<<<
@@ -2011,7 +2011,7 @@ static double __pyx_f_29importance_sampling_sr_cython_i_s_A_step(double __pyx_v_
   __pyx_r = (__pyx_v_A + (__pyx_t_1 / __pyx_v_D));
   goto __pyx_L0;
 
-  /* "importance_sampling_sr_cython.pyx":61
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":61
  * #This is the discreate version of calculating the bias variable, which uses
  * #the discreat, see Esq. (18) and (19) of arXiv:nucl-th/9809075v1
  * cdef double i_s_A_step(double A, double D, double phi_step, double v,\             # <<<<<<<<<<<<<<
@@ -2021,7 +2021,7 @@ static double __pyx_f_29importance_sampling_sr_cython_i_s_A_step(double __pyx_v_
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_WriteUnraisable("importance_sampling_sr_cython.i_s_A_step", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("PyFPT.pyfpt.numerics.importance_sampling_sr_cython.i_s_A_step", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_TraceReturn(Py_None, 0);
@@ -2029,7 +2029,7 @@ static double __pyx_f_29importance_sampling_sr_cython_i_s_A_step(double __pyx_v_
   return __pyx_r;
 }
 
-/* "importance_sampling_sr_cython.pyx":67
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":67
  * #Most general form, as the bias is general. Mainly used for when the bias
  * #is passed as a function
  * cdef list step(double phi, double A, double N, double dN, double sqrt_dN,\             # <<<<<<<<<<<<<<
@@ -2037,7 +2037,7 @@ static double __pyx_f_29importance_sampling_sr_cython_i_s_A_step(double __pyx_v_
  *     cdef double H, a_orig, a, b, phi_new, A_new
  */
 
-static PyObject *__pyx_f_29importance_sampling_sr_cython_step(double __pyx_v_phi, double __pyx_v_A, CYTHON_UNUSED double __pyx_v_N, double __pyx_v_dN, CYTHON_UNUSED double __pyx_v_sqrt_dN, double __pyx_v_dW, double __pyx_v_bias, PyObject *__pyx_v_V, PyObject *__pyx_v_V_p, CYTHON_UNUSED PyObject *__pyx_v_V_pp) {
+static PyObject *__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_step(double __pyx_v_phi, double __pyx_v_A, CYTHON_UNUSED double __pyx_v_N, double __pyx_v_dN, CYTHON_UNUSED double __pyx_v_sqrt_dN, double __pyx_v_dW, double __pyx_v_bias, PyObject *__pyx_v_V, PyObject *__pyx_v_V_p, CYTHON_UNUSED PyObject *__pyx_v_V_pp) {
   double __pyx_v_H;
   double __pyx_v_a_orig;
   double __pyx_v_a;
@@ -2056,25 +2056,25 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_step(double __pyx_v_phi
   __Pyx_RefNannySetupContext("step", 0);
   __Pyx_TraceCall("step", __pyx_f[0], 67, 0, __PYX_ERR(0, 67, __pyx_L1_error));
 
-  /* "importance_sampling_sr_cython.pyx":70
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":70
  *                double dW, double bias, V, V_p, V_pp):
  *     cdef double H, a_orig, a, b, phi_new, A_new
  *     H = hubble_sr(phi, V)             # <<<<<<<<<<<<<<
  *     a_orig = drift_term_sr(phi, H, V_p)
  *     a = a_orig + bias
  */
-  __pyx_v_H = __pyx_f_29importance_sampling_sr_cython_hubble_sr(__pyx_v_phi, __pyx_v_V);
+  __pyx_v_H = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_hubble_sr(__pyx_v_phi, __pyx_v_V);
 
-  /* "importance_sampling_sr_cython.pyx":71
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":71
  *     cdef double H, a_orig, a, b, phi_new, A_new
  *     H = hubble_sr(phi, V)
  *     a_orig = drift_term_sr(phi, H, V_p)             # <<<<<<<<<<<<<<
  *     a = a_orig + bias
  *     b = diffusion_term(phi, H)
  */
-  __pyx_v_a_orig = __pyx_f_29importance_sampling_sr_cython_drift_term_sr(__pyx_v_phi, __pyx_v_H, __pyx_v_V_p);
+  __pyx_v_a_orig = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_drift_term_sr(__pyx_v_phi, __pyx_v_H, __pyx_v_V_p);
 
-  /* "importance_sampling_sr_cython.pyx":72
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":72
  *     H = hubble_sr(phi, V)
  *     a_orig = drift_term_sr(phi, H, V_p)
  *     a = a_orig + bias             # <<<<<<<<<<<<<<
@@ -2083,16 +2083,16 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_step(double __pyx_v_phi
  */
   __pyx_v_a = (__pyx_v_a_orig + __pyx_v_bias);
 
-  /* "importance_sampling_sr_cython.pyx":73
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":73
  *     a_orig = drift_term_sr(phi, H, V_p)
  *     a = a_orig + bias
  *     b = diffusion_term(phi, H)             # <<<<<<<<<<<<<<
  * 
  *     #Calculation
  */
-  __pyx_v_b = __pyx_f_29importance_sampling_sr_cython_diffusion_term(__pyx_v_phi, __pyx_v_H);
+  __pyx_v_b = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_diffusion_term(__pyx_v_phi, __pyx_v_H);
 
-  /* "importance_sampling_sr_cython.pyx":76
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":76
  * 
  *     #Calculation
  *     phi_new = phi + a*dN + b*dW             # <<<<<<<<<<<<<<
@@ -2101,16 +2101,16 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_step(double __pyx_v_phi
  */
   __pyx_v_phi_new = ((__pyx_v_phi + (__pyx_v_a * __pyx_v_dN)) + (__pyx_v_b * __pyx_v_dW));
 
-  /* "importance_sampling_sr_cython.pyx":78
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":78
  *     phi_new = phi + a*dN + b*dW
  *     #Just an Euler step in the importance sampling variable
  *     A_new = i_s_A_step(A, b**2, phi_new-phi, a_orig,\             # <<<<<<<<<<<<<<
  *                                                bias, dN)
  *     return  [phi_new, A_new]
  */
-  __pyx_v_A_new = __pyx_f_29importance_sampling_sr_cython_i_s_A_step(__pyx_v_A, pow(__pyx_v_b, 2.0), (__pyx_v_phi_new - __pyx_v_phi), __pyx_v_a_orig, __pyx_v_bias, __pyx_v_dN);
+  __pyx_v_A_new = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_i_s_A_step(__pyx_v_A, pow(__pyx_v_b, 2.0), (__pyx_v_phi_new - __pyx_v_phi), __pyx_v_a_orig, __pyx_v_bias, __pyx_v_dN);
 
-  /* "importance_sampling_sr_cython.pyx":80
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":80
  *     A_new = i_s_A_step(A, b**2, phi_new-phi, a_orig,\
  *                                                bias, dN)
  *     return  [phi_new, A_new]             # <<<<<<<<<<<<<<
@@ -2134,7 +2134,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_step(double __pyx_v_phi
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "importance_sampling_sr_cython.pyx":67
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":67
  * #Most general form, as the bias is general. Mainly used for when the bias
  * #is passed as a function
  * cdef list step(double phi, double A, double N, double dN, double sqrt_dN,\             # <<<<<<<<<<<<<<
@@ -2147,7 +2147,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_step(double __pyx_v_phi
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("importance_sampling_sr_cython.step", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("PyFPT.pyfpt.numerics.importance_sampling_sr_cython.step", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2156,7 +2156,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_step(double __pyx_v_phi
   return __pyx_r;
 }
 
-/* "importance_sampling_sr_cython.pyx":83
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":83
  * 
  * 
  * cdef list diffusion_step(double phi, double A, double N, double dN,\             # <<<<<<<<<<<<<<
@@ -2164,7 +2164,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_step(double __pyx_v_phi
  *     cdef double H, a_orig, a, b, phi_new, A_new
  */
 
-static PyObject *__pyx_f_29importance_sampling_sr_cython_diffusion_step(double __pyx_v_phi, double __pyx_v_A, CYTHON_UNUSED double __pyx_v_N, double __pyx_v_dN, CYTHON_UNUSED double __pyx_v_sqrt_dN, double __pyx_v_dW, double __pyx_v_bias, PyObject *__pyx_v_V, PyObject *__pyx_v_V_p, CYTHON_UNUSED PyObject *__pyx_v_V_pp) {
+static PyObject *__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_diffusion_step(double __pyx_v_phi, double __pyx_v_A, CYTHON_UNUSED double __pyx_v_N, double __pyx_v_dN, CYTHON_UNUSED double __pyx_v_sqrt_dN, double __pyx_v_dW, double __pyx_v_bias, PyObject *__pyx_v_V, PyObject *__pyx_v_V_p, CYTHON_UNUSED PyObject *__pyx_v_V_pp) {
   double __pyx_v_H;
   double __pyx_v_a_orig;
   double __pyx_v_a;
@@ -2183,34 +2183,34 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_diffusion_step(double _
   __Pyx_RefNannySetupContext("diffusion_step", 0);
   __Pyx_TraceCall("diffusion_step", __pyx_f[0], 83, 0, __PYX_ERR(0, 83, __pyx_L1_error));
 
-  /* "importance_sampling_sr_cython.pyx":86
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":86
  *                          double sqrt_dN, double dW, double bias, V, V_p, V_pp):
  *     cdef double H, a_orig, a, b, phi_new, A_new
  *     H = hubble_sr(phi, V)             # <<<<<<<<<<<<<<
  *     a_orig = drift_term_sr(phi, H, V_p)
  *     b = diffusion_term(phi, H)
  */
-  __pyx_v_H = __pyx_f_29importance_sampling_sr_cython_hubble_sr(__pyx_v_phi, __pyx_v_V);
+  __pyx_v_H = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_hubble_sr(__pyx_v_phi, __pyx_v_V);
 
-  /* "importance_sampling_sr_cython.pyx":87
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":87
  *     cdef double H, a_orig, a, b, phi_new, A_new
  *     H = hubble_sr(phi, V)
  *     a_orig = drift_term_sr(phi, H, V_p)             # <<<<<<<<<<<<<<
  *     b = diffusion_term(phi, H)
  *     a = a_orig+bias*b
  */
-  __pyx_v_a_orig = __pyx_f_29importance_sampling_sr_cython_drift_term_sr(__pyx_v_phi, __pyx_v_H, __pyx_v_V_p);
+  __pyx_v_a_orig = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_drift_term_sr(__pyx_v_phi, __pyx_v_H, __pyx_v_V_p);
 
-  /* "importance_sampling_sr_cython.pyx":88
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":88
  *     H = hubble_sr(phi, V)
  *     a_orig = drift_term_sr(phi, H, V_p)
  *     b = diffusion_term(phi, H)             # <<<<<<<<<<<<<<
  *     a = a_orig+bias*b
  * 
  */
-  __pyx_v_b = __pyx_f_29importance_sampling_sr_cython_diffusion_term(__pyx_v_phi, __pyx_v_H);
+  __pyx_v_b = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_diffusion_term(__pyx_v_phi, __pyx_v_H);
 
-  /* "importance_sampling_sr_cython.pyx":89
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":89
  *     a_orig = drift_term_sr(phi, H, V_p)
  *     b = diffusion_term(phi, H)
  *     a = a_orig+bias*b             # <<<<<<<<<<<<<<
@@ -2219,7 +2219,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_diffusion_step(double _
  */
   __pyx_v_a = (__pyx_v_a_orig + (__pyx_v_bias * __pyx_v_b));
 
-  /* "importance_sampling_sr_cython.pyx":92
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":92
  * 
  *     #Calculation
  *     phi_new = phi + a*dN + b*dW             # <<<<<<<<<<<<<<
@@ -2228,16 +2228,16 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_diffusion_step(double _
  */
   __pyx_v_phi_new = ((__pyx_v_phi + (__pyx_v_a * __pyx_v_dN)) + (__pyx_v_b * __pyx_v_dW));
 
-  /* "importance_sampling_sr_cython.pyx":94
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":94
  *     phi_new = phi + a*dN + b*dW
  *     #Just an Euler step in the importance sampling variable
  *     A_new = i_s_A_step(A, b**2, phi_new-phi, a_orig,\             # <<<<<<<<<<<<<<
  *                                                bias*b, dN)
  *     return  [phi_new, A_new]
  */
-  __pyx_v_A_new = __pyx_f_29importance_sampling_sr_cython_i_s_A_step(__pyx_v_A, pow(__pyx_v_b, 2.0), (__pyx_v_phi_new - __pyx_v_phi), __pyx_v_a_orig, (__pyx_v_bias * __pyx_v_b), __pyx_v_dN);
+  __pyx_v_A_new = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_i_s_A_step(__pyx_v_A, pow(__pyx_v_b, 2.0), (__pyx_v_phi_new - __pyx_v_phi), __pyx_v_a_orig, (__pyx_v_bias * __pyx_v_b), __pyx_v_dN);
 
-  /* "importance_sampling_sr_cython.pyx":96
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":96
  *     A_new = i_s_A_step(A, b**2, phi_new-phi, a_orig,\
  *                                                bias*b, dN)
  *     return  [phi_new, A_new]             # <<<<<<<<<<<<<<
@@ -2261,7 +2261,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_diffusion_step(double _
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "importance_sampling_sr_cython.pyx":83
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":83
  * 
  * 
  * cdef list diffusion_step(double phi, double A, double N, double dN,\             # <<<<<<<<<<<<<<
@@ -2274,7 +2274,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_diffusion_step(double _
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("importance_sampling_sr_cython.diffusion_step", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("PyFPT.pyfpt.numerics.importance_sampling_sr_cython.diffusion_step", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2283,7 +2283,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_diffusion_step(double _
   return __pyx_r;
 }
 
-/* "importance_sampling_sr_cython.pyx":102
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":102
  * #the importance sample path.
  * #See Eq. (33) of arXiv:nucl-th/9809075v1 for more info
  * cdef list simulation_i_s_diff_bias(double phi_i, double phi_r, double phi_end,\             # <<<<<<<<<<<<<<
@@ -2291,9 +2291,9 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_diffusion_step(double _
  *                            V_pp, count_refs = False):
  */
 
-static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bias(double __pyx_v_phi_i, double __pyx_v_phi_r, double __pyx_v_phi_end, double __pyx_v_N_i, double __pyx_v_N_f, double __pyx_v_dN, double __pyx_v_bias, PyObject *__pyx_v_V, PyObject *__pyx_v_V_p, PyObject *__pyx_v_V_pp, struct __pyx_opt_args_29importance_sampling_sr_cython_simulation_i_s_diff_bias *__pyx_optional_args) {
+static PyObject *__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_diff_bias(double __pyx_v_phi_i, double __pyx_v_phi_r, double __pyx_v_phi_end, double __pyx_v_N_i, double __pyx_v_N_f, double __pyx_v_dN, double __pyx_v_bias, PyObject *__pyx_v_V, PyObject *__pyx_v_V_p, PyObject *__pyx_v_V_pp, struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_diff_bias *__pyx_optional_args) {
 
-  /* "importance_sampling_sr_cython.pyx":104
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":104
  * cdef list simulation_i_s_diff_bias(double phi_i, double phi_r, double phi_end,\
  *                        double N_i, double N_f, double dN, double bias, V, V_p,\
  *                            V_pp, count_refs = False):             # <<<<<<<<<<<<<<
@@ -2334,7 +2334,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
     }
   }
 
-  /* "importance_sampling_sr_cython.pyx":106
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":106
  *                            V_pp, count_refs = False):
  *     cdef double N, sqrt_dN, phi, noise_amp, dist_end_inflation, dW, A
  *     cdef int reduced_step = 0             # <<<<<<<<<<<<<<
@@ -2343,7 +2343,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
   __pyx_v_reduced_step = 0;
 
-  /* "importance_sampling_sr_cython.pyx":107
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":107
  *     cdef double N, sqrt_dN, phi, noise_amp, dist_end_inflation, dW, A
  *     cdef int reduced_step = 0
  *     cdef int num_reflects = 0             # <<<<<<<<<<<<<<
@@ -2352,7 +2352,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
   __pyx_v_num_reflects = 0;
 
-  /* "importance_sampling_sr_cython.pyx":108
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":108
  *     cdef int reduced_step = 0
  *     cdef int num_reflects = 0
  *     sqrt_dN = dN**0.5             # <<<<<<<<<<<<<<
@@ -2361,7 +2361,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
   __pyx_v_sqrt_dN = pow(__pyx_v_dN, 0.5);
 
-  /* "importance_sampling_sr_cython.pyx":109
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":109
  *     cdef int num_reflects = 0
  *     sqrt_dN = dN**0.5
  *     N = N_i             # <<<<<<<<<<<<<<
@@ -2370,7 +2370,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
   __pyx_v_N = __pyx_v_N_i;
 
-  /* "importance_sampling_sr_cython.pyx":110
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":110
  *     sqrt_dN = dN**0.5
  *     N = N_i
  *     phi = phi_i             # <<<<<<<<<<<<<<
@@ -2379,7 +2379,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
   __pyx_v_phi = __pyx_v_phi_i;
 
-  /* "importance_sampling_sr_cython.pyx":111
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":111
  *     N = N_i
  *     phi = phi_i
  *     dist_end_inflation = 0.0             # <<<<<<<<<<<<<<
@@ -2388,7 +2388,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
   __pyx_v_dist_end_inflation = 0.0;
 
-  /* "importance_sampling_sr_cython.pyx":112
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":112
  *     phi = phi_i
  *     dist_end_inflation = 0.0
  *     A = 0.0             # <<<<<<<<<<<<<<
@@ -2397,7 +2397,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
   __pyx_v_A = 0.0;
 
-  /* "importance_sampling_sr_cython.pyx":113
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":113
  *     dist_end_inflation = 0.0
  *     A = 0.0
  *     while N<N_f:             # <<<<<<<<<<<<<<
@@ -2408,7 +2408,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
     __pyx_t_1 = ((__pyx_v_N < __pyx_v_N_f) != 0);
     if (!__pyx_t_1) break;
 
-    /* "importance_sampling_sr_cython.pyx":115
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":115
  *     while N<N_f:
  *         #Define the Wiener step
  *         dW = random.gauss(0.0,sqrt_dN)             # <<<<<<<<<<<<<<
@@ -2473,14 +2473,14 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_dW = __pyx_t_8;
 
-    /* "importance_sampling_sr_cython.pyx":117
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":117
  *         dW = random.gauss(0.0,sqrt_dN)
  *         [phi, A] =\
  *             diffusion_step(phi, A, N, dN, sqrt_dN, dW, bias, V, V_p, V_pp)             # <<<<<<<<<<<<<<
  *         noise_amp = diffusion_term(phi, hubble_sr(phi, V))*sqrt_dN
  *         N += dN
  */
-    __pyx_t_2 = __pyx_f_29importance_sampling_sr_cython_diffusion_step(__pyx_v_phi, __pyx_v_A, __pyx_v_N, __pyx_v_dN, __pyx_v_sqrt_dN, __pyx_v_dW, __pyx_v_bias, __pyx_v_V, __pyx_v_V_p, __pyx_v_V_pp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_diffusion_step(__pyx_v_phi, __pyx_v_A, __pyx_v_N, __pyx_v_dN, __pyx_v_sqrt_dN, __pyx_v_dW, __pyx_v_bias, __pyx_v_V, __pyx_v_V_p, __pyx_v_V_pp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (likely(__pyx_t_2 != Py_None)) {
       PyObject* sequence = __pyx_t_2;
@@ -2506,7 +2506,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
       __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 116, __pyx_L1_error)
     }
 
-    /* "importance_sampling_sr_cython.pyx":116
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":116
  *         #Define the Wiener step
  *         dW = random.gauss(0.0,sqrt_dN)
  *         [phi, A] =\             # <<<<<<<<<<<<<<
@@ -2520,16 +2520,16 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
     __pyx_v_phi = __pyx_t_8;
     __pyx_v_A = __pyx_t_9;
 
-    /* "importance_sampling_sr_cython.pyx":118
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":118
  *         [phi, A] =\
  *             diffusion_step(phi, A, N, dN, sqrt_dN, dW, bias, V, V_p, V_pp)
  *         noise_amp = diffusion_term(phi, hubble_sr(phi, V))*sqrt_dN             # <<<<<<<<<<<<<<
  *         N += dN
  *         if end_condition(phi, N, phi_end) == 1:#Using 1/0 for True/False
  */
-    __pyx_v_noise_amp = (__pyx_f_29importance_sampling_sr_cython_diffusion_term(__pyx_v_phi, __pyx_f_29importance_sampling_sr_cython_hubble_sr(__pyx_v_phi, __pyx_v_V)) * __pyx_v_sqrt_dN);
+    __pyx_v_noise_amp = (__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_diffusion_term(__pyx_v_phi, __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_hubble_sr(__pyx_v_phi, __pyx_v_V)) * __pyx_v_sqrt_dN);
 
-    /* "importance_sampling_sr_cython.pyx":119
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":119
  *             diffusion_step(phi, A, N, dN, sqrt_dN, dW, bias, V, V_p, V_pp)
  *         noise_amp = diffusion_term(phi, hubble_sr(phi, V))*sqrt_dN
  *         N += dN             # <<<<<<<<<<<<<<
@@ -2538,17 +2538,17 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
     __pyx_v_N = (__pyx_v_N + __pyx_v_dN);
 
-    /* "importance_sampling_sr_cython.pyx":120
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":120
  *         noise_amp = diffusion_term(phi, hubble_sr(phi, V))*sqrt_dN
  *         N += dN
  *         if end_condition(phi, N, phi_end) == 1:#Using 1/0 for True/False             # <<<<<<<<<<<<<<
  *             #print('stopped at: ' + str(N))
  *             break
  */
-    __pyx_t_1 = ((__pyx_f_29importance_sampling_sr_cython_end_condition(__pyx_v_phi, __pyx_v_N, __pyx_v_phi_end) == 1) != 0);
+    __pyx_t_1 = ((__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_end_condition(__pyx_v_phi, __pyx_v_N, __pyx_v_phi_end) == 1) != 0);
     if (__pyx_t_1) {
 
-      /* "importance_sampling_sr_cython.pyx":122
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":122
  *         if end_condition(phi, N, phi_end) == 1:#Using 1/0 for True/False
  *             #print('stopped at: ' + str(N))
  *             break             # <<<<<<<<<<<<<<
@@ -2557,7 +2557,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
       goto __pyx_L4_break;
 
-      /* "importance_sampling_sr_cython.pyx":120
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":120
  *         noise_amp = diffusion_term(phi, hubble_sr(phi, V))*sqrt_dN
  *         N += dN
  *         if end_condition(phi, N, phi_end) == 1:#Using 1/0 for True/False             # <<<<<<<<<<<<<<
@@ -2566,21 +2566,21 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
     }
 
-    /* "importance_sampling_sr_cython.pyx":123
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":123
  *             #print('stopped at: ' + str(N))
  *             break
  *         elif end_condition(phi+3*noise_amp, N, phi_end) == 1\             # <<<<<<<<<<<<<<
  *             and reduced_step == 0:
  *             dN = 0.001*dN
  */
-    __pyx_t_10 = ((__pyx_f_29importance_sampling_sr_cython_end_condition((__pyx_v_phi + (3.0 * __pyx_v_noise_amp)), __pyx_v_N, __pyx_v_phi_end) == 1) != 0);
+    __pyx_t_10 = ((__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_end_condition((__pyx_v_phi + (3.0 * __pyx_v_noise_amp)), __pyx_v_N, __pyx_v_phi_end) == 1) != 0);
     if (__pyx_t_10) {
     } else {
       __pyx_t_1 = __pyx_t_10;
       goto __pyx_L6_bool_binop_done;
     }
 
-    /* "importance_sampling_sr_cython.pyx":124
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":124
  *             break
  *         elif end_condition(phi+3*noise_amp, N, phi_end) == 1\
  *             and reduced_step == 0:             # <<<<<<<<<<<<<<
@@ -2591,7 +2591,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
     __pyx_t_1 = __pyx_t_10;
     __pyx_L6_bool_binop_done:;
 
-    /* "importance_sampling_sr_cython.pyx":123
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":123
  *             #print('stopped at: ' + str(N))
  *             break
  *         elif end_condition(phi+3*noise_amp, N, phi_end) == 1\             # <<<<<<<<<<<<<<
@@ -2600,7 +2600,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
     if (__pyx_t_1) {
 
-      /* "importance_sampling_sr_cython.pyx":125
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":125
  *         elif end_condition(phi+3*noise_amp, N, phi_end) == 1\
  *             and reduced_step == 0:
  *             dN = 0.001*dN             # <<<<<<<<<<<<<<
@@ -2609,7 +2609,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
       __pyx_v_dN = (0.001 * __pyx_v_dN);
 
-      /* "importance_sampling_sr_cython.pyx":126
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":126
  *             and reduced_step == 0:
  *             dN = 0.001*dN
  *             sqrt_dN = dN**0.5             # <<<<<<<<<<<<<<
@@ -2618,7 +2618,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
       __pyx_v_sqrt_dN = pow(__pyx_v_dN, 0.5);
 
-      /* "importance_sampling_sr_cython.pyx":127
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":127
  *             dN = 0.001*dN
  *             sqrt_dN = dN**0.5
  *             dist_end_inflation = 3*noise_amp             # <<<<<<<<<<<<<<
@@ -2627,7 +2627,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
       __pyx_v_dist_end_inflation = (3.0 * __pyx_v_noise_amp);
 
-      /* "importance_sampling_sr_cython.pyx":128
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":128
  *             sqrt_dN = dN**0.5
  *             dist_end_inflation = 3*noise_amp
  *             reduced_step = 1             # <<<<<<<<<<<<<<
@@ -2636,7 +2636,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
       __pyx_v_reduced_step = 1;
 
-      /* "importance_sampling_sr_cython.pyx":123
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":123
  *             #print('stopped at: ' + str(N))
  *             break
  *         elif end_condition(phi+3*noise_amp, N, phi_end) == 1\             # <<<<<<<<<<<<<<
@@ -2646,21 +2646,21 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
       goto __pyx_L5;
     }
 
-    /* "importance_sampling_sr_cython.pyx":129
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":129
  *             dist_end_inflation = 3*noise_amp
  *             reduced_step = 1
  *         elif end_condition(phi-3*noise_amp, N, phi_end) == 1\             # <<<<<<<<<<<<<<
  *             and reduced_step == 0:
  *             dN = 0.001*dN
  */
-    __pyx_t_10 = ((__pyx_f_29importance_sampling_sr_cython_end_condition((__pyx_v_phi - (3.0 * __pyx_v_noise_amp)), __pyx_v_N, __pyx_v_phi_end) == 1) != 0);
+    __pyx_t_10 = ((__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_end_condition((__pyx_v_phi - (3.0 * __pyx_v_noise_amp)), __pyx_v_N, __pyx_v_phi_end) == 1) != 0);
     if (__pyx_t_10) {
     } else {
       __pyx_t_1 = __pyx_t_10;
       goto __pyx_L8_bool_binop_done;
     }
 
-    /* "importance_sampling_sr_cython.pyx":130
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":130
  *             reduced_step = 1
  *         elif end_condition(phi-3*noise_amp, N, phi_end) == 1\
  *             and reduced_step == 0:             # <<<<<<<<<<<<<<
@@ -2671,7 +2671,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
     __pyx_t_1 = __pyx_t_10;
     __pyx_L8_bool_binop_done:;
 
-    /* "importance_sampling_sr_cython.pyx":129
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":129
  *             dist_end_inflation = 3*noise_amp
  *             reduced_step = 1
  *         elif end_condition(phi-3*noise_amp, N, phi_end) == 1\             # <<<<<<<<<<<<<<
@@ -2680,7 +2680,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
     if (__pyx_t_1) {
 
-      /* "importance_sampling_sr_cython.pyx":131
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":131
  *         elif end_condition(phi-3*noise_amp, N, phi_end) == 1\
  *             and reduced_step == 0:
  *             dN = 0.001*dN             # <<<<<<<<<<<<<<
@@ -2689,7 +2689,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
       __pyx_v_dN = (0.001 * __pyx_v_dN);
 
-      /* "importance_sampling_sr_cython.pyx":132
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":132
  *             and reduced_step == 0:
  *             dN = 0.001*dN
  *             sqrt_dN = dN**0.5             # <<<<<<<<<<<<<<
@@ -2698,7 +2698,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
       __pyx_v_sqrt_dN = pow(__pyx_v_dN, 0.5);
 
-      /* "importance_sampling_sr_cython.pyx":133
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":133
  *             dN = 0.001*dN
  *             sqrt_dN = dN**0.5
  *             dist_end_inflation = -3*noise_amp             # <<<<<<<<<<<<<<
@@ -2707,7 +2707,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
       __pyx_v_dist_end_inflation = (-3.0 * __pyx_v_noise_amp);
 
-      /* "importance_sampling_sr_cython.pyx":134
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":134
  *             sqrt_dN = dN**0.5
  *             dist_end_inflation = -3*noise_amp
  *             reduced_step = 1             # <<<<<<<<<<<<<<
@@ -2716,7 +2716,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
       __pyx_v_reduced_step = 1;
 
-      /* "importance_sampling_sr_cython.pyx":129
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":129
  *             dist_end_inflation = 3*noise_amp
  *             reduced_step = 1
  *         elif end_condition(phi-3*noise_amp, N, phi_end) == 1\             # <<<<<<<<<<<<<<
@@ -2726,21 +2726,21 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
       goto __pyx_L5;
     }
 
-    /* "importance_sampling_sr_cython.pyx":135
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":135
  *             dist_end_inflation = -3*noise_amp
  *             reduced_step = 1
  *         elif end_condition(phi+dist_end_inflation, N, phi_end) == 0\             # <<<<<<<<<<<<<<
  *             and reduced_step == 1:
  *             dN = 1000*dN#Go back to original step size
  */
-    __pyx_t_10 = ((__pyx_f_29importance_sampling_sr_cython_end_condition((__pyx_v_phi + __pyx_v_dist_end_inflation), __pyx_v_N, __pyx_v_phi_end) == 0) != 0);
+    __pyx_t_10 = ((__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_end_condition((__pyx_v_phi + __pyx_v_dist_end_inflation), __pyx_v_N, __pyx_v_phi_end) == 0) != 0);
     if (__pyx_t_10) {
     } else {
       __pyx_t_1 = __pyx_t_10;
       goto __pyx_L10_bool_binop_done;
     }
 
-    /* "importance_sampling_sr_cython.pyx":136
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":136
  *             reduced_step = 1
  *         elif end_condition(phi+dist_end_inflation, N, phi_end) == 0\
  *             and reduced_step == 1:             # <<<<<<<<<<<<<<
@@ -2751,7 +2751,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
     __pyx_t_1 = __pyx_t_10;
     __pyx_L10_bool_binop_done:;
 
-    /* "importance_sampling_sr_cython.pyx":135
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":135
  *             dist_end_inflation = -3*noise_amp
  *             reduced_step = 1
  *         elif end_condition(phi+dist_end_inflation, N, phi_end) == 0\             # <<<<<<<<<<<<<<
@@ -2760,7 +2760,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
     if (__pyx_t_1) {
 
-      /* "importance_sampling_sr_cython.pyx":137
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":137
  *         elif end_condition(phi+dist_end_inflation, N, phi_end) == 0\
  *             and reduced_step == 1:
  *             dN = 1000*dN#Go back to original step size             # <<<<<<<<<<<<<<
@@ -2769,7 +2769,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
       __pyx_v_dN = (1000.0 * __pyx_v_dN);
 
-      /* "importance_sampling_sr_cython.pyx":138
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":138
  *             and reduced_step == 1:
  *             dN = 1000*dN#Go back to original step size
  *             sqrt_dN = dN**0.5#Remember to update the root             # <<<<<<<<<<<<<<
@@ -2778,7 +2778,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
       __pyx_v_sqrt_dN = pow(__pyx_v_dN, 0.5);
 
-      /* "importance_sampling_sr_cython.pyx":139
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":139
  *             dN = 1000*dN#Go back to original step size
  *             sqrt_dN = dN**0.5#Remember to update the root
  *             reduced_step = 0             # <<<<<<<<<<<<<<
@@ -2787,7 +2787,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
       __pyx_v_reduced_step = 0;
 
-      /* "importance_sampling_sr_cython.pyx":135
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":135
  *             dist_end_inflation = -3*noise_amp
  *             reduced_step = 1
  *         elif end_condition(phi+dist_end_inflation, N, phi_end) == 0\             # <<<<<<<<<<<<<<
@@ -2797,26 +2797,26 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
       goto __pyx_L5;
     }
 
-    /* "importance_sampling_sr_cython.pyx":140
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":140
  *             sqrt_dN = dN**0.5#Remember to update the root
  *             reduced_step = 0
  *         elif reflect_condition(phi, N, phi_r) == 1:             # <<<<<<<<<<<<<<
  *             phi = reflection(phi, phi_r)
  *             num_reflects += 1
  */
-    __pyx_t_1 = ((__pyx_f_29importance_sampling_sr_cython_reflect_condition(__pyx_v_phi, __pyx_v_N, __pyx_v_phi_r) == 1) != 0);
+    __pyx_t_1 = ((__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_reflect_condition(__pyx_v_phi, __pyx_v_N, __pyx_v_phi_r) == 1) != 0);
     if (__pyx_t_1) {
 
-      /* "importance_sampling_sr_cython.pyx":141
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":141
  *             reduced_step = 0
  *         elif reflect_condition(phi, N, phi_r) == 1:
  *             phi = reflection(phi, phi_r)             # <<<<<<<<<<<<<<
  *             num_reflects += 1
  * 
  */
-      __pyx_v_phi = __pyx_f_29importance_sampling_sr_cython_reflection(__pyx_v_phi, __pyx_v_phi_r);
+      __pyx_v_phi = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_reflection(__pyx_v_phi, __pyx_v_phi_r);
 
-      /* "importance_sampling_sr_cython.pyx":142
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":142
  *         elif reflect_condition(phi, N, phi_r) == 1:
  *             phi = reflection(phi, phi_r)
  *             num_reflects += 1             # <<<<<<<<<<<<<<
@@ -2825,7 +2825,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
       __pyx_v_num_reflects = (__pyx_v_num_reflects + 1);
 
-      /* "importance_sampling_sr_cython.pyx":140
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":140
  *             sqrt_dN = dN**0.5#Remember to update the root
  *             reduced_step = 0
  *         elif reflect_condition(phi, N, phi_r) == 1:             # <<<<<<<<<<<<<<
@@ -2837,7 +2837,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
   }
   __pyx_L4_break:;
 
-  /* "importance_sampling_sr_cython.pyx":144
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":144
  *             num_reflects += 1
  * 
  *     if count_refs == True:             # <<<<<<<<<<<<<<
@@ -2849,7 +2849,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_1) {
 
-    /* "importance_sampling_sr_cython.pyx":145
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":145
  * 
  *     if count_refs == True:
  *         return [N, e**(-A), num_reflects]             # <<<<<<<<<<<<<<
@@ -2859,7 +2859,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
     __Pyx_XDECREF(__pyx_r);
     __pyx_t_2 = PyFloat_FromDouble(__pyx_v_N); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = PyFloat_FromDouble(pow(__pyx_v_29importance_sampling_sr_cython_e, (-__pyx_v_A))); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_7 = PyFloat_FromDouble(pow(__pyx_v_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_e, (-__pyx_v_A))); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 145, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_num_reflects); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 145, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
@@ -2878,7 +2878,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "importance_sampling_sr_cython.pyx":144
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":144
  *             num_reflects += 1
  * 
  *     if count_refs == True:             # <<<<<<<<<<<<<<
@@ -2887,7 +2887,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  */
   }
 
-  /* "importance_sampling_sr_cython.pyx":147
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":147
  *         return [N, e**(-A), num_reflects]
  *     else:
  *         return [N, e**(-A)]             # <<<<<<<<<<<<<<
@@ -2898,7 +2898,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
     __Pyx_XDECREF(__pyx_r);
     __pyx_t_3 = PyFloat_FromDouble(__pyx_v_N); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 147, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyFloat_FromDouble(pow(__pyx_v_29importance_sampling_sr_cython_e, (-__pyx_v_A))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L1_error)
+    __pyx_t_4 = PyFloat_FromDouble(pow(__pyx_v_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_e, (-__pyx_v_A))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_7 = PyList_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 147, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
@@ -2913,7 +2913,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
     goto __pyx_L0;
   }
 
-  /* "importance_sampling_sr_cython.pyx":102
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":102
  * #the importance sample path.
  * #See Eq. (33) of arXiv:nucl-th/9809075v1 for more info
  * cdef list simulation_i_s_diff_bias(double phi_i, double phi_r, double phi_end,\             # <<<<<<<<<<<<<<
@@ -2928,7 +2928,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_AddTraceback("importance_sampling_sr_cython.simulation_i_s_diff_bias", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("PyFPT.pyfpt.numerics.importance_sampling_sr_cython.simulation_i_s_diff_bias", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2937,7 +2937,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
   return __pyx_r;
 }
 
-/* "importance_sampling_sr_cython.pyx":154
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":154
  * #the importance sample path.
  * #See Eq. (33) of arXiv:nucl-th/9809075v1 for more info
  * cdef list simulation_i_s_bias_func(double phi_i, double phi_r, double phi_end,\             # <<<<<<<<<<<<<<
@@ -2945,9 +2945,9 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bia
  *                            V_pp, count_refs = False):
  */
 
-static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_func(double __pyx_v_phi_i, double __pyx_v_phi_r, double __pyx_v_phi_end, double __pyx_v_N_i, double __pyx_v_N_f, double __pyx_v_dN, PyObject *__pyx_v_bias, PyObject *__pyx_v_V, PyObject *__pyx_v_V_p, PyObject *__pyx_v_V_pp, struct __pyx_opt_args_29importance_sampling_sr_cython_simulation_i_s_bias_func *__pyx_optional_args) {
+static PyObject *__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_bias_func(double __pyx_v_phi_i, double __pyx_v_phi_r, double __pyx_v_phi_end, double __pyx_v_N_i, double __pyx_v_N_f, double __pyx_v_dN, PyObject *__pyx_v_bias, PyObject *__pyx_v_V, PyObject *__pyx_v_V_p, PyObject *__pyx_v_V_pp, struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_bias_func *__pyx_optional_args) {
 
-  /* "importance_sampling_sr_cython.pyx":156
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":156
  * cdef list simulation_i_s_bias_func(double phi_i, double phi_r, double phi_end,\
  *                        double N_i, double N_f, double dN, bias, V, V_p,\
  *                            V_pp, count_refs = False):             # <<<<<<<<<<<<<<
@@ -2989,7 +2989,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
     }
   }
 
-  /* "importance_sampling_sr_cython.pyx":158
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":158
  *                            V_pp, count_refs = False):
  *     cdef double N, sqrt_dN, phi, noise_amp, dist_end_inflation, dW, A
  *     cdef int reduced_step = 0             # <<<<<<<<<<<<<<
@@ -2998,7 +2998,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
   __pyx_v_reduced_step = 0;
 
-  /* "importance_sampling_sr_cython.pyx":159
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":159
  *     cdef double N, sqrt_dN, phi, noise_amp, dist_end_inflation, dW, A
  *     cdef int reduced_step = 0
  *     cdef int num_reflects = 0             # <<<<<<<<<<<<<<
@@ -3007,7 +3007,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
   __pyx_v_num_reflects = 0;
 
-  /* "importance_sampling_sr_cython.pyx":160
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":160
  *     cdef int reduced_step = 0
  *     cdef int num_reflects = 0
  *     sqrt_dN = dN**0.5             # <<<<<<<<<<<<<<
@@ -3016,7 +3016,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
   __pyx_v_sqrt_dN = pow(__pyx_v_dN, 0.5);
 
-  /* "importance_sampling_sr_cython.pyx":161
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":161
  *     cdef int num_reflects = 0
  *     sqrt_dN = dN**0.5
  *     N = N_i             # <<<<<<<<<<<<<<
@@ -3025,7 +3025,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
   __pyx_v_N = __pyx_v_N_i;
 
-  /* "importance_sampling_sr_cython.pyx":162
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":162
  *     sqrt_dN = dN**0.5
  *     N = N_i
  *     phi = phi_i             # <<<<<<<<<<<<<<
@@ -3034,7 +3034,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
   __pyx_v_phi = __pyx_v_phi_i;
 
-  /* "importance_sampling_sr_cython.pyx":163
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":163
  *     N = N_i
  *     phi = phi_i
  *     dist_end_inflation = 0.0             # <<<<<<<<<<<<<<
@@ -3043,7 +3043,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
   __pyx_v_dist_end_inflation = 0.0;
 
-  /* "importance_sampling_sr_cython.pyx":164
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":164
  *     phi = phi_i
  *     dist_end_inflation = 0.0
  *     A = 0.0             # <<<<<<<<<<<<<<
@@ -3052,7 +3052,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
   __pyx_v_A = 0.0;
 
-  /* "importance_sampling_sr_cython.pyx":165
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":165
  *     dist_end_inflation = 0.0
  *     A = 0.0
  *     while N<N_f:             # <<<<<<<<<<<<<<
@@ -3063,7 +3063,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
     __pyx_t_1 = ((__pyx_v_N < __pyx_v_N_f) != 0);
     if (!__pyx_t_1) break;
 
-    /* "importance_sampling_sr_cython.pyx":167
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":167
  *     while N<N_f:
  *         #Define the Wiener step
  *         dW = random.gauss(0.0,sqrt_dN)             # <<<<<<<<<<<<<<
@@ -3128,7 +3128,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_dW = __pyx_t_8;
 
-    /* "importance_sampling_sr_cython.pyx":168
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":168
  *         #Define the Wiener step
  *         dW = random.gauss(0.0,sqrt_dN)
  *         bias_value = bias(phi)             # <<<<<<<<<<<<<<
@@ -3157,7 +3157,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
     __Pyx_XDECREF_SET(__pyx_v_bias_value, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "importance_sampling_sr_cython.pyx":170
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":170
  *         bias_value = bias(phi)
  *         [phi, A] =\
  *             step(phi, A, N, dN, sqrt_dN, dW, bias_value, V, V_p, V_pp)             # <<<<<<<<<<<<<<
@@ -3165,7 +3165,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  *         noise_amp = diffusion_term(phi, hubble_sr(phi, V))*sqrt_dN
  */
     __pyx_t_8 = __pyx_PyFloat_AsDouble(__pyx_v_bias_value); if (unlikely((__pyx_t_8 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 170, __pyx_L1_error)
-    __pyx_t_2 = __pyx_f_29importance_sampling_sr_cython_step(__pyx_v_phi, __pyx_v_A, __pyx_v_N, __pyx_v_dN, __pyx_v_sqrt_dN, __pyx_v_dW, __pyx_t_8, __pyx_v_V, __pyx_v_V_p, __pyx_v_V_pp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_step(__pyx_v_phi, __pyx_v_A, __pyx_v_N, __pyx_v_dN, __pyx_v_sqrt_dN, __pyx_v_dW, __pyx_t_8, __pyx_v_V, __pyx_v_V_p, __pyx_v_V_pp); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (likely(__pyx_t_2 != Py_None)) {
       PyObject* sequence = __pyx_t_2;
@@ -3191,7 +3191,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
       __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 169, __pyx_L1_error)
     }
 
-    /* "importance_sampling_sr_cython.pyx":169
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":169
  *         dW = random.gauss(0.0,sqrt_dN)
  *         bias_value = bias(phi)
  *         [phi, A] =\             # <<<<<<<<<<<<<<
@@ -3205,16 +3205,16 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
     __pyx_v_phi = __pyx_t_8;
     __pyx_v_A = __pyx_t_9;
 
-    /* "importance_sampling_sr_cython.pyx":172
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":172
  *             step(phi, A, N, dN, sqrt_dN, dW, bias_value, V, V_p, V_pp)
  * 
  *         noise_amp = diffusion_term(phi, hubble_sr(phi, V))*sqrt_dN             # <<<<<<<<<<<<<<
  *         N += dN
  *         if end_condition(phi, N, phi_end) == 1:#Using 1/0 for True/False
  */
-    __pyx_v_noise_amp = (__pyx_f_29importance_sampling_sr_cython_diffusion_term(__pyx_v_phi, __pyx_f_29importance_sampling_sr_cython_hubble_sr(__pyx_v_phi, __pyx_v_V)) * __pyx_v_sqrt_dN);
+    __pyx_v_noise_amp = (__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_diffusion_term(__pyx_v_phi, __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_hubble_sr(__pyx_v_phi, __pyx_v_V)) * __pyx_v_sqrt_dN);
 
-    /* "importance_sampling_sr_cython.pyx":173
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":173
  * 
  *         noise_amp = diffusion_term(phi, hubble_sr(phi, V))*sqrt_dN
  *         N += dN             # <<<<<<<<<<<<<<
@@ -3223,17 +3223,17 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
     __pyx_v_N = (__pyx_v_N + __pyx_v_dN);
 
-    /* "importance_sampling_sr_cython.pyx":174
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":174
  *         noise_amp = diffusion_term(phi, hubble_sr(phi, V))*sqrt_dN
  *         N += dN
  *         if end_condition(phi, N, phi_end) == 1:#Using 1/0 for True/False             # <<<<<<<<<<<<<<
  *             #print('stopped at: ' + str(N))
  *             break
  */
-    __pyx_t_1 = ((__pyx_f_29importance_sampling_sr_cython_end_condition(__pyx_v_phi, __pyx_v_N, __pyx_v_phi_end) == 1) != 0);
+    __pyx_t_1 = ((__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_end_condition(__pyx_v_phi, __pyx_v_N, __pyx_v_phi_end) == 1) != 0);
     if (__pyx_t_1) {
 
-      /* "importance_sampling_sr_cython.pyx":176
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":176
  *         if end_condition(phi, N, phi_end) == 1:#Using 1/0 for True/False
  *             #print('stopped at: ' + str(N))
  *             break             # <<<<<<<<<<<<<<
@@ -3242,7 +3242,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
       goto __pyx_L4_break;
 
-      /* "importance_sampling_sr_cython.pyx":174
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":174
  *         noise_amp = diffusion_term(phi, hubble_sr(phi, V))*sqrt_dN
  *         N += dN
  *         if end_condition(phi, N, phi_end) == 1:#Using 1/0 for True/False             # <<<<<<<<<<<<<<
@@ -3251,21 +3251,21 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
     }
 
-    /* "importance_sampling_sr_cython.pyx":177
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":177
  *             #print('stopped at: ' + str(N))
  *             break
  *         elif end_condition(phi+3*noise_amp, N, phi_end) == 1\             # <<<<<<<<<<<<<<
  *             and reduced_step == 0:
  *             dN = 0.001*dN
  */
-    __pyx_t_10 = ((__pyx_f_29importance_sampling_sr_cython_end_condition((__pyx_v_phi + (3.0 * __pyx_v_noise_amp)), __pyx_v_N, __pyx_v_phi_end) == 1) != 0);
+    __pyx_t_10 = ((__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_end_condition((__pyx_v_phi + (3.0 * __pyx_v_noise_amp)), __pyx_v_N, __pyx_v_phi_end) == 1) != 0);
     if (__pyx_t_10) {
     } else {
       __pyx_t_1 = __pyx_t_10;
       goto __pyx_L6_bool_binop_done;
     }
 
-    /* "importance_sampling_sr_cython.pyx":178
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":178
  *             break
  *         elif end_condition(phi+3*noise_amp, N, phi_end) == 1\
  *             and reduced_step == 0:             # <<<<<<<<<<<<<<
@@ -3276,7 +3276,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
     __pyx_t_1 = __pyx_t_10;
     __pyx_L6_bool_binop_done:;
 
-    /* "importance_sampling_sr_cython.pyx":177
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":177
  *             #print('stopped at: ' + str(N))
  *             break
  *         elif end_condition(phi+3*noise_amp, N, phi_end) == 1\             # <<<<<<<<<<<<<<
@@ -3285,7 +3285,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
     if (__pyx_t_1) {
 
-      /* "importance_sampling_sr_cython.pyx":179
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":179
  *         elif end_condition(phi+3*noise_amp, N, phi_end) == 1\
  *             and reduced_step == 0:
  *             dN = 0.001*dN             # <<<<<<<<<<<<<<
@@ -3294,7 +3294,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
       __pyx_v_dN = (0.001 * __pyx_v_dN);
 
-      /* "importance_sampling_sr_cython.pyx":180
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":180
  *             and reduced_step == 0:
  *             dN = 0.001*dN
  *             sqrt_dN = dN**0.5             # <<<<<<<<<<<<<<
@@ -3303,7 +3303,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
       __pyx_v_sqrt_dN = pow(__pyx_v_dN, 0.5);
 
-      /* "importance_sampling_sr_cython.pyx":181
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":181
  *             dN = 0.001*dN
  *             sqrt_dN = dN**0.5
  *             dist_end_inflation = 3*noise_amp             # <<<<<<<<<<<<<<
@@ -3312,7 +3312,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
       __pyx_v_dist_end_inflation = (3.0 * __pyx_v_noise_amp);
 
-      /* "importance_sampling_sr_cython.pyx":182
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":182
  *             sqrt_dN = dN**0.5
  *             dist_end_inflation = 3*noise_amp
  *             reduced_step = 1             # <<<<<<<<<<<<<<
@@ -3321,7 +3321,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
       __pyx_v_reduced_step = 1;
 
-      /* "importance_sampling_sr_cython.pyx":177
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":177
  *             #print('stopped at: ' + str(N))
  *             break
  *         elif end_condition(phi+3*noise_amp, N, phi_end) == 1\             # <<<<<<<<<<<<<<
@@ -3331,21 +3331,21 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
       goto __pyx_L5;
     }
 
-    /* "importance_sampling_sr_cython.pyx":183
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":183
  *             dist_end_inflation = 3*noise_amp
  *             reduced_step = 1
  *         elif end_condition(phi-3*noise_amp, N, phi_end) == 1\             # <<<<<<<<<<<<<<
  *             and reduced_step == 0:
  *             dN = 0.001*dN
  */
-    __pyx_t_10 = ((__pyx_f_29importance_sampling_sr_cython_end_condition((__pyx_v_phi - (3.0 * __pyx_v_noise_amp)), __pyx_v_N, __pyx_v_phi_end) == 1) != 0);
+    __pyx_t_10 = ((__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_end_condition((__pyx_v_phi - (3.0 * __pyx_v_noise_amp)), __pyx_v_N, __pyx_v_phi_end) == 1) != 0);
     if (__pyx_t_10) {
     } else {
       __pyx_t_1 = __pyx_t_10;
       goto __pyx_L8_bool_binop_done;
     }
 
-    /* "importance_sampling_sr_cython.pyx":184
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":184
  *             reduced_step = 1
  *         elif end_condition(phi-3*noise_amp, N, phi_end) == 1\
  *             and reduced_step == 0:             # <<<<<<<<<<<<<<
@@ -3356,7 +3356,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
     __pyx_t_1 = __pyx_t_10;
     __pyx_L8_bool_binop_done:;
 
-    /* "importance_sampling_sr_cython.pyx":183
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":183
  *             dist_end_inflation = 3*noise_amp
  *             reduced_step = 1
  *         elif end_condition(phi-3*noise_amp, N, phi_end) == 1\             # <<<<<<<<<<<<<<
@@ -3365,7 +3365,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
     if (__pyx_t_1) {
 
-      /* "importance_sampling_sr_cython.pyx":185
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":185
  *         elif end_condition(phi-3*noise_amp, N, phi_end) == 1\
  *             and reduced_step == 0:
  *             dN = 0.001*dN             # <<<<<<<<<<<<<<
@@ -3374,7 +3374,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
       __pyx_v_dN = (0.001 * __pyx_v_dN);
 
-      /* "importance_sampling_sr_cython.pyx":186
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":186
  *             and reduced_step == 0:
  *             dN = 0.001*dN
  *             sqrt_dN = dN**0.5             # <<<<<<<<<<<<<<
@@ -3383,7 +3383,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
       __pyx_v_sqrt_dN = pow(__pyx_v_dN, 0.5);
 
-      /* "importance_sampling_sr_cython.pyx":187
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":187
  *             dN = 0.001*dN
  *             sqrt_dN = dN**0.5
  *             dist_end_inflation = -3*noise_amp             # <<<<<<<<<<<<<<
@@ -3392,7 +3392,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
       __pyx_v_dist_end_inflation = (-3.0 * __pyx_v_noise_amp);
 
-      /* "importance_sampling_sr_cython.pyx":188
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":188
  *             sqrt_dN = dN**0.5
  *             dist_end_inflation = -3*noise_amp
  *             reduced_step = 1             # <<<<<<<<<<<<<<
@@ -3401,7 +3401,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
       __pyx_v_reduced_step = 1;
 
-      /* "importance_sampling_sr_cython.pyx":183
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":183
  *             dist_end_inflation = 3*noise_amp
  *             reduced_step = 1
  *         elif end_condition(phi-3*noise_amp, N, phi_end) == 1\             # <<<<<<<<<<<<<<
@@ -3411,21 +3411,21 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
       goto __pyx_L5;
     }
 
-    /* "importance_sampling_sr_cython.pyx":189
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":189
  *             dist_end_inflation = -3*noise_amp
  *             reduced_step = 1
  *         elif end_condition(phi+dist_end_inflation, N, phi_end) == 0\             # <<<<<<<<<<<<<<
  *             and reduced_step == 1:
  *             dN = 1000*dN#Go back to original step size
  */
-    __pyx_t_10 = ((__pyx_f_29importance_sampling_sr_cython_end_condition((__pyx_v_phi + __pyx_v_dist_end_inflation), __pyx_v_N, __pyx_v_phi_end) == 0) != 0);
+    __pyx_t_10 = ((__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_end_condition((__pyx_v_phi + __pyx_v_dist_end_inflation), __pyx_v_N, __pyx_v_phi_end) == 0) != 0);
     if (__pyx_t_10) {
     } else {
       __pyx_t_1 = __pyx_t_10;
       goto __pyx_L10_bool_binop_done;
     }
 
-    /* "importance_sampling_sr_cython.pyx":190
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":190
  *             reduced_step = 1
  *         elif end_condition(phi+dist_end_inflation, N, phi_end) == 0\
  *             and reduced_step == 1:             # <<<<<<<<<<<<<<
@@ -3436,7 +3436,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
     __pyx_t_1 = __pyx_t_10;
     __pyx_L10_bool_binop_done:;
 
-    /* "importance_sampling_sr_cython.pyx":189
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":189
  *             dist_end_inflation = -3*noise_amp
  *             reduced_step = 1
  *         elif end_condition(phi+dist_end_inflation, N, phi_end) == 0\             # <<<<<<<<<<<<<<
@@ -3445,7 +3445,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
     if (__pyx_t_1) {
 
-      /* "importance_sampling_sr_cython.pyx":191
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":191
  *         elif end_condition(phi+dist_end_inflation, N, phi_end) == 0\
  *             and reduced_step == 1:
  *             dN = 1000*dN#Go back to original step size             # <<<<<<<<<<<<<<
@@ -3454,7 +3454,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
       __pyx_v_dN = (1000.0 * __pyx_v_dN);
 
-      /* "importance_sampling_sr_cython.pyx":192
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":192
  *             and reduced_step == 1:
  *             dN = 1000*dN#Go back to original step size
  *             sqrt_dN = dN**0.5#Remember to update the root             # <<<<<<<<<<<<<<
@@ -3463,7 +3463,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
       __pyx_v_sqrt_dN = pow(__pyx_v_dN, 0.5);
 
-      /* "importance_sampling_sr_cython.pyx":193
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":193
  *             dN = 1000*dN#Go back to original step size
  *             sqrt_dN = dN**0.5#Remember to update the root
  *             reduced_step = 0             # <<<<<<<<<<<<<<
@@ -3472,7 +3472,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
       __pyx_v_reduced_step = 0;
 
-      /* "importance_sampling_sr_cython.pyx":189
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":189
  *             dist_end_inflation = -3*noise_amp
  *             reduced_step = 1
  *         elif end_condition(phi+dist_end_inflation, N, phi_end) == 0\             # <<<<<<<<<<<<<<
@@ -3482,26 +3482,26 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
       goto __pyx_L5;
     }
 
-    /* "importance_sampling_sr_cython.pyx":194
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":194
  *             sqrt_dN = dN**0.5#Remember to update the root
  *             reduced_step = 0
  *         elif reflect_condition(phi, N, phi_r) == 1:             # <<<<<<<<<<<<<<
  *             phi = reflection(phi, phi_r)
  *             num_reflects += 1
  */
-    __pyx_t_1 = ((__pyx_f_29importance_sampling_sr_cython_reflect_condition(__pyx_v_phi, __pyx_v_N, __pyx_v_phi_r) == 1) != 0);
+    __pyx_t_1 = ((__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_reflect_condition(__pyx_v_phi, __pyx_v_N, __pyx_v_phi_r) == 1) != 0);
     if (__pyx_t_1) {
 
-      /* "importance_sampling_sr_cython.pyx":195
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":195
  *             reduced_step = 0
  *         elif reflect_condition(phi, N, phi_r) == 1:
  *             phi = reflection(phi, phi_r)             # <<<<<<<<<<<<<<
  *             num_reflects += 1
  * 
  */
-      __pyx_v_phi = __pyx_f_29importance_sampling_sr_cython_reflection(__pyx_v_phi, __pyx_v_phi_r);
+      __pyx_v_phi = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_reflection(__pyx_v_phi, __pyx_v_phi_r);
 
-      /* "importance_sampling_sr_cython.pyx":196
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":196
  *         elif reflect_condition(phi, N, phi_r) == 1:
  *             phi = reflection(phi, phi_r)
  *             num_reflects += 1             # <<<<<<<<<<<<<<
@@ -3510,7 +3510,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
       __pyx_v_num_reflects = (__pyx_v_num_reflects + 1);
 
-      /* "importance_sampling_sr_cython.pyx":194
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":194
  *             sqrt_dN = dN**0.5#Remember to update the root
  *             reduced_step = 0
  *         elif reflect_condition(phi, N, phi_r) == 1:             # <<<<<<<<<<<<<<
@@ -3522,7 +3522,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
   }
   __pyx_L4_break:;
 
-  /* "importance_sampling_sr_cython.pyx":198
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":198
  *             num_reflects += 1
  * 
  *     if count_refs == True:             # <<<<<<<<<<<<<<
@@ -3534,7 +3534,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_1) {
 
-    /* "importance_sampling_sr_cython.pyx":199
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":199
  * 
  *     if count_refs == True:
  *         return [N, e**(-A), num_reflects]             # <<<<<<<<<<<<<<
@@ -3544,7 +3544,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
     __Pyx_XDECREF(__pyx_r);
     __pyx_t_2 = PyFloat_FromDouble(__pyx_v_N); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 199, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyFloat_FromDouble(pow(__pyx_v_29importance_sampling_sr_cython_e, (-__pyx_v_A))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 199, __pyx_L1_error)
+    __pyx_t_4 = PyFloat_FromDouble(pow(__pyx_v_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_e, (-__pyx_v_A))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 199, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_num_reflects); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 199, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
@@ -3563,7 +3563,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "importance_sampling_sr_cython.pyx":198
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":198
  *             num_reflects += 1
  * 
  *     if count_refs == True:             # <<<<<<<<<<<<<<
@@ -3572,7 +3572,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  */
   }
 
-  /* "importance_sampling_sr_cython.pyx":201
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":201
  *         return [N, e**(-A), num_reflects]
  *     else:
  *         return [N, e**(-A)]             # <<<<<<<<<<<<<<
@@ -3583,7 +3583,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
     __Pyx_XDECREF(__pyx_r);
     __pyx_t_3 = PyFloat_FromDouble(__pyx_v_N); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 201, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = PyFloat_FromDouble(pow(__pyx_v_29importance_sampling_sr_cython_e, (-__pyx_v_A))); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 201, __pyx_L1_error)
+    __pyx_t_7 = PyFloat_FromDouble(pow(__pyx_v_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_e, (-__pyx_v_A))); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 201, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_4 = PyList_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 201, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
@@ -3598,7 +3598,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
     goto __pyx_L0;
   }
 
-  /* "importance_sampling_sr_cython.pyx":154
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":154
  * #the importance sample path.
  * #See Eq. (33) of arXiv:nucl-th/9809075v1 for more info
  * cdef list simulation_i_s_bias_func(double phi_i, double phi_r, double phi_end,\             # <<<<<<<<<<<<<<
@@ -3613,7 +3613,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_AddTraceback("importance_sampling_sr_cython.simulation_i_s_bias_func", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("PyFPT.pyfpt.numerics.importance_sampling_sr_cython.simulation_i_s_bias_func", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_bias_value);
@@ -3623,7 +3623,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
   return __pyx_r;
 }
 
-/* "importance_sampling_sr_cython.pyx":205
+/* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":205
  * 
  * 
  * cpdef importance_sampling_simulations(double phi_i, double phi_r, double phi_end,\             # <<<<<<<<<<<<<<
@@ -3631,11 +3631,11 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_fun
  *                      int num_runs, V, V_p, V_pp, bias_type = 'diffusion',\
  */
 
-static PyObject *__pyx_pw_29importance_sampling_sr_cython_1importance_sampling_simulations(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_simulations(double __pyx_v_phi_i, double __pyx_v_phi_r, double __pyx_v_phi_end, double __pyx_v_N_i, double __pyx_v_N_f, double __pyx_v_dN, PyObject *__pyx_v_bias, int __pyx_v_num_runs, PyObject *__pyx_v_V, PyObject *__pyx_v_V_p, PyObject *__pyx_v_V_pp, CYTHON_UNUSED int __pyx_skip_dispatch, struct __pyx_opt_args_29importance_sampling_sr_cython_importance_sampling_simulations *__pyx_optional_args) {
+static PyObject *__pyx_pw_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_1importance_sampling_simulations(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_importance_sampling_simulations(double __pyx_v_phi_i, double __pyx_v_phi_r, double __pyx_v_phi_end, double __pyx_v_N_i, double __pyx_v_N_f, double __pyx_v_dN, PyObject *__pyx_v_bias, int __pyx_v_num_runs, PyObject *__pyx_v_V, PyObject *__pyx_v_V_p, PyObject *__pyx_v_V_pp, CYTHON_UNUSED int __pyx_skip_dispatch, struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_importance_sampling_simulations *__pyx_optional_args) {
   PyObject *__pyx_v_bias_type = ((PyObject *)__pyx_n_s_diffusion);
 
-  /* "importance_sampling_sr_cython.pyx":208
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":208
  *                      double N_i, double N_f, double dN, bias,\
  *                      int num_runs, V, V_p, V_pp, bias_type = 'diffusion',\
  *                      count_refs = False):             # <<<<<<<<<<<<<<
@@ -3659,8 +3659,8 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
   int __pyx_t_5;
   double __pyx_t_6;
   PyObject *__pyx_t_7 = NULL;
-  struct __pyx_opt_args_29importance_sampling_sr_cython_simulation_i_s_diff_bias __pyx_t_8;
-  struct __pyx_opt_args_29importance_sampling_sr_cython_simulation_i_s_bias_func __pyx_t_9;
+  struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_diff_bias __pyx_t_8;
+  struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_bias_func __pyx_t_9;
   long __pyx_t_10;
   PyObject *__pyx_t_11 = NULL;
   PyObject *__pyx_t_12 = NULL;
@@ -3678,7 +3678,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     }
   }
 
-  /* "importance_sampling_sr_cython.pyx":209
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":209
  *                      int num_runs, V, V_p, V_pp, bias_type = 'diffusion',\
  *                      count_refs = False):
  *     if bias_type == 'diffusion':             # <<<<<<<<<<<<<<
@@ -3688,7 +3688,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
   __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_bias_type, __pyx_n_s_diffusion, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 209, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "importance_sampling_sr_cython.pyx":211
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":211
  *     if bias_type == 'diffusion':
  *         results =\
  *             [simulation_i_s_diff_bias(phi_i, phi_r,\             # <<<<<<<<<<<<<<
@@ -3698,7 +3698,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
 
-    /* "importance_sampling_sr_cython.pyx":213
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":213
  *             [simulation_i_s_diff_bias(phi_i, phi_r,\
  *             phi_end, N_i, N_f, dN, bias, V, V_p, V_pp,\
  *             count_refs=count_refs) for i in range(num_runs)]             # <<<<<<<<<<<<<<
@@ -3710,7 +3710,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
       __pyx_v_i = __pyx_t_5;
 
-      /* "importance_sampling_sr_cython.pyx":212
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":212
  *         results =\
  *             [simulation_i_s_diff_bias(phi_i, phi_r,\
  *             phi_end, N_i, N_f, dN, bias, V, V_p, V_pp,\             # <<<<<<<<<<<<<<
@@ -3719,7 +3719,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
  */
       __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_v_bias); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 212, __pyx_L1_error)
 
-      /* "importance_sampling_sr_cython.pyx":211
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":211
  *     if bias_type == 'diffusion':
  *         results =\
  *             [simulation_i_s_diff_bias(phi_i, phi_r,\             # <<<<<<<<<<<<<<
@@ -3728,7 +3728,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
  */
       __pyx_t_8.__pyx_n = 1;
       __pyx_t_8.count_refs = __pyx_v_count_refs;
-      __pyx_t_7 = __pyx_f_29importance_sampling_sr_cython_simulation_i_s_diff_bias(__pyx_v_phi_i, __pyx_v_phi_r, __pyx_v_phi_end, __pyx_v_N_i, __pyx_v_N_f, __pyx_v_dN, __pyx_t_6, __pyx_v_V, __pyx_v_V_p, __pyx_v_V_pp, &__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 211, __pyx_L1_error)
+      __pyx_t_7 = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_diff_bias(__pyx_v_phi_i, __pyx_v_phi_r, __pyx_v_phi_end, __pyx_v_N_i, __pyx_v_N_f, __pyx_v_dN, __pyx_t_6, __pyx_v_V, __pyx_v_V_p, __pyx_v_V_pp, &__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_7))) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -3736,7 +3736,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     __pyx_v_results = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "importance_sampling_sr_cython.pyx":209
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":209
  *                      int num_runs, V, V_p, V_pp, bias_type = 'diffusion',\
  *                      count_refs = False):
  *     if bias_type == 'diffusion':             # <<<<<<<<<<<<<<
@@ -3746,7 +3746,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     goto __pyx_L3;
   }
 
-  /* "importance_sampling_sr_cython.pyx":215
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":215
  *             count_refs=count_refs) for i in range(num_runs)]
  * 
  *     elif bias_type == 'custom':             # <<<<<<<<<<<<<<
@@ -3756,7 +3756,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
   __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_bias_type, __pyx_n_s_custom, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 215, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "importance_sampling_sr_cython.pyx":217
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":217
  *     elif bias_type == 'custom':
  *         results =\
  *             [simulation_i_s_bias_func(phi_i, phi_r,\             # <<<<<<<<<<<<<<
@@ -3766,7 +3766,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 217, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
 
-    /* "importance_sampling_sr_cython.pyx":219
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":219
  *             [simulation_i_s_bias_func(phi_i, phi_r,\
  *             phi_end, N_i, N_f, dN, bias, V, V_p, V_pp,\
  *             count_refs=count_refs) for i in range(num_runs)]             # <<<<<<<<<<<<<<
@@ -3778,7 +3778,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
       __pyx_v_i = __pyx_t_5;
 
-      /* "importance_sampling_sr_cython.pyx":217
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":217
  *     elif bias_type == 'custom':
  *         results =\
  *             [simulation_i_s_bias_func(phi_i, phi_r,\             # <<<<<<<<<<<<<<
@@ -3787,7 +3787,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
  */
       __pyx_t_9.__pyx_n = 1;
       __pyx_t_9.count_refs = __pyx_v_count_refs;
-      __pyx_t_7 = __pyx_f_29importance_sampling_sr_cython_simulation_i_s_bias_func(__pyx_v_phi_i, __pyx_v_phi_r, __pyx_v_phi_end, __pyx_v_N_i, __pyx_v_N_f, __pyx_v_dN, __pyx_v_bias, __pyx_v_V, __pyx_v_V_p, __pyx_v_V_pp, &__pyx_t_9); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 217, __pyx_L1_error)
+      __pyx_t_7 = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_simulation_i_s_bias_func(__pyx_v_phi_i, __pyx_v_phi_r, __pyx_v_phi_end, __pyx_v_N_i, __pyx_v_N_f, __pyx_v_dN, __pyx_v_bias, __pyx_v_V, __pyx_v_V_p, __pyx_v_V_pp, &__pyx_t_9); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 217, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_7))) __PYX_ERR(0, 217, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -3795,7 +3795,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     __pyx_v_results = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "importance_sampling_sr_cython.pyx":215
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":215
  *             count_refs=count_refs) for i in range(num_runs)]
  * 
  *     elif bias_type == 'custom':             # <<<<<<<<<<<<<<
@@ -3805,7 +3805,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
   }
   __pyx_L3:;
 
-  /* "importance_sampling_sr_cython.pyx":222
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":222
  * 
  *     #Correctly slicing the list with list comprehension
  *     if count_refs == False:             # <<<<<<<<<<<<<<
@@ -3817,7 +3817,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_1) {
 
-    /* "importance_sampling_sr_cython.pyx":223
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":223
  *     #Correctly slicing the list with list comprehension
  *     if count_refs == False:
  *         Ns, ws = [[results[i][j] for i in range(num_runs)] for j in range(2)]             # <<<<<<<<<<<<<<
@@ -3872,7 +3872,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     __pyx_v_ws = __pyx_t_12;
     __pyx_t_12 = 0;
 
-    /* "importance_sampling_sr_cython.pyx":224
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":224
  *     if count_refs == False:
  *         Ns, ws = [[results[i][j] for i in range(num_runs)] for j in range(2)]
  *         return Ns, ws             # <<<<<<<<<<<<<<
@@ -3892,7 +3892,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "importance_sampling_sr_cython.pyx":222
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":222
  * 
  *     #Correctly slicing the list with list comprehension
  *     if count_refs == False:             # <<<<<<<<<<<<<<
@@ -3901,7 +3901,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
  */
   }
 
-  /* "importance_sampling_sr_cython.pyx":225
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":225
  *         Ns, ws = [[results[i][j] for i in range(num_runs)] for j in range(2)]
  *         return Ns, ws
  *     elif count_refs == True:             # <<<<<<<<<<<<<<
@@ -3913,7 +3913,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (likely(__pyx_t_1)) {
 
-    /* "importance_sampling_sr_cython.pyx":226
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":226
  *         return Ns, ws
  *     elif count_refs == True:
  *         Ns, ws, num_reflects = [[results[i][j] for i in range(num_runs)]\             # <<<<<<<<<<<<<<
@@ -3923,7 +3923,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 226, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
 
-    /* "importance_sampling_sr_cython.pyx":227
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":227
  *     elif count_refs == True:
  *         Ns, ws, num_reflects = [[results[i][j] for i in range(num_runs)]\
  *                                 for j in range(3)]             # <<<<<<<<<<<<<<
@@ -3933,7 +3933,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     for (__pyx_t_10 = 0; __pyx_t_10 < 3; __pyx_t_10+=1) {
       __pyx_v_j = __pyx_t_10;
 
-      /* "importance_sampling_sr_cython.pyx":226
+      /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":226
  *         return Ns, ws
  *     elif count_refs == True:
  *         Ns, ws, num_reflects = [[results[i][j] for i in range(num_runs)]\             # <<<<<<<<<<<<<<
@@ -3990,7 +3990,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     __pyx_v_num_reflects = __pyx_t_7;
     __pyx_t_7 = 0;
 
-    /* "importance_sampling_sr_cython.pyx":228
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":228
  *         Ns, ws, num_reflects = [[results[i][j] for i in range(num_runs)]\
  *                                 for j in range(3)]
  *         return Ns, ws, num_reflects             # <<<<<<<<<<<<<<
@@ -4013,7 +4013,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "importance_sampling_sr_cython.pyx":225
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":225
  *         Ns, ws = [[results[i][j] for i in range(num_runs)] for j in range(2)]
  *         return Ns, ws
  *     elif count_refs == True:             # <<<<<<<<<<<<<<
@@ -4022,7 +4022,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
  */
   }
 
-  /* "importance_sampling_sr_cython.pyx":230
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":230
  *         return Ns, ws, num_reflects
  *     else:
  *         raise ValueError('Unknown parameter for coundting reflections')             # <<<<<<<<<<<<<<
@@ -4037,7 +4037,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
     __PYX_ERR(0, 230, __pyx_L1_error)
   }
 
-  /* "importance_sampling_sr_cython.pyx":205
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":205
  * 
  * 
  * cpdef importance_sampling_simulations(double phi_i, double phi_r, double phi_end,\             # <<<<<<<<<<<<<<
@@ -4051,7 +4051,7 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_11);
   __Pyx_XDECREF(__pyx_t_12);
-  __Pyx_AddTraceback("importance_sampling_sr_cython.importance_sampling_simulations", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("PyFPT.pyfpt.numerics.importance_sampling_sr_cython.importance_sampling_simulations", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_results);
@@ -4065,8 +4065,8 @@ static PyObject *__pyx_f_29importance_sampling_sr_cython_importance_sampling_sim
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_29importance_sampling_sr_cython_1importance_sampling_simulations(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_29importance_sampling_sr_cython_1importance_sampling_simulations(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_1importance_sampling_simulations(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_1importance_sampling_simulations(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   double __pyx_v_phi_i;
   double __pyx_v_phi_r;
   double __pyx_v_phi_end;
@@ -4091,7 +4091,7 @@ static PyObject *__pyx_pw_29importance_sampling_sr_cython_1importance_sampling_s
     PyObject* values[13] = {0,0,0,0,0,0,0,0,0,0,0,0,0};
     values[11] = ((PyObject *)__pyx_n_s_diffusion);
 
-    /* "importance_sampling_sr_cython.pyx":208
+    /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":208
  *                      double N_i, double N_f, double dN, bias,\
  *                      int num_runs, V, V_p, V_pp, bias_type = 'diffusion',\
  *                      count_refs = False):             # <<<<<<<<<<<<<<
@@ -4252,13 +4252,13 @@ static PyObject *__pyx_pw_29importance_sampling_sr_cython_1importance_sampling_s
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("importance_sampling_simulations", 0, 11, 13, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 205, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("importance_sampling_sr_cython.importance_sampling_simulations", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("PyFPT.pyfpt.numerics.importance_sampling_sr_cython.importance_sampling_simulations", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_29importance_sampling_sr_cython_importance_sampling_simulations(__pyx_self, __pyx_v_phi_i, __pyx_v_phi_r, __pyx_v_phi_end, __pyx_v_N_i, __pyx_v_N_f, __pyx_v_dN, __pyx_v_bias, __pyx_v_num_runs, __pyx_v_V, __pyx_v_V_p, __pyx_v_V_pp, __pyx_v_bias_type, __pyx_v_count_refs);
+  __pyx_r = __pyx_pf_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_importance_sampling_simulations(__pyx_self, __pyx_v_phi_i, __pyx_v_phi_r, __pyx_v_phi_end, __pyx_v_N_i, __pyx_v_N_f, __pyx_v_dN, __pyx_v_bias, __pyx_v_num_runs, __pyx_v_V, __pyx_v_V_p, __pyx_v_V_pp, __pyx_v_bias_type, __pyx_v_count_refs);
 
-  /* "importance_sampling_sr_cython.pyx":205
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":205
  * 
  * 
  * cpdef importance_sampling_simulations(double phi_i, double phi_r, double phi_end,\             # <<<<<<<<<<<<<<
@@ -4271,12 +4271,12 @@ static PyObject *__pyx_pw_29importance_sampling_sr_cython_1importance_sampling_s
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_29importance_sampling_sr_cython_importance_sampling_simulations(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_phi_i, double __pyx_v_phi_r, double __pyx_v_phi_end, double __pyx_v_N_i, double __pyx_v_N_f, double __pyx_v_dN, PyObject *__pyx_v_bias, int __pyx_v_num_runs, PyObject *__pyx_v_V, PyObject *__pyx_v_V_p, PyObject *__pyx_v_V_pp, PyObject *__pyx_v_bias_type, PyObject *__pyx_v_count_refs) {
+static PyObject *__pyx_pf_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_importance_sampling_simulations(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_phi_i, double __pyx_v_phi_r, double __pyx_v_phi_end, double __pyx_v_N_i, double __pyx_v_N_f, double __pyx_v_dN, PyObject *__pyx_v_bias, int __pyx_v_num_runs, PyObject *__pyx_v_V, PyObject *__pyx_v_V_p, PyObject *__pyx_v_V_pp, PyObject *__pyx_v_bias_type, PyObject *__pyx_v_count_refs) {
   PyObject *__pyx_r = NULL;
   __Pyx_TraceDeclarations
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  struct __pyx_opt_args_29importance_sampling_sr_cython_importance_sampling_simulations __pyx_t_2;
+  struct __pyx_opt_args_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_importance_sampling_simulations __pyx_t_2;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -4286,7 +4286,7 @@ static PyObject *__pyx_pf_29importance_sampling_sr_cython_importance_sampling_si
   __pyx_t_2.__pyx_n = 2;
   __pyx_t_2.bias_type = __pyx_v_bias_type;
   __pyx_t_2.count_refs = __pyx_v_count_refs;
-  __pyx_t_1 = __pyx_f_29importance_sampling_sr_cython_importance_sampling_simulations(__pyx_v_phi_i, __pyx_v_phi_r, __pyx_v_phi_end, __pyx_v_N_i, __pyx_v_N_f, __pyx_v_dN, __pyx_v_bias, __pyx_v_num_runs, __pyx_v_V, __pyx_v_V_p, __pyx_v_V_pp, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_importance_sampling_simulations(__pyx_v_phi_i, __pyx_v_phi_r, __pyx_v_phi_end, __pyx_v_N_i, __pyx_v_N_f, __pyx_v_dN, __pyx_v_bias, __pyx_v_num_runs, __pyx_v_V, __pyx_v_V_p, __pyx_v_V_pp, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4295,7 +4295,7 @@ static PyObject *__pyx_pf_29importance_sampling_sr_cython_importance_sampling_si
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("importance_sampling_sr_cython.importance_sampling_simulations", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("PyFPT.pyfpt.numerics.importance_sampling_sr_cython.importance_sampling_simulations", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -4305,7 +4305,7 @@ static PyObject *__pyx_pf_29importance_sampling_sr_cython_importance_sampling_si
 }
 
 static PyMethodDef __pyx_methods[] = {
-  {"importance_sampling_simulations", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_29importance_sampling_sr_cython_1importance_sampling_simulations, METH_VARARGS|METH_KEYWORDS, 0},
+  {"importance_sampling_simulations", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_1importance_sampling_simulations, METH_VARARGS|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
@@ -4390,7 +4390,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "importance_sampling_sr_cython.pyx":230
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":230
  *         return Ns, ws, num_reflects
  *     else:
  *         raise ValueError('Unknown parameter for coundting reflections')             # <<<<<<<<<<<<<<
@@ -4655,14 +4655,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_importance_sampling_sr_cython) {
+  if (__pyx_module_is_main_PyFPT__pyfpt__numerics__importance_sampling_sr_cython) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "importance_sampling_sr_cython")) {
-      if (unlikely(PyDict_SetItemString(modules, "importance_sampling_sr_cython", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "PyFPT.pyfpt.numerics.importance_sampling_sr_cython")) {
+      if (unlikely(PyDict_SetItemString(modules, "PyFPT.pyfpt.numerics.importance_sampling_sr_cython", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -4684,7 +4684,7 @@ if (!__Pyx_RefNanny) {
   #endif
   __Pyx_TraceCall("__Pyx_PyMODINIT_FUNC PyInit_importance_sampling_sr_cython(void)", __pyx_f[0], 1, 0, __PYX_ERR(0, 1, __pyx_L1_error));
 
-  /* "importance_sampling_sr_cython.pyx":16
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":16
  * @author: Joe Jackson
  * '''
  * import random             # <<<<<<<<<<<<<<
@@ -4696,34 +4696,34 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_random, __pyx_t_1) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "importance_sampling_sr_cython.pyx":18
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":18
  * import random
  * #This model's set up
  * cdef double M_PL = 1.0             # <<<<<<<<<<<<<<
  * cdef double PI = 3.1415926535897931159979634685
  * cdef double e = 2.718281828459045
  */
-  __pyx_v_29importance_sampling_sr_cython_M_PL = 1.0;
+  __pyx_v_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_M_PL = 1.0;
 
-  /* "importance_sampling_sr_cython.pyx":19
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":19
  * #This model's set up
  * cdef double M_PL = 1.0
  * cdef double PI = 3.1415926535897931159979634685             # <<<<<<<<<<<<<<
  * cdef double e = 2.718281828459045
  * 
  */
-  __pyx_v_29importance_sampling_sr_cython_PI = 3.1415926535897931159979634685;
+  __pyx_v_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_PI = 3.1415926535897931159979634685;
 
-  /* "importance_sampling_sr_cython.pyx":20
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":20
  * cdef double M_PL = 1.0
  * cdef double PI = 3.1415926535897931159979634685
  * cdef double e = 2.718281828459045             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_v_29importance_sampling_sr_cython_e = 2.718281828459045;
+  __pyx_v_5PyFPT_5pyfpt_8numerics_29importance_sampling_sr_cython_e = 2.718281828459045;
 
-  /* "importance_sampling_sr_cython.pyx":1
+  /* "PyFPT/pyfpt/numerics/importance_sampling_sr_cython.pyx":1
  * '''             # <<<<<<<<<<<<<<
  * Created on 26/04/21
  * 
@@ -4741,11 +4741,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_1);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init importance_sampling_sr_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init PyFPT.pyfpt.numerics.importance_sampling_sr_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_CLEAR(__pyx_m);
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init importance_sampling_sr_cython");
+    PyErr_SetString(PyExc_ImportError, "init PyFPT.pyfpt.numerics.importance_sampling_sr_cython");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

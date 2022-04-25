@@ -1,21 +1,42 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Mar 24 13:09:12 2021
 
-@author: jjackson
-"""
+import os
 
-from setuptools import setup
+from setuptools import setup, Extension
+
+
 from Cython.Build import cythonize
 
-ext_options = {"compiler_directives": {"profile": True}, "annotate": True}
+__author__ = "Joseph Jackson <joseph.jackson@port.ac.uk>"
 
 
+# define cython options
+cython_compile_args = [
+    "-O3"
+]
+
+cython_directives = {
+    "language_level": 3,
+}
+
+# enable coverage for cython
+if int(os.getenv("CYTHON_LINETRACE", "0")):
+    cython_directives["linetrace"] = True
+    cython_compile_args.append("-DCYTHON_TRACE")
+
+# define compiled extensions
+exts = [
+    Extension(
+        "pyfpt.numerics.importance_sampling_sr_cython",
+        ["pyfpt/numerics/importance_sampling_sr_cython.pyx"],
+        language="c",
+        extra_compile_args=cython_compile_args,
+        extra_link_args=[],
+    ),
+]
+
+# -- build the thing
+# this function only manually specifies things that aren't
+# supported by setup.cfg (as of setuptools-30.3.0)
 setup(
-    ext_modules = cythonize(["cython_test.pyx",
-                            "tilted_quantum_well_cython19.pyx",
-                            "chaotic_inflation_cython45.pyx",
-                            "importance_sampling_sr_cython12.pyx"], **ext_options)
+    ext_modules=cythonize(exts, compiler_directives=cython_directives),
 )
-

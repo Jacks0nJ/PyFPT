@@ -153,7 +153,7 @@ def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias, bins=50,
     ws_array = np.array([queue_ws.get() for p in processes])
 
     end = timer()
-    print(f'The simulations took: {end - start}')
+    print(f'The simulations took: {end - start} seconds')
 
     # Combine into columns into 1
     sim_N_dist = Ns_array.flatten()

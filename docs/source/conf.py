@@ -41,7 +41,7 @@ napoleon_use_param = False
 napoleon_use_ivar = True
 
 autodoc_mock_imports = ["numpy", "scipy", "matplotlib", "mpmath", "pandas",
-			"timeit", "multiprocessing"]
+			"timeit", "multiprocessing", "numerics.importance_sampling_sr_cython"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

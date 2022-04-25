@@ -1,0 +1,1 @@
+recursive-include pyfpt/numerics *.c *.pyx

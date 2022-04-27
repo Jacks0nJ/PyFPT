@@ -3,7 +3,8 @@
 Analytical Functions
 ====================
 
-This page gives an overview of the different functions in the importance sampling file.
+This page gives an overview of the different analytical functions available in
+PyFPT. 
 
 
 .. automodule:: analytics.classicality_criterion
@@ -11,32 +12,32 @@ This page gives an overview of the different functions in the importance samplin
     
 ----
 
-.. automodule:: analytics.mean_N_sto_limit
+.. automodule:: analytics.mean_N
     :members:
 
 ----
 
-.. automodule:: analytics.variance_N_sto_limit
+.. automodule:: analytics.variance_N
     :members:
     
 ----
 
-.. automodule:: analytics.skewness_N_sto_limit
+.. automodule:: analytics.skewness_N
     :members:
  
 ----
 
-.. automodule:: analytics.kurtosis_N_sto_limit
+.. automodule:: analytics.kurtosis_N
     :members:
     
 ----
 
-.. automodule:: analytics.third_central_moment_N_sto_limit
+.. automodule:: analytics.third_central_moment_N
     :members:
 
 ----
 
-.. automodule:: analytics.fourth_central_moment_N_sto_limit
+.. automodule:: analytics.fourth_central_moment_N
     :members:
 
 ----
@@ -56,17 +57,17 @@ This page gives an overview of the different functions in the importance samplin
     
 ----
 
-.. automodule:: analytics.gaussian_pdf_sto_limit
+.. automodule:: analytics.gaussian_pdf
     :members:
     
 ----
 
-.. automodule:: analytics.edgeworth_pdf_sto_limit
+.. automodule:: analytics.edgeworth_pdf
     :members:
 
 ----
 
-.. automodule:: analytics.gaussian_deviation_sto_limit
+.. automodule:: analytics.gaussian_deviation
     :members:
 
 ----

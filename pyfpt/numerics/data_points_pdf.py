@@ -114,6 +114,11 @@ def data_points_pdf(data, weights, estimator,
         if isinstance(min_bin_size, int) is True:
             heights = heights[filled_bins]
             errors = errors[filled_bins]
+
+        # For consistancy with the lognormal method, need to provide both upp
+        # and lower errors. As the errors are symmetrical, simply copy them.
+        errors = np.tile(errors, (2, 1))
+
     elif estimator == 'lognormal':
 
         heights_est = np.zeros(num_bins)

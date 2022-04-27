@@ -21,8 +21,8 @@ from .importance_sampling_sr_cython import\
     importance_sampling_simulations
 
 
-def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias, bins=50,
-                  dN=None, min_bin_size=400, num_sub_samples=20,
+def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias_amp,
+                  bins=50, dN=None, min_bin_size=400, num_sub_samples=20,
                   estimator='lognormal', save_data=False, N_f=100,
                   phi_UV=None):
     """Executes the simulation runs, then returns the histogram bin centres,
@@ -42,7 +42,7 @@ def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias, bins=50,
         The end scalar field value.
     num_runs : int
         The number of simulation runs.
-    bias : float
+    bias_amp : float
         The coefficent of the diffusion used define the bias. (In later
         versions this can also be a function).
     bins : int or sequence, optional
@@ -116,17 +116,20 @@ def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias, bins=50,
     elif np.abs(phi_UV) < np.abs(phi_i):
         raise ValueError('phi_UV is smaller than phi_i')
 
+    if bias_amp == 0:
+        estimator = 'naive'
+
     # The number of sims per core, so the total is correct
     num_runs_per_core = int(num_runs/mp.cpu_count())
     # Time how long the simulation runs take
     start = timer()
 
     # Using multiprocessing
-    def multi_processing_func(phi_i, phi_UV, phi_end, N_i, N_f, dN, bias,
+    def multi_processing_func(phi_i, phi_UV, phi_end, N_i, N_f, dN, bias_amp,
                               num_runs, queue_Ns, queue_ws, queue_refs):
         results =\
             importance_sampling_simulations(phi_i, phi_UV, phi_end, N_i, N_f,
-                                            dN, bias, num_runs, V, V_dif,
+                                            dN, bias_amp, num_runs, V, V_dif,
                                             V_ddif, bias_type='diffusion',
                                             count_refs=False)
         Ns = np.array(results[0][:])
@@ -141,7 +144,7 @@ def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias, bins=50,
 
     print('Number of cores used: '+str(cores))
     processes = [Process(target=multi_processing_func,
-                         args=(phi_i, phi_UV,  phi_end, 0.0, N_f, dN, bias,
+                         args=(phi_i, phi_UV,  phi_end, 0.0, N_f, dN, bias_amp,
                                num_runs_per_core, queue_Ns, queue_ws,
                                queue_refs)) for i in range(cores)]
 
@@ -173,7 +176,7 @@ def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias, bins=50,
                                   num_sub_samples=num_sub_samples)
     # Saving the data
     if save_data is True:
-        save_data_to_file(sim_N_dist, w_values, phi_i, num_runs, bias)
+        save_data_to_file(sim_N_dist, w_values, phi_i, num_runs, bias_amp)
 
     # Now analysisng the data to creating the histogram/PDF data
     bin_centres, heights, errors, num_runs_used, bin_edges_untruncated =\

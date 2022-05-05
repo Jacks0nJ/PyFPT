@@ -27,7 +27,7 @@ copyright = '2022, Joe Jackson'
 author = 'Joe Jackson'
 
 # The full version, including alpha/beta/rc tags
-release = '0.6s'
+release = '0.7s'
 
 
 # -- General configuration ---------------------------------------------------

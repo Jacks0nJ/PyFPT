@@ -30,4 +30,4 @@ def multi_processing_error(data, weights):
     pearson_corr = pearson_corr[0, 1]
 
     if abs(pearson_corr) < 0.55:  # Data is uncorrelated
-        print('Possible multiprocessing error occured')
+        print('Possible multiprocessing error occured, see documentation')

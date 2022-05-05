@@ -16,10 +16,10 @@ order terms of the Edgeworth series first equals the threshold.
 import numpy as np
 from scipy import optimize
 
-from .mean_N_sto_limit import mean_N_sto_limit
-from .variance_N_sto_limit import variance_N_sto_limit
-from .skewness_N_sto_limit import skewness_N_sto_limit
-from .kurtosis_N_sto_limit import kurtosis_N_sto_limit
+from .mean_N import mean_N
+from .variance_N import variance_N
+from .skewness_N import skewness_N
+from .kurtosis_N import kurtosis_N
 
 
 # Using the Gram–Charlier A series
@@ -27,7 +27,7 @@ from .kurtosis_N_sto_limit import kurtosis_N_sto_limit
 # classical deviation from a gaussian. This is done by finding x such that the
 # higher order terms of the edgeworth expanion are
 # nu is the amount pf deviation from a Gaussian.
-def gaussian_deviation_sto_limit(V, V_dif, V_ddif, phi_i, phi_end, nu=1.,
+def gaussian_deviation(V, V_dif, V_ddif, phi_i, phi_end, nu=1.,
                                  phi_interval=None):
     """Returns the skewness of the number of e-folds.
 
@@ -53,10 +53,10 @@ def gaussian_deviation_sto_limit(V, V_dif, V_ddif, phi_i, phi_end, nu=1.,
         The field value at which the deviation occurs.
 
     """
-    mean = mean_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
-    std = variance_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)**0.5
-    skewness = skewness_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
-    kurtosis = kurtosis_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
+    mean = mean_N(V, V_dif, V_ddif, phi_i, phi_end)
+    std = variance_N(V, V_dif, V_ddif, phi_i, phi_end)**0.5
+    skewness = skewness_N(V, V_dif, V_ddif, phi_i, phi_end)
+    kurtosis = kurtosis_N(V, V_dif, V_ddif, phi_i, phi_end)
 
     def higher_order_egdeworth_term(y):
         norm_y = (y-mean)/std

@@ -9,14 +9,14 @@ for first-passage times in the low-diffusion limit, using the results from
 '''
 import numpy as np
 
-from .mean_N_sto_limit import mean_N_sto_limit
-from .variance_N_sto_limit import variance_N_sto_limit
+from .mean_N import mean_N
+from .variance_N import variance_N
 
 PI = np.pi
 
 
 # This returns a function which returns the Edgeworth expansion
-def gaussian_pdf_sto_limit(V, V_dif, V_ddif, phi_i, phi_end):
+def gaussian_pdf(V, V_dif, V_ddif, phi_i, phi_end):
     """ Returns the Gaussian approximation in the low-diffusion limit.
 
     Parameters
@@ -38,8 +38,8 @@ def gaussian_pdf_sto_limit(V, V_dif, V_ddif, phi_i, phi_end):
         The Gaussian approximation.
 
     """
-    mean = mean_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
-    std = variance_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)**0.5
+    mean = mean_N(V, V_dif, V_ddif, phi_i, phi_end)
+    std = variance_N(V, V_dif, V_ddif, phi_i, phi_end)**0.5
 
     def gaussian_function(N):
         norm_N = (N-mean)/std

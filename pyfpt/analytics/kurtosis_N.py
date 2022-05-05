@@ -9,16 +9,16 @@ central moment and equation 3.33 for the variance.
 '''
 
 
-from .fourth_central_moment_N_sto_limit import\
-    fourth_central_moment_N_sto_limit
-from .variance_N_sto_limit import variance_N_sto_limit
+from .fourth_central_moment_N import\
+    fourth_central_moment_N
+from .variance_N import variance_N
 
 M_PL = 1
 
 
 # Using the standard relation between the central moments and the kurtosis.
 # Fisher is an optional argument
-def kurtosis_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end, Fisher=True):
+def kurtosis_N(V, V_dif, V_ddif, phi_i, phi_end, Fisher=True):
     """Returns the kurtosis of the number of e-folds.
 
     Parameters
@@ -43,9 +43,9 @@ def kurtosis_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end, Fisher=True):
 
     """
     # The excess kurtosis over the expected Gaussian amount
-    fourth_moment = fourth_central_moment_N_sto_limit(V, V_dif, V_ddif,
-                                                      phi_i, phi_end)
-    var = variance_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
+    fourth_moment = fourth_central_moment_N(V, V_dif, V_ddif,
+                                            phi_i, phi_end)
+    var = variance_N(V, V_dif, V_ddif, phi_i, phi_end)
     if Fisher is False:
         kurtosis_N = fourth_moment/var**2
     else:  # Defaults to Fisher definition

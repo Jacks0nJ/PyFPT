@@ -3,8 +3,7 @@ from .histogram_normalisation import\
     histogram_normalisation
 from .data_in_histogram_bins import data_in_histogram_bins
 from .histogram_data_truncation import histogram_data_truncation
-from .histogram_weighted_bin_errors_jackknife import\
-    histogram_weighted_bin_errors_jackknife
+from .jackknife_errors import jackknife_errors
 from .is_simulation import is_simulation
 from .log_normal_error import log_normal_error
 from .log_normal_height import log_normal_height

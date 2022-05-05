@@ -18,7 +18,7 @@ M_PL = 1
 
 
 # Equation 3.28 in Vennin 2015
-def mean_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end):
+def mean_N(V, V_dif, V_ddif, phi_i, phi_end):
     """Returns the mean number of e-folds.
 
     Parameters

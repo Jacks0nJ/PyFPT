@@ -13,13 +13,13 @@ from scipy import integrate
 
 from .reduced_potential import reduced_potential
 from .reduced_potential_diff import reduced_potential_diff
-from .variance_N_sto_limit import variance_N_sto_limit
+from .variance_N import variance_N
 
 M_PL = 1
 
 
 # This is done using Vincent's calculations he gave me
-def fourth_central_moment_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end):
+def fourth_central_moment_N(V, V_dif, V_ddif, phi_i, phi_end):
     """Returns the fourth central moment of the number of e-folds.
 
     Parameters
@@ -56,7 +56,7 @@ def fourth_central_moment_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end):
     # As Vincent's method explicitly calculates the excess kurtosis, need to
     # add Wick's theorem term
     gaussian_4th_moment =\
-        3*variance_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)**2
+        3*variance_N(V, V_dif, V_ddif, phi_i, phi_end)**2
 
     fourth_moment_N = gaussian_4th_moment+non_guassian
 

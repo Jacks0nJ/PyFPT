@@ -10,16 +10,16 @@ for first-passage times in the low-diffusion limit, using the results from
 '''
 import numpy as np
 
-from .mean_N_sto_limit import mean_N_sto_limit
-from .variance_N_sto_limit import variance_N_sto_limit
-from .skewness_N_sto_limit import skewness_N_sto_limit
-from .kurtosis_N_sto_limit import kurtosis_N_sto_limit
+from .mean_N import mean_N
+from .variance_N import variance_N
+from .skewness_N import skewness_N
+from .kurtosis_N import kurtosis_N
 
 PI = np.pi
 
 
 # This returns a function which returns the Edgeworth expansion
-def edgeworth_pdf_sto_limit(V, V_dif, V_ddif, phi_i, phi_end):
+def edgeworth_pdf(V, V_dif, V_ddif, phi_i, phi_end):
     """ Returns the Edgeworth expansion in the low-diffusion limit.
 
     Parameters
@@ -41,10 +41,10 @@ def edgeworth_pdf_sto_limit(V, V_dif, V_ddif, phi_i, phi_end):
         The Edgeworth expansion.
 
     """
-    mean = mean_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
-    std = variance_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)**0.5
-    skewness = skewness_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
-    kurtosis = kurtosis_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
+    mean = mean_N(V, V_dif, V_ddif, phi_i, phi_end)
+    std = variance_N(V, V_dif, V_ddif, phi_i, phi_end)**0.5
+    skewness = skewness_N(V, V_dif, V_ddif, phi_i, phi_end)
+    kurtosis = kurtosis_N(V, V_dif, V_ddif, phi_i, phi_end)
 
     def edgeworth_function(N):
         norm_N = (N-mean)/std

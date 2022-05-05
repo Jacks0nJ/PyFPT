@@ -19,7 +19,7 @@ M_PL = 1
 
 
 # Equation 3.37 in Vennin 2015
-def third_central_moment_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end):
+def third_central_moment_N(V, V_dif, V_ddif, phi_i, phi_end):
     """Returns the third central moment of the number of e-folds.
 
     Parameters

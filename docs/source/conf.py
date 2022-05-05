@@ -27,7 +27,7 @@ copyright = '2022, Joe Jackson'
 author = 'Joe Jackson'
 
 # The full version, including alpha/beta/rc tags
-release = '0.2'
+release = '0.6s'
 
 
 # -- General configuration ---------------------------------------------------
@@ -35,7 +35,7 @@ release = '0.2'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc','sphinx.ext.napoleon']
+extensions = ['sphinx.ext.autodoc','sphinx.ext.napoleon','nbsphinx']
 napoleon_google_docstring = False
 napoleon_use_param = False
 napoleon_use_ivar = True

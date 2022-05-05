@@ -11,8 +11,8 @@ import numpy as np
 
 from .histogram_normalisation import histogram_normalisation
 from .data_in_histogram_bins import data_in_histogram_bins
-from .histogram_weighted_bin_errors_jackknife import\
-    histogram_weighted_bin_errors_jackknife
+from .jackknife_errors import\
+    jackknife_errors
 from .log_normal_height import log_normal_height
 from .log_normal_error import log_normal_error
 from .lognormality_check import lognormality_check
@@ -45,8 +45,9 @@ def data_points_pdf(data, weights, estimator,
         The minimum number of runs per bin to included in the data analysis.
         If a bin has less than this number, it is truncated. Defaults to 400.
     num_sub_samples : int, optional
-        The number of subsamples used in naive estimator error estimation.
-        Defaults to 20 when ``estimator`` is ``'naive'``.
+        The number of subsamples used in jackknife estimation of the errors
+        used for the ``'naive'`` estimator. Defaults to 20 when ``estimator``
+        is ``'naive'``.
     Returns
     -------
     bin_centres : numpy.ndarray
@@ -109,8 +110,7 @@ def data_points_pdf(data, weights, estimator,
     # Now estimating the probability density function
     if estimator == 'naive':
         heights = heights_raw/histogram_norm
-        errors = histogram_weighted_bin_errors_jackknife(data, weights, bins,
-                                                         num_sub_samples)
+        errors = jackknife_errors(data, weights, bins, num_sub_samples)
         if isinstance(min_bin_size, int) is True:
             heights = heights[filled_bins]
             errors = errors[filled_bins]

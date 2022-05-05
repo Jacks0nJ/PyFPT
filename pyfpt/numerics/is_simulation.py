@@ -64,8 +64,9 @@ def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias_amp,
         weights in each bin follow a lognomral distribution. If ``'naive'``, no
         assumption is made but more runs are required for convergance.
     num_sub_samples : int, optional
-        The number of subsamples used in naive estimator error estimation.
-        Defaults to 20 when ``estimator`` is ``'naive'``.
+        The number of subsamples used in jackknife estimation of the errors
+        used for the ``'naive'`` estimator. Defaults to 20 when ``estimator``
+        is ``'naive'``.
     Save_data : bool, optional
         If ``True``, the first-passage times and the associated weights for
         each run is saved to a file.

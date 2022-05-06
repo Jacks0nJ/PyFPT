@@ -91,7 +91,7 @@ to work on it locally.
 The PyFPT package can be used to investigate far into the tail of the probability density (down to 10^-34 and beyond!)
 
 <p align="center">
-  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/overlap_plot_m_0.001_bias_range_log_0.0_to_4.0_phi_UV_100.0phi_i_for_docs.png width="500"/>
+  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/overlap_plot_m_0.001_bias_range_log_0.0_to_4.0_phi_UV_100.0phi_i_for_docs.png" width="500"/>
 </p>
 
 Or even deviations from Gaussianity!

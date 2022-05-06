@@ -25,7 +25,7 @@
 ## What is PyFPT?
 
 <p align="center">
-  <img src="./images/stochastic_effects.png " width="500"/>
+  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/stochastic_effects.png" width="500"/>
 </p>
 
 PyFPT is Python/Cython package to run first-passage time (FPT) simulations using importance sampling.
@@ -91,13 +91,13 @@ to work on it locally.
 The PyFPT package can be used to investigate far into the tail of the probability density (down to 10^-34 and beyond!)
 
 <p align="center">
-  <img src="./images/overlap_plot_m_0.001_bias_range_log_0.0_to_4.0_phi_UV_100.0phi_i_for_docs.png " width="500"/>
+  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/overlap_plot_m_0.001_bias_range_log_0.0_to_4.0_phi_UV_100.0phi_i_for_docs.png width="500"/>
 </p>
 
 Or even deviations from Gaussianity!
 
 <p align="center">
-  <img src="./images/publishable_error_bar_IS_near_10_dN_0.002_m_0.1_phi_UV_1.0phi_i_bias_3_iters_198234_bin_size_400_for_docs.png " width="500"/>
+  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/publishable_error_bar_IS_near_10_dN_0.002_m_0.1_phi_UV_1.0phi_i_bias_3_iters_198234_bin_size_400_for_docs.png" width="500"/>
 </p>
 
 
@@ -166,20 +166,21 @@ Project Link: [https://github.com/Jacks0nJ/PyFPT](https://github.com/Jacks0nJ/Py
 
 We would like the following contributors to PyFPT, be it through phsyical understanding of first-passage time processes or help developing the package!
 
-<ins>The Physics</ins>
+#### The Physics
 
 * David Wands
 * Vincent Vennin
 * Kazuya Koyama
 * Hooshyar Assadullahi
 
-<ins>Package Development</ins>
+#### Package Development
 
 * Coleman Krawczyk
 * Ian Harry
 
+#### Resources
 
-The following resoucres were instrumental in developing the project into a package usable by the community
+The following resoucres were instrumental in developing the project into a package usable by the community:
 
 * [Sphinx Guide](https://techwritingmatters.com/documenting-with-sphinx-tutorial-part-1-setting-up)
 * [Autodoc](https://eikonomega.medium.com/getting-started-with-sphinx-autodoc-part-1-2cebbbca5365)

@@ -79,7 +79,7 @@ You can also clone the PyFPT repository
 ```sh
 git clone https://github.com/Jacks0nJ/PyFPT.git
 ```
-to work on it locally.
+to work on it locally. This would require compling the Cython code (the `.pyx` files) locally as well.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -138,6 +138,11 @@ If you have a suggestion that would make this better, please fork the repo and c
 And we will review your request!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+## Bugs
+This is the initial release of PyFPT, so it is expected there will be some minor bugs. Feel free to either report by rasing an [Issue](https://github.com/Jacks0nJ/PyFPT/issues) on Github, emialingjoseph.jackson@port.ac.uk or fork the repository with your fix. 
+
+Your is very much appreciated! 
 
 
 

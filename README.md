@@ -25,14 +25,14 @@
 ## What is PyFPT?
 
 <p align="center">
-  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/stochastic_effects.png" width="500"/>
+  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/stochastic_effects.png?raw=true" width="500"/>
 </p>
 
 PyFPT is Python/Cython package to run first-passage time (FPT) simulations using importance sampling.
 
 This package will let you numerically investigate the tail of the probability density for first passage times in the number of e-folds for a potential in slow-roll stochastic inflation inflation.
 
-The tail of the probability density is investiated using the method of `importance sampling`_, where a bias increases the probability of large FPTs, resulting in a sample distribution, which are then weighted to reproduce the rare events of the target distribution. This allows very rare events (normally need supercomputers) to be simulate efficiently with just your laptop!
+The tail of the probability density is investiated using the method of [importance sampling](https://arxiv.org/abs/nucl-th/9809075), where a bias increases the probability of large FPTs, resulting in a sample distribution, which are then weighted to reproduce the rare events of the target distribution. This allows very rare events (normally need supercomputers) to be simulate efficiently with just your laptop!
 
 This package also comes with functionality to compare the numerical results with analytical expectations.
 
@@ -91,13 +91,13 @@ to work on it locally.
 The PyFPT package can be used to investigate far into the tail of the probability density (down to 10^-34 and beyond!)
 
 <p align="center">
-  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/overlap_plot_m_0.001_bias_range_log_0.0_to_4.0_phi_UV_100.0phi_i_for_docs.png" width="500"/>
+  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/overlap_plot_m_0.001_bias_range_log_0.0_to_4.0_phi_UV_100.0phi_i_for_docs.png?raw=true" width="500"/>
 </p>
 
 Or even deviations from Gaussianity!
 
 <p align="center">
-  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/publishable_error_bar_IS_near_10_dN_0.002_m_0.1_phi_UV_1.0phi_i_bias_3_iters_198234_bin_size_400_for_docs.png" width="500"/>
+  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/publishable_error_bar_IS_near_10_dN_0.002_m_0.1_phi_UV_1.0phi_i_bias_3_iters_198234_bin_size_400_for_docs.png?raw=true" width="500"/>
 </p>
 
 

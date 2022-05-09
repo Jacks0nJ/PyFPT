@@ -9,16 +9,16 @@ given in equation 2.1 of `Vennin--Starobinsky 2015`_.
 
 
 import numpy as np
-PI = np.pi
-M_PL = 1.0
+pi = np.pi
+planck_mass = 1.0
 
 
-def reduced_potential(V):
+def reduced_potential(potential):
     """Returns the reduced potential as a function
 
     Parameters
     ----------
-    V : function
+    potential : function
         The potential
 
     Returns
@@ -28,6 +28,6 @@ def reduced_potential(V):
 
     """
     def v(phi):
-        v_value = V(phi)/(24*(PI**2)*(M_PL**4))
+        v_value = potential(phi)/(24*(pi**2)*(planck_mass**4))
         return v_value
     return v

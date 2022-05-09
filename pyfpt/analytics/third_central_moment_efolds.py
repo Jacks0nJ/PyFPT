@@ -15,20 +15,21 @@ from .reduced_potential import reduced_potential
 from .reduced_potential_diff import reduced_potential_diff
 from .reduced_potential_ddiff import reduced_potential_ddiff
 
-M_PL = 1
+planck_mass = 1
 
 
 # Equation 3.37 in Vennin 2015
-def third_central_moment_N(V, V_dif, V_ddif, phi_i, phi_end):
+def third_central_moment_efolds(potential, potential_dif, potential_ddif,
+                                phi_i, phi_end):
     """Returns the third central moment of the number of e-folds.
 
     Parameters
     ----------
-    V : function
+    potential : function
         The potential
-    V_dif : function
+    potential_dif : function
         The potential's first derivative
-    V_ddif : function
+    potential_ddif : function
         The potential second derivative
     phi_i : float
         The initial scalar field value
@@ -37,23 +38,25 @@ def third_central_moment_N(V, V_dif, V_ddif, phi_i, phi_end):
 
     Returns
     -------
-    third_moment_N : float
+    third_moment_efolds : float
         the third central moment of the number of e-folds.
 
     """
-    v_func = reduced_potential(V)
-    V_dif_func = reduced_potential_diff(V_dif)
-    V_ddif_func = reduced_potential_ddiff(V_ddif)
+    v_func = reduced_potential(potential)
+    v_dif_func = reduced_potential_diff(potential_dif)
+    v_ddif_func = reduced_potential_ddiff(potential_ddif)
 
     def integrand_calculator(phi):
         # Pre calculating values
         v = v_func(phi)
-        V_dif = V_dif_func(phi)
-        V_ddif = V_ddif_func(phi)
-        non_classical = 14*v-np.divide(11*(v**2)*V_ddif, V_dif**2)
-        constant_factor = 12/(M_PL**6)
+        v_dif = v_dif_func(phi)
+        v_ddif = v_ddif_func(phi)
+        non_classical = 14*v-np.divide(11*(v**2)*v_ddif, v_dif**2)
+        constant_factor = 12/(planck_mass**6)
 
-        integrand = constant_factor*np.divide(v**7, V_dif**5)*(1+non_classical)
+        integrand = constant_factor*np.divide(v**7, v_dif**5)*(1+non_classical)
         return integrand
-    third_moment_N, er = integrate.quad(integrand_calculator, phi_end, phi_i)
-    return third_moment_N
+    third_moment_efolds, er = integrate.quad(integrand_calculator, phi_end,
+                                             phi_i)
+
+    return third_moment_efolds

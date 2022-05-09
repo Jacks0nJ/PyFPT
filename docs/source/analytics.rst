@@ -17,32 +17,32 @@ For diffusion dominated quadratic inflation, there are also :ref:`analytical exp
     
 ----
 
-.. automodule:: analytics.mean_N
+.. automodule:: analytics.mean_efolds
     :members:
 
 ----
 
-.. automodule:: analytics.variance_N
+.. automodule:: analytics.variance_efolds
     :members:
     
 ----
 
-.. automodule:: analytics.skewness_N
+.. automodule:: analytics.skewness_efolds
     :members:
  
 ----
 
-.. automodule:: analytics.kurtosis_N
+.. automodule:: analytics.kurtosis_efolds
     :members:
     
 ----
 
-.. automodule:: analytics.third_central_moment_N
+.. automodule:: analytics.third_central_moment_efolds
     :members:
 
 ----
 
-.. automodule:: analytics.fourth_central_moment_N
+.. automodule:: analytics.fourth_central_moment_efolds
     :members:
 
 ----

@@ -10,25 +10,25 @@ for first-passage times in the low-diffusion limit, using the results from
 '''
 import numpy as np
 
-from .mean_N import mean_N
-from .variance_N import variance_N
-from .skewness_N import skewness_N
-from .kurtosis_N import kurtosis_N
+from .mean_efolds import mean_efolds
+from .variance_efolds import variance_efolds
+from .skewness_efolds import skewness_efolds
+from .kurtosis_efolds import kurtosis_efolds
 
-PI = np.pi
+pi = np.pi
 
 
 # This returns a function which returns the Edgeworth expansion
-def edgeworth_pdf(V, V_dif, V_ddif, phi_i, phi_end):
+def edgeworth_pdf(potential, potential_dif, potential_ddif, phi_i, phi_end):
     """ Returns the Edgeworth expansion in the low-diffusion limit.
 
     Parameters
     ----------
-    V : function
+    potential : function
         The potential
-    V_dif : function
+    potential_dif : function
         The potential's first derivative
-    V_ddif : function
+    potential_ddif : function
         The potential second derivative
     phi_i : float
         The initial field value
@@ -41,19 +41,27 @@ def edgeworth_pdf(V, V_dif, V_ddif, phi_i, phi_end):
         The Edgeworth expansion.
 
     """
-    mean = mean_N(V, V_dif, V_ddif, phi_i, phi_end)
-    std = variance_N(V, V_dif, V_ddif, phi_i, phi_end)**0.5
-    skewness = skewness_N(V, V_dif, V_ddif, phi_i, phi_end)
-    kurtosis = kurtosis_N(V, V_dif, V_ddif, phi_i, phi_end)
+    mean =\
+        mean_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end)
+    std =\
+        variance_efolds(potential, potential_dif, potential_ddif, phi_i,
+                        phi_end)**0.5
+    skewness =\
+        skewness_efolds(potential, potential_dif, potential_ddif, phi_i,
+                        phi_end)
+    kurtosis =\
+        kurtosis_efolds(potential, potential_dif, potential_ddif, phi_i,
+                        phi_end)
 
-    def edgeworth_function(N):
-        norm_N = (N-mean)/std
+    def edgeworth_function(efolds):
+        norm_efolds = (efolds-mean)/std
 
-        skew_term = np.divide(skewness*He3(norm_N), 6)
-        kurtosis_term = np.divide(kurtosis*He4(norm_N), 24)
-        skew_squared_term = np.divide(He6(norm_N)*skewness**2, 72)
+        skew_term = np.divide(skewness*hermite_poly3(norm_efolds), 6)
+        kurtosis_term = np.divide(kurtosis*hermite_poly4(norm_efolds), 24)
+        skew_squared_term =\
+            np.divide(hermite_poly6(norm_efolds)*skewness**2, 72)
 
-        gaussian = np.divide(np.exp(-0.5*norm_N**2), std*(2*PI)**0.5)
+        gaussian = np.divide(np.exp(-0.5*norm_efolds**2), std*(2*pi)**0.5)
         return gaussian*(1+skew_term+kurtosis_term+skew_squared_term)
 
     return edgeworth_function
@@ -61,20 +69,20 @@ def edgeworth_pdf(V, V_dif, V_ddif, phi_i, phi_end):
 
 # This is the "probabilist's Hermite polynomial", which is different to the
 # "physicist's Hermite polynomials" used by SciPy
-def He3(y):
-    He3 = y**3-3*y
-    return He3
+def hermite_poly3(y):
+    hermite_poly3 = y**3-3*y
+    return hermite_poly3
 
 
 # This is the "probabilist's Hermite polynomial", which is different to the
 # "physicist's Hermite polynomials" used by SciPy
-def He4(y):
-    He4 = y**4-6*y+3
-    return He4
+def hermite_poly4(y):
+    hermite_poly4 = y**4-6*y+3
+    return hermite_poly4
 
 
 # This is the "probabilist's Hermite polynomial", which is different to the
 # "physicist's Hermite polynomials" used by SciPy
-def He6(y):
-    He6 = y**6-15*y**4+45*y**2-15
-    return He6
+def hermite_poly6(y):
+    hermite_poly6 = y**6-15*y**4+45*y**2-15
+    return hermite_poly6

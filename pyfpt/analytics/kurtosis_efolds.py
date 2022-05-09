@@ -9,25 +9,26 @@ central moment and equation 3.33 for the variance.
 '''
 
 
-from .fourth_central_moment_N import\
-    fourth_central_moment_N
-from .variance_N import variance_N
+from .fourth_central_moment_efolds import\
+    fourth_central_moment_efolds
+from .variance_efolds import variance_efolds
 
-M_PL = 1
+planck_mass = 1
 
 
 # Using the standard relation between the central moments and the kurtosis.
 # Fisher is an optional argument
-def kurtosis_N(V, V_dif, V_ddif, phi_i, phi_end, Fisher=True):
+def kurtosis_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end,
+                    Fisher=True):
     """Returns the kurtosis of the number of e-folds.
 
     Parameters
     ----------
-    V : function
+    potential : function
         The potential.
-    V_dif : function
+    potential_dif : function
         The potential's first derivative.
-    V_ddif : function
+    potential_ddif : function
         The potential second derivative.
     phi_i : float
         The initial scalar field value
@@ -38,17 +39,21 @@ def kurtosis_N(V, V_dif, V_ddif, phi_i, phi_end, Fisher=True):
         Pearson’s definition is used (normal ==> 3.0).
     Returns
     -------
-    kurtosis_N : float
+    kurtosis_efolds : float
         the kurtosis of the number of e-folds.
 
     """
     # The excess kurtosis over the expected Gaussian amount
-    fourth_moment = fourth_central_moment_N(V, V_dif, V_ddif,
-                                            phi_i, phi_end)
-    var = variance_N(V, V_dif, V_ddif, phi_i, phi_end)
-    if Fisher is False:
-        kurtosis_N = fourth_moment/var**2
-    else:  # Defaults to Fisher definition
-        kurtosis_N = fourth_moment/var**2-3
+    fourth_moment =\
+        fourth_central_moment_efolds(potential, potential_dif, potential_ddif,
+                                     phi_i, phi_end)
+    var =\
+        variance_efolds(potential, potential_dif, potential_ddif, phi_i,
+                        phi_end)
 
-    return kurtosis_N
+    if Fisher is False:
+        kurtosis_efolds = fourth_moment/var**2
+    else:  # Defaults to Fisher definition
+        kurtosis_efolds = fourth_moment/var**2-3
+
+    return kurtosis_efolds

@@ -9,23 +9,23 @@ for first-passage times in the low-diffusion limit, using the results from
 '''
 import numpy as np
 
-from .mean_N import mean_N
-from .variance_N import variance_N
+from .mean_efolds import mean_efolds
+from .variance_efolds import variance_efolds
 
-PI = np.pi
+pi = np.pi
 
 
 # This returns a function which returns the Edgeworth expansion
-def gaussian_pdf(V, V_dif, V_ddif, phi_i, phi_end):
+def gaussian_pdf(potential, potential_dif, potential_ddif, phi_i, phi_end):
     """ Returns the Gaussian approximation in the low-diffusion limit.
 
     Parameters
     ----------
-    V : function
+    potential : function
         The potential
-    V_dif : function
+    potential_dif : function
         The potential's first derivative
-    V_ddif : function
+    potential_ddif : function
         The potential second derivative
     phi_i : float
         The initial field value
@@ -38,13 +38,16 @@ def gaussian_pdf(V, V_dif, V_ddif, phi_i, phi_end):
         The Gaussian approximation.
 
     """
-    mean = mean_N(V, V_dif, V_ddif, phi_i, phi_end)
-    std = variance_N(V, V_dif, V_ddif, phi_i, phi_end)**0.5
+    mean =\
+        mean_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end)
+    std =\
+        variance_efolds(potential, potential_dif, potential_ddif, phi_i,
+                        phi_end)**0.5
 
-    def gaussian_function(N):
-        norm_N = (N-mean)/std
+    def gaussian_function(efolds):
+        norm_efolds = (efolds-mean)/std
 
-        gaussian = np.divide(np.exp(-0.5*norm_N**2), std*(2*PI)**0.5)
+        gaussian = np.divide(np.exp(-0.5*norm_efolds**2), std*(2*pi)**0.5)
         return gaussian
 
     return gaussian_function

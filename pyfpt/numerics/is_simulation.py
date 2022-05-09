@@ -170,28 +170,28 @@ def is_simulation(potential, potential_dif, potential_ddif, phi_i, phi_end,
     print(f'The simulations took: {end - start} seconds')
 
     # Combine into columns into 1
-    sim_N_dist = efolds_array.flatten()
+    efold_values = efolds_array.flatten()
     w_values = ws_array.flatten()
 
     # Sort in order of increasing Ns
-    sort_idx = np.argsort(sim_N_dist)
-    sim_N_dist = sim_N_dist[sort_idx]
+    sort_idx = np.argsort(efold_values)
+    efold_values = efold_values[sort_idx]
     w_values = w_values[sort_idx]
 
     # Checking if multipprocessing error occured, by looking at correlation
-    multi_processing_error(sim_N_dist, w_values)
+    multi_processing_error(efold_values, w_values)
 
     # Truncating any data which did not reach phi_end
-    sim_N_dist, w_values =\
-        histogram_data_truncation(sim_N_dist, efolds_f, weights=w_values,
+    efold_values, w_values =\
+        histogram_data_truncation(efold_values, efolds_f, weights=w_values,
                                   num_sub_samples=num_sub_samples)
     # Saving the data
     if save_data is True:
-        save_data_to_file(sim_N_dist, w_values, phi_i, num_runs, bias_amp)
+        save_data_to_file(efold_values, w_values, phi_i, num_runs, bias_amp)
 
     # Now analysisng the data to creating the histogram/PDF data
     bin_centres, heights, errors, num_runs_used, bin_edges_untruncated =\
-        data_points_pdf(sim_N_dist, w_values, estimator, bins=bins,
+        data_points_pdf(efold_values, w_values, estimator, bins=bins,
                         min_bin_size=min_bin_size,
                         num_sub_samples=num_sub_samples)
     # Return data as lists

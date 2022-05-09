@@ -11,4 +11,3 @@ from .lognormality_check import lognormality_check
 from .log_normal_mean import log_normal_mean
 from .multi_processing_error import multi_processing_error
 from .save_data_to_file import save_data_to_file
-

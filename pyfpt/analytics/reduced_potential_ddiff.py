@@ -9,16 +9,16 @@ dimensionless form given in equation 2.1 of `Vennin--Starobinsky 2015`_.
 
 
 import numpy as np
-PI = np.pi
-M_PL = 1.0
+pi = np.pi
+planck_mass = 1.0
 
 
-def reduced_potential_ddiff(V_ddiff):
+def reduced_potential_ddiff(potential_ddiff):
     """Returns the reduced potential second derivative as a function
 
     Parameters
     ----------
-    V_ddif : function
+    potential_ddif : function
         The potential's second derivative
 
     Returns
@@ -28,6 +28,7 @@ def reduced_potential_ddiff(V_ddiff):
 
     """
     def v_ddiff(phi):
-        v_ddiff_value = np.divide(V_ddiff(phi), 24*(PI**2)*(M_PL**4))
+        v_ddiff_value =\
+            np.divide(potential_ddiff(phi), 24*(pi**2)*(planck_mass**4))
         return v_ddiff_value
     return v_ddiff

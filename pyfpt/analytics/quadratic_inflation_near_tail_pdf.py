@@ -13,20 +13,20 @@ assumes UV cutoff at infinity.
 import numpy as np
 from scipy import integrate
 
-PI = np.pi
-M_PL = 1
+pi = np.pi
+planck_mass = 1
 
 
-def quadratic_inflation_near_tail_pdf(N, m, phi_i, phi_end=2**0.5,
+def quadratic_inflation_near_tail_pdf(efolds, m, phi_i, phi_end=2**0.5,
                                       numerical_integration=False):
     """ Returns PDF of quadratic inflation for the near tail.
 
     Parameters
     ----------
-    N : list
+    efolds : list
         The first-passage times where the PDF is to be calculated.
-    V : function
-        The potential.
+    m : float
+        The mass of quadratic inflation potential.
     phi_i : float
         The initial field value.
     phi_end : float, optional
@@ -38,39 +38,40 @@ def quadratic_inflation_near_tail_pdf(N, m, phi_i, phi_end=2**0.5,
     Returns
     -------
     pdf : list
-        The probability density function at N values.
+        The probability density function at efolds values.
 
     """
-    v0 = (m**2)/(48*PI**2)
+    v0 = (m**2)/(48*pi**2)
     v = v0*phi_i**2
-    N_cl = 0.25*phi_i**2-0.25*phi_end**2
+    efolds_cl = 0.25*phi_i**2-0.25*phi_end**2
     ve = v0*phi_end**2
     if numerical_integration is False:
 
         # Calculating the terms individually for clarity
-        constant = (np.sqrt(2)*PI**2)/(128*v0**2)
-        exp = np.exp(-0.25*v0*N)
+        constant = (np.sqrt(2)*pi**2)/(128*v0**2)
+        exp = np.exp(-0.25*v0*efolds)
 
-        frac_expo_i = np.divide(PI**2, 16*v0*(N+N_cl+1))
-        fraction_i = np.divide(np.exp(frac_expo_i-1/v)*v**1.5, (N+N_cl+1)**3)
+        frac_expo_i = np.divide(pi**2, 16*v0*(efolds+efolds_cl+1))
+        fraction_i =\
+            np.divide(np.exp(frac_expo_i-1/v)*v**1.5, (efolds+efolds_cl+1)**3)
 
-        frac_expo_end = np.divide(PI**2, 16*v0*(N-N_cl+1))
+        frac_expo_end = np.divide(pi**2, 16*v0*(efolds-efolds_cl+1))
         fraction_end = np.divide(np.exp(frac_expo_end-1/ve)*ve**1.5,
-                                 (N-N_cl+1)**3)
+                                 (efolds-efolds_cl+1)**3)
 
         pdf = constant*exp*(fraction_i - fraction_end)
 
     elif numerical_integration is True:
-        a1 = 0.25*v0*N + 0.0625*(v+ve)
-        a2 = 0.25*v0*N + 0.0625*(3*ve-v)
+        a1 = 0.25*v0*efolds + 0.0625*(v+ve)
+        a2 = 0.25*v0*efolds + 0.0625*(3*ve-v)
 
-        def G(x, a):
-            return np.exp(0.25*PI*x-a*x**2)*x**(5/2)
+        def g(x, a):
+            return np.exp(0.25*pi*x-a*x**2)*x**(5/2)
 
-        Ga1_int, _ = integrate.quad(G, 3, np.infty, args=(a1))
-        Ga2_int, _ = integrate.quad(G, 3, np.infty, args=(a2))
+        ga1_int, _ = integrate.quad(g, 3, np.infty, args=(a1))
+        ga2_int, _ = integrate.quad(g, 3, np.infty, args=(a2))
 
-        first_term = np.exp(-1/v)*Ga1_int*v**1.5
-        second_term = np.exp(-1/ve)*Ga2_int*ve**1.5
-        pdf = v0*np.exp(-0.25*v0*N)*(first_term-second_term)/(32*PI)
+        first_term = np.exp(-1/v)*ga1_int*v**1.5
+        second_term = np.exp(-1/ve)*ga2_int*ve**1.5
+        pdf = v0*np.exp(-0.25*v0*efolds)*(first_term-second_term)/(32*pi)
     return pdf

@@ -16,10 +16,10 @@ order terms of the Edgeworth series first equals the threshold.
 import numpy as np
 from scipy import optimize
 
-from .mean_N import mean_N
-from .variance_N import variance_N
-from .skewness_N import skewness_N
-from .kurtosis_N import kurtosis_N
+from .mean_efolds import mean_efolds
+from .variance_efolds import variance_efolds
+from .skewness_efolds import skewness_efolds
+from .kurtosis_efolds import kurtosis_efolds
 
 
 # Using the Gram–Charlier A series
@@ -27,17 +27,17 @@ from .kurtosis_N import kurtosis_N
 # classical deviation from a gaussian. This is done by finding x such that the
 # higher order terms of the edgeworth expanion are
 # nu is the amount pf deviation from a Gaussian.
-def gaussian_deviation(V, V_dif, V_ddif, phi_i, phi_end, nu=1.,
-                                 phi_interval=None):
+def gaussian_deviation(potential, potential_dif, potential_ddif, phi_i,
+                       phi_end, nu=1., phi_interval=None):
     """Returns the skewness of the number of e-folds.
 
     Parameters
     ----------
-    V : function
+    potential : function
         The potential.
-    V_dif : function
+    potential_dif : function
         The potential's first derivative.
-    V_ddif : function
+    potential_ddif : function
         The potential second derivative.
     phi_i : float
         The initial scalar field value.
@@ -53,17 +53,24 @@ def gaussian_deviation(V, V_dif, V_ddif, phi_i, phi_end, nu=1.,
         The field value at which the deviation occurs.
 
     """
-    mean = mean_N(V, V_dif, V_ddif, phi_i, phi_end)
-    std = variance_N(V, V_dif, V_ddif, phi_i, phi_end)**0.5
-    skewness = skewness_N(V, V_dif, V_ddif, phi_i, phi_end)
-    kurtosis = kurtosis_N(V, V_dif, V_ddif, phi_i, phi_end)
+    mean =\
+        mean_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end)
+    std =\
+        variance_efolds(potential, potential_dif, potential_ddif, phi_i,
+                        phi_end)**0.5
+    skewness =\
+        skewness_efolds(potential, potential_dif, potential_ddif, phi_i,
+                        phi_end)
+    kurtosis =\
+        kurtosis_efolds(potential, potential_dif, potential_ddif, phi_i,
+                        phi_end)
 
     def higher_order_egdeworth_term(y):
         norm_y = (y-mean)/std
-        skew_term = np.divide(skewness*He3(norm_y), 6)
-        kurtosis_term = np.divide(kurtosis*He4(norm_y), 24)
+        skew_term = np.divide(skewness*hermite_poly3(norm_y), 6)
+        kurtosis_term = np.divide(kurtosis*hermite_poly4(norm_y), 24)
         skew_squared_term =\
-            np.divide(He6(norm_y)*skewness**2, 72)
+            np.divide(hermite_poly6(norm_y)*skewness**2, 72)
         return (skew_term+kurtosis_term+skew_squared_term)-nu
 
     if phi_interval is None:
@@ -80,20 +87,20 @@ def gaussian_deviation(V, V_dif, V_ddif, phi_i, phi_end, nu=1.,
 
 # This is the "probabilist's Hermite polynomial", which is different to the
 # "physicist's Hermite polynomials" used by SciPy
-def He3(y):
-    He3 = y**3-3*y
-    return He3
+def hermite_poly3(y):
+    hermite_poly3 = y**3-3*y
+    return hermite_poly3
 
 
 # This is the "probabilist's Hermite polynomial", which is different to the
 # "physicist's Hermite polynomials" used by SciPy
-def He4(y):
-    He4 = y**4-6*y+3
-    return He4
+def hermite_poly4(y):
+    hermite_poly4 = y**4-6*y+3
+    return hermite_poly4
 
 
 # This is the "probabilist's Hermite polynomial", which is different to the
 # "physicist's Hermite polynomials" used by SciPy
-def He6(y):
-    He6 = y**6-15*y**4+45*y**2-15
-    return He6
+def hermite_poly6(y):
+    hermite_poly6 = y**6-15*y**4+45*y**2-15
+    return hermite_poly6

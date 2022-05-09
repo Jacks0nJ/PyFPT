@@ -12,7 +12,7 @@ method. This calculation is taken from `Zhou--Gao 1997`_.
 import numpy as np
 
 
-def log_normal_error(weights, Z_alpha=1):
+def log_normal_error(weights, z_alpha=1):
     """Returns the errors on the estimation of the probability density using
     the lognormal method.
 
@@ -34,7 +34,7 @@ def log_normal_error(weights, Z_alpha=1):
     log_var = np.var(log_w, ddof=1)  # unbiased variance
     log_mean = np.mean(log_w)
     n = len(weights)
-    log_err = Z_alpha*np.sqrt(log_var/n+(log_var**2)/(2*n-2))
+    log_err = z_alpha*np.sqrt(log_var/n+(log_var**2)/(2*n-2))
     upper_err = n*np.exp(log_mean+log_var/2)*(np.exp(log_err)-1)
     lower_err = n*np.exp(log_mean+log_var/2)*(1-np.exp(-log_err))
     return np.array([lower_err, upper_err])

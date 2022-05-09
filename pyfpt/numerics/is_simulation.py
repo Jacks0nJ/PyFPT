@@ -21,20 +21,20 @@ from .importance_sampling_sr_cython import\
     importance_sampling_simulations
 
 
-def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias_amp,
-                  bins=50, dN=None, min_bin_size=400, num_sub_samples=20,
-                  estimator='lognormal', save_data=False, N_f=100,
-                  phi_UV=None):
+def is_simulation(potential, potential_dif, potential_ddif, phi_i, phi_end,
+                  num_runs, bias_amp, bins=50, delta_efolds=None,
+                  min_bin_size=400, num_sub_samples=20, estimator='lognormal',
+                  save_data=False, efolds_f=100, phi_uv=None):
     """Executes the simulation runs, then returns the histogram bin centres,
     heights and errors.
 
     Parameters
     ----------
-    V : function
+    potential : function
         The potential.
-    V_dif : function
+    potential_dif : function
         The potential's first derivative.
-    V_ddif : function
+    potential_ddif : function
         The potential second derivative.
     phi_i : float
         The initial scalar field value.
@@ -51,7 +51,7 @@ def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias_amp,
         bin edges, including the left edge of the first bin and the right edge
         of the last bin. The widths can vary. Defaults to 50 evenly spaced
         bins.
-    dN : float or int, optional
+    delta_efolds : float or int, optional
         The step size in e-folds N. This should be a small enough to accurately
         bins the runs. Defaults to the standard deviation devided by the number
         of bins.
@@ -70,11 +70,11 @@ def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias_amp,
     Save_data : bool, optional
         If ``True``, the first-passage times and the associated weights for
         each run is saved to a file.
-    N_f : float, optional
+    efolds_f : float, optional
         The maxiumum number of e-folds allowed per run. If this is exceded, the
-        simulation run ends and returns ``N_f``, which can then be truncated.
-        Defaults to 100 e-folds.
-    phi_UV : float, optional
+        simulation run ends and returns ``efolds_f``, which can then be
+        truncated. Defaults to 100 e-folds.
+    phi_uv : float, optional
         The value of the reflective boundary. Must have a magntiude greater
         than the magnitude of ``phi_i``. Defaults to no reflective boundary.
     Returns
@@ -86,36 +86,42 @@ def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias_amp,
     errors : list
         The errors in estimating the heights.
     """
-    # If no argument for dN is given, using the classical std to define it
-    if dN is None:
+    # If no argument for delta_efolds is given, using the classical std to
+    # define it
+    if delta_efolds is None:
         if isinstance(bins, int) is True:
-            std = variance_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)**0.5
-            dN = std/bins
+            std =\
+                variance_efolds(potential, potential_dif, potential_ddif,
+                                phi_i, phi_end)**0.5
+            delta_efolds = std/bins
         elif isinstance(bins, int) is False:
-            std = variance_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end)
+            std =\
+                variance_efolds(potential, potential_dif, potential_ddif,
+                                phi_i, phi_end)
             num_bins = len(bins)-1
-            dN = std/(num_bins)
-    elif isinstance(dN, float) is not True and isinstance(dN, int) is not True:
-        raise ValueError('dN is not a number')
+            delta_efolds = std/(num_bins)
+    elif isinstance(delta_efolds, float) is not True\
+            and isinstance(delta_efolds, int) is not True:
+        raise ValueError('delta_efolds is not a number')
 
     # Check the user has provided a estimator
     if estimator != 'lognormal' and estimator != 'naive':
         print('Invalid estimator argument, defaulting to naive method')
         estimator = 'naive'
 
-    # If no phi_UV argument is provided, default to infinie boundary
-    if phi_UV is None:
-        phi_UV = 10000*phi_i
-    elif isinstance(phi_UV, float) is False:
-        if isinstance(phi_UV, int) is True:
-            if isinstance(phi_UV, bool) is True:
-                raise ValueError('phi_UV is not a number')
+    # If no phi_uv argument is provided, default to infinie boundary
+    if phi_uv is None:
+        phi_uv = 10000*phi_i
+    elif isinstance(phi_uv, float) is False:
+        if isinstance(phi_uv, int) is True:
+            if isinstance(phi_uv, bool) is True:
+                raise ValueError('phi_uv is not a number')
             else:
                 pass
         else:
-            raise ValueError('phi_UV is not a number')
-    elif np.abs(phi_UV) < np.abs(phi_i):
-        raise ValueError('phi_UV is smaller than phi_i')
+            raise ValueError('phi_uv is not a number')
+    elif np.abs(phi_uv) < np.abs(phi_i):
+        raise ValueError('phi_uv is smaller than phi_i')
 
     if bias_amp == 0:
         estimator = 'naive'
@@ -126,41 +132,45 @@ def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias_amp,
     start = timer()
 
     # Using multiprocessing
-    def multi_processing_func(phi_i, phi_UV, phi_end, N_i, N_f, dN, bias_amp,
-                              num_runs, queue_Ns, queue_ws, queue_refs):
+    def multi_processing_func(phi_i, phi_uv, phi_end, efolds_i, efolds_f,
+                              delta_efolds, bias_amp, num_runs, queue_efolds,
+                              queue_ws, queue_refs):
         results =\
-            importance_sampling_simulations(phi_i, phi_UV, phi_end, N_i, N_f,
-                                            dN, bias_amp, num_runs, V, V_dif,
-                                            V_ddif, bias_type='diffusion',
+            importance_sampling_simulations(phi_i, phi_uv, phi_end, efolds_i,
+                                            efolds_f, delta_efolds, bias_amp,
+                                            num_runs, potential, potential_dif,
+                                            potential_ddif,
+                                            bias_type='diffusion',
                                             count_refs=False)
-        Ns = np.array(results[0][:])
+        efold_values = np.array(results[0][:])
         ws = np.array(results[1][:])
-        queue_Ns.put(Ns)
+        queue_efolds.put(efold_values)
         queue_ws.put(ws)
 
-    queue_Ns = Queue()
+    queue_efolds = Queue()
     queue_ws = Queue()
     queue_refs = Queue()
     cores = int(mp.cpu_count()/1)
 
     print('Number of cores used: '+str(cores))
     processes = [Process(target=multi_processing_func,
-                         args=(phi_i, phi_UV,  phi_end, 0.0, N_f, dN, bias_amp,
-                               num_runs_per_core, queue_Ns, queue_ws,
-                               queue_refs)) for i in range(cores)]
+                         args=(phi_i, phi_uv,  phi_end, 0.0, efolds_f,
+                               delta_efolds, bias_amp, num_runs_per_core,
+                               queue_efolds, queue_ws, queue_refs))
+                 for i in range(cores)]
 
     for p in processes:
         p.start()
 
     # More efficient to work with numpy arrays
-    Ns_array = np.array([queue_Ns.get() for p in processes])
+    efolds_array = np.array([queue_efolds.get() for p in processes])
     ws_array = np.array([queue_ws.get() for p in processes])
 
     end = timer()
     print(f'The simulations took: {end - start} seconds')
 
     # Combine into columns into 1
-    sim_N_dist = Ns_array.flatten()
+    sim_N_dist = efolds_array.flatten()
     w_values = ws_array.flatten()
 
     # Sort in order of increasing Ns
@@ -173,7 +183,7 @@ def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias_amp,
 
     # Truncating any data which did not reach phi_end
     sim_N_dist, w_values =\
-        histogram_data_truncation(sim_N_dist, N_f, weights=w_values,
+        histogram_data_truncation(sim_N_dist, efolds_f, weights=w_values,
                                   num_sub_samples=num_sub_samples)
     # Saving the data
     if save_data is True:
@@ -189,28 +199,28 @@ def is_simulation(V, V_dif, V_ddif, phi_i, phi_end, num_runs, bias_amp,
 
 
 # Equation 3.35 in Vennin 2015
-def variance_N_sto_limit(V, V_dif, V_ddif, phi_i, phi_end):
-    PI = np.pi
-    M_PL = 1
+def variance_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end):
+    pi = np.pi
+    planck_mass = 1
 
     def v_func(phi):
-        return V(phi)/(24*PI**2)
+        return potential(phi)/(24*pi**2)
 
-    def V_dif_func(phi):
-        return V_dif(phi)/(24*PI**2)
+    def v_dif_func(phi):
+        return potential_dif(phi)/(24*pi**2)
 
-    def V_ddif_func(phi):
-        return V_ddif(phi)/(24*PI**2)
+    def v_ddif_func(phi):
+        return potential_ddif(phi)/(24*pi**2)
 
     def integrand_calculator(phi):
         # Pre calculating values
         v = v_func(phi)
-        V_dif = V_dif_func(phi)
-        V_ddif = V_ddif_func(phi)
-        non_classical = 6*v-np.divide(5*(v**2)*V_ddif, V_dif**2)
-        constant_factor = 2/(M_PL**4)
+        v_dif = v_dif_func(phi)
+        v_ddif = v_ddif_func(phi)
+        non_classical = 6*v-np.divide(5*(v**2)*v_ddif, v_dif**2)
+        constant_factor = 2/(planck_mass**4)
 
-        integrand = constant_factor*np.divide(v**4, V_dif**3)*(1+non_classical)
+        integrand = constant_factor*np.divide(v**4, v_dif**3)*(1+non_classical)
         return integrand
-    var_N, er = integrate.quad(integrand_calculator, phi_end, phi_i)
-    return var_N
+    var_efolds, er = integrate.quad(integrand_calculator, phi_end, phi_i)
+    return var_efolds

@@ -43,6 +43,14 @@ You can find the [latest documentation](https://pyfpt.readthedocs.io/en/latest/i
 
 ## Requirements
 
+### Operating System
+
+As PyFPT uses [Cython](https://cython.readthedocs.io/en/latest/src/quickstart/install.html) to optimise the stochastic simulations, a C-compilier is required for installation. Therefore, PyFPT does not currently run (future releases hope to address this issue) on Windows directly. Windows uses can either install PyFPT on a virtual machine or use a cloud based service such as [SciServer](https://www.sciserver.org/). 
+
+
+Mac and Linux user should be able to directly install PyFPT, as these operating systems have a C-compilier.
+
+### Packages
 The following packages are required to run PyFPT
 
 * [Cython](https://cython.readthedocs.io/en/latest/src/quickstart/install.html)
@@ -113,7 +121,7 @@ See the [user guides](https://pyfpt.readthedocs.io/en/latest/getting_started.htm
 
 - [x] Simulate first-passage times of slow-roll inflation
 - [x] Use importance sampling to investigate rare realisations
-- [ ] Make general, for any Langevin equation
+- [ ] Make general, for any 1D Langevin equation
 - [ ] Add multi-dimensionality
     - [ ] Add the acceleration of the field
     - [ ] Add more sophisticated noise models
@@ -140,7 +148,7 @@ And we will review your request!
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Bugs
-This is the initial release of PyFPT, so it is expected there will be some minor bugs. Feel free to either report by rasing an [Issue](https://github.com/Jacks0nJ/PyFPT/issues) on Github, emialingjoseph.jackson@port.ac.uk or fork the repository with your fix. 
+This is the initial release of PyFPT, so it is expected there will be some minor bugs. Feel free to either report by rasing an [Issue](https://github.com/Jacks0nJ/PyFPT/issues) on Github, emailing joseph.jackson@port.ac.uk or fork the repository with your fix. 
 
 Your is very much appreciated! 
 

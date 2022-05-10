@@ -3,8 +3,8 @@ import unittest
 sys.path.append("..")
 
 
-# noqa: E402
-from pyfpt.analytics.mean_efolds import mean_efolds
+
+from pyfpt.analytics.mean_efolds import mean_efolds  # noqa: E402
 
 
 class TestMeanEFolds(unittest.TestCase):

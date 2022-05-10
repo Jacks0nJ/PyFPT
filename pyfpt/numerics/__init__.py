@@ -1,3 +1,4 @@
+# flake8: noqa
 from .data_points_pdf import data_points_pdf
 from .histogram_normalisation import\
     histogram_normalisation

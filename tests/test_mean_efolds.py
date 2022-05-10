@@ -3,7 +3,6 @@ import unittest
 sys.path.append("..")
 
 
-
 from pyfpt.analytics.mean_efolds import mean_efolds  # noqa: E402
 
 

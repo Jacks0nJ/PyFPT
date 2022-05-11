@@ -2,8 +2,8 @@ import sys
 import os
 import unittest
 
-sys.path.insert(0, os.path.abspath('../../pyfpt'))
-# sys.path.append("..") was the old method
+sys.path.insert(0, os.path.abspath('..'))
+
 
 from pyfpt.analytics.mean_efolds import mean_efolds  # noqa: E402
 

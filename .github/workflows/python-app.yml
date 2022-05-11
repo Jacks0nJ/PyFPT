@@ -22,8 +22,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install flake8 pytest wheel
+        pip install -r requirements.txt
     - name: Install pyfpt
       run: |
         pip install . --no-binary=.

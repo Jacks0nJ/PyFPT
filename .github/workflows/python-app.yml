@@ -26,8 +26,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Install pyfpt
       run: |
-        pip install wheel
-        pip install .
+        pip install . --no-binary=.
     - name: Test with pytest
       run: |
         pytest

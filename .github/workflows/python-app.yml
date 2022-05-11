@@ -26,7 +26,7 @@ jobs:
         pip install -r requirements.txt
     - name: Install pyfpt
       run: |
-        pip install . --no-binary=.
+        pip install .
     - name: Test with pytest
       run: |
         pytest

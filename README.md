@@ -60,7 +60,7 @@ The following packages are required to run PyFPT
 * [mpmath](https://mpmath.org/doc/current/setup.html)
 * [pandas](https://pandas.pydata.org/docs/getting_started/install.html)
 
-Many of which are included common Python distributions like [Anaconda](https://www.anaconda.com/products/distribution). You can check which packages you already have installed with `pip list`
+Many of which are included common Python distributions like [Anaconda](https://www.anaconda.com/products/distribution). You can check which packages you already have installed with `pip list`.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -76,11 +76,11 @@ The [documentation](https://pyfpt.readthedocs.io/en/latest/index.html) contains 
 
 ### Installation
 
-The package can be installed easily by using the following command
+The package can be installed by using the following command
 ```sh
 pip install PyFPT
 ```
-in the command line whereever you have Python installed.
+in the command line wherever you have Python installed.
 
 You can also clone the PyFPT repository
 
@@ -126,7 +126,7 @@ See the [user guides](https://pyfpt.readthedocs.io/en/latest/getting_started.htm
     - [ ] Add the acceleration of the field
     - [ ] Add more sophisticated noise models
 
-See the [open issues](https://github.com/Jacks0nJ/PyFPT/issues) for a full of known issues.
+See the [open issues](https://github.com/Jacks0nJ/PyFPT/issues) for a full list of known issues.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -150,7 +150,7 @@ And we will review your request!
 ## Bugs
 This is the initial release of PyFPT, so it is expected there will be some minor bugs. Feel free to either report by rasing an [Issue](https://github.com/Jacks0nJ/PyFPT/issues) on Github, emailing joseph.jackson@port.ac.uk or fork the repository with your fix. 
 
-Your is very much appreciated! 
+Your feedback is very much appreciated! 
 
 
 
@@ -177,7 +177,7 @@ Project Link: [https://github.com/Jacks0nJ/PyFPT](https://github.com/Jacks0nJ/Py
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-We would like the following contributors to PyFPT, be it through phsyical understanding of first-passage time processes or help developing the package!
+We would like the following contributors to PyFPT, be it through phsyical understanding of first-passage time processes or help developing the package
 
 #### The Physics
 

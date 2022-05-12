@@ -1,10 +1,10 @@
 import unittest
 
-from pyfpt.analytics import mean_efolds  # noqa: E402
+from pyfpt.analytics import gaussian_deviation  # noqa: E402
 
 
-class TestMeanEFolds(unittest.TestCase):
-    def test_mean_efolds(self):
+class TestGaussianDeviation(unittest.TestCase):
+    def test_gaussian_deviation(self):
         m = 0.01
         N_starting = 10
         phi_end = 2**0.5
@@ -21,10 +21,11 @@ class TestMeanEFolds(unittest.TestCase):
         def V_ddif(phi):
             V_ddif = (m**2)
             return V_ddif
-        result = mean_efolds(V, V_dif, V_ddif, phi_i, phi_end)
+        # As this is a small number, increasing it to round correctly
+        result = gaussian_deviation(V, V_dif, V_ddif, phi_i, phi_end)
         # There is some machine noise, so need to round result
-        result = round(result, 6)
-        expected = 10.000023  # Taken from previously working code
+        result = round(result, 7)
+        expected = 10.1815701  # Taken from previously working code
         self.assertEqual(result, expected)
 
 

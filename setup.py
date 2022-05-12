@@ -1,9 +1,7 @@
-
+# Most of the code is copied from sbank's repository
 import os
 
 from setuptools import setup, Extension
-
-
 from Cython.Build import cythonize
 
 __author__ = "Joseph Jackson <joseph.jackson@port.ac.uk>"

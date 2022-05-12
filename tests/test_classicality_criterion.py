@@ -1,13 +1,12 @@
 import unittest
 
-from pyfpt.analytics import mean_efolds  # noqa: E402
+from pyfpt.analytics import classicality_criterion  # noqa: E402
 
 
-class TestMeanEFolds(unittest.TestCase):
-    def test_mean_efolds(self):
+class TestClassicalityCriterion(unittest.TestCase):
+    def test_classicality_criterion(self):
         m = 0.01
         N_starting = 10
-        phi_end = 2**0.5
         phi_i = (4*N_starting+2)**0.5
 
         def V(phi):
@@ -21,10 +20,11 @@ class TestMeanEFolds(unittest.TestCase):
         def V_ddif(phi):
             V_ddif = (m**2)
             return V_ddif
-        result = mean_efolds(V, V_dif, V_ddif, phi_i, phi_end)
+        # As this is a small number, increasing it to round correctly
+        result = classicality_criterion(V, V_dif, V_ddif, phi_i)*10**5
         # There is some machine noise, so need to round result
         result = round(result, 6)
-        expected = 10.000023  # Taken from previously working code
+        expected = 1.329841  # Taken from previously working code
         self.assertEqual(result, expected)
 
 

@@ -1,3 +1,4 @@
+# flake8: noqa
 from .classicality_criterion import classicality_criterion
 from .edgeworth_pdf import edgeworth_pdf
 from .gaussian_pdf import gaussian_pdf

@@ -5,17 +5,17 @@ Created on Tue Nov  3 14:14:09 2020
 @author: user
 """
 from cycler import cycler
-#box style
+# box style
 paper_style = {
     # Colour cycle
     'axes.prop_cycle': cycler(color=['#377eb8', '#ff7f00', '#984ea3',
-                  '#4daf4a', '#a65628', '#f781bf',
-                  '#999999', '#e41a1c', '#dede00']),
-    
+                                     '#4daf4a', '#a65628', '#f781bf',
+                                     '#999999', '#e41a1c', '#dede00']),
+
     # Line styles
     'lines.linewidth': 1.3,
     'lines.antialiased': True,
-    
+
     # Error bars
     'errorbar.capsize': 3,  # length of end cap on error bars in pixels
 

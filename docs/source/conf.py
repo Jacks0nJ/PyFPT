@@ -1,3 +1,6 @@
+# flake8: noqa
+
+
 # Configuration file for the Sphinx documentation builder.
 #
 # This file only contains a selection of the most common options. For a full
@@ -15,9 +18,6 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../../pyfpt'))
-#sys.path.insert(0, os.path.abspath('../../..'))
-#sys.path.insert(0, os.path.abspath('../../pyfpt/analytics/variance_N_sto_limit'))
-#sys.path.insert(0, os.path.abspath('../../pyfpt/cython_code/importance_sampling_sr_cython12'))
 
 
 # -- Project information -----------------------------------------------------
@@ -35,13 +35,14 @@ release = '0.7s'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc','sphinx.ext.napoleon','nbsphinx']
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'nbsphinx']
 napoleon_google_docstring = False
 napoleon_use_param = False
 napoleon_use_ivar = True
 
 autodoc_mock_imports = ["numpy", "scipy", "matplotlib", "mpmath", "pandas",
-			"timeit", "multiprocessing", "numerics.importance_sampling_sr_cython"]
+                        "multiprocessing",
+                        "numerics.importance_sampling_sr_cython"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

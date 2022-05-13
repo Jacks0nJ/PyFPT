@@ -8,8 +8,8 @@ the 0.5% threshold, plots comparing the p-values of the data and the
 theoretical predictions are given. If many p-avlues are less than 0.5%, or some
 are much, much less than this value, it is likely the assumption is incorrect.
 
-# noqa: E501
-.. _D’Agostino & Pearson's method: https://en.wikipedia.org/wiki/D%27Agostino%27s_K-squared_test
+.. _D’Agostino & Pearson's method: https://en.wikipedia.org/wiki/D%27Agostino%\
+    27s_K-squared_test
 '''
 
 import numpy as np

@@ -39,8 +39,12 @@ class TestSaveDataToFile(unittest.TestCase):
         expected1 = np.mean(data[:, 0])
         expected2 = np.mean(data[:, 1])
 
-        self.assertEqual(result1, expected1)
-        self.assertEqual(result2, expected2)
+        # Want the differance between them to be small
+        differance1 = np.abs((result1-expected1)/expected1)
+        differance2 = np.abs((result2-expected2)/expected2)
+
+        self.assertTrue(differance1 < 0.01)
+        self.assertTrue(differance2 < 0.01)
         # Deleting this test file
         os.remove(raw_file_name)
 

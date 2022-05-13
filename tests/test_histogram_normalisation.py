@@ -29,7 +29,7 @@ class TestHistogramNormalisation(unittest.TestCase):
         result = result
 
         # Want the differance to be small
-        diff = (np.abs(result-expected)/expected)
+        diff = np.abs((result-expected)/expected)
         self.assertTrue(all(diff <= 0.001))
 
 

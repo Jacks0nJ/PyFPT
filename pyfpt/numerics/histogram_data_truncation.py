@@ -46,8 +46,10 @@ def histogram_data_truncation(data, threshold, weights=0,
             num_above_threshold = len(data[data > threshold])
             # Want to remove a full subsamples worth, so can be subdivided
             # later. So rounding the number removed up.
-            rounded_num_above_threshold =\
+            rounded =\
                 round(num_above_threshold/num_sub_samples)+1
+            # Removing a full subsample
+            rounded_num_above_threshold = rounded*num_sub_samples
             truncated_data = data[:-rounded_num_above_threshold]
         return truncated_data
 

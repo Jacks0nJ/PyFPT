@@ -75,7 +75,7 @@ def jackknife_errors(data_input, weights_input, bins, num_sub_samps):
     # jackknife and you have the error
     for j in range(num_bins):
         bars = height_array[j, :]
-        if np.any([bars > 0]):
+        if np.any([np.abs(bars) > 0]):
             # Used to be just np.std(bars)
             errors[j] = np.std(bars[bars > 0])/sqrt_sub_samples
         else:

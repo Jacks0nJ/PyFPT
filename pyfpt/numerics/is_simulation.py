@@ -179,7 +179,7 @@ def is_simulation(potential, potential_dif, potential_ddif, phi_i, phi_end,
     w_values = w_values[sort_idx]
 
     # Checking if multipprocessing error occured, by looking at correlation
-    multi_processing_error(efold_values, w_values)
+    _ = multi_processing_error(efold_values, w_values)
 
     # Truncating any data which did not reach phi_end
     efold_values, w_values =\

@@ -14,7 +14,7 @@ import numpy as np
 # function uses the maximum likelihood
 # Shen 2006 Statist. Med. 2006; 25:3023–3038
 def log_normal_mean(weights):
-    """Returns the height of the histogram bar.
+    """Returns the mean of the lognormal distribution
 
     Parameters
     ----------

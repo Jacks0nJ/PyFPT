@@ -1,9 +1,9 @@
 '''
 Lognormal Error
 ---------------------
-This module calculates the error of the estimation of the probability density
-of the target distribution from the sample distribution using the lognormal
-method. This calculation is taken from `Zhou--Gao 1997`_.
+This module calculates the unnormalised error of the estimation of the
+probability density of the target distribution from the sample distribution
+using the lognormal method. This calculation is taken from `Zhou--Gao 1997`_.
 
 .. _Zhou--Gao 1997: https://pubmed.ncbi.nlm.nih.gov/9131765/
 '''
@@ -13,8 +13,8 @@ import numpy as np
 
 
 def log_normal_error(weights, z_alpha=1):
-    """Returns the errors on the estimation of the probability density using
-    the lognormal method.
+    """Returns the unnormalised errors on the estimation of the probability
+    density using the lognormal method.
 
     Parameters
     ----------

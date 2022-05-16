@@ -4,7 +4,8 @@ Quadratic Inflation Large Mass PDF
 This module calculates probability density function (PDF) for first-passage
 time of the number of e-folds for quadratic inflation in the large mass case.
 The large mass case corresponds to diffusion domination. This is done using the
-results of `Pattison et al 2017`_, and therefore assumes UV cutoff at infinity.
+results of `Pattison et al 2017`_, and therefore assumes a UV cutoff at
+infinity.
 
 .. _Pattison et al 2017: https://arxiv.org/abs/1707.00537
 '''
@@ -31,13 +32,13 @@ def quadratic_inflation_large_mass_pdf(efolds, m, phi_i, phi_end=2**0.5):
     phi_i : float
         The initial field value.
     phi_end : float, optional
-        The end scalar field value. Defaults to value such that the first
+        The end scalar field value. Defaults to a value such that the first
         slow-roll parameter is 1.
 
     Returns
     -------
     pdf : list
-        The probability density function at efolds values.
+        The probability density function at the provided efold values.
 
     """
     def potential(phi):

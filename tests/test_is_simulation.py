@@ -52,6 +52,7 @@ class TestIS_Simulation(unittest.TestCase):
         # For this mass, the p value should be 1
         self.assertEqual(p, 1.)
 
+
 # We need the following to execute the tests when we run the file in python
 if __name__ == '__main__':
     unittest.main()

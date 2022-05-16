@@ -145,7 +145,7 @@ def data_points_pdf(data, weights, estimator,
 
         # Checking p-values if lognormal was used.
         # Need to provide only weights of the filled bins
-        lognormality_check(bin_centres, weights_in_bins[:, filled_bins])
+        _ = lognormality_check(bin_centres, weights_in_bins[:, filled_bins])
 
     else:
         raise ValueError('Not valid estimator method')

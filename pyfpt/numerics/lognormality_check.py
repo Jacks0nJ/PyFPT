@@ -65,3 +65,6 @@ def lognormality_check(bin_centres, weights_in_bins):
         plt.xlabel(r'$\mathcal{N}$', fontsize=22)
         plt.ylabel('p-values', fontsize=22)
         plt.show()
+        return True
+    else:
+        return False

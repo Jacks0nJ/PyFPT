@@ -47,10 +47,15 @@ class TestIS_Simulation(unittest.TestCase):
         analytical_func =\
             edgeworth_pdf(potential, potential_dif, potential_ddif, phi_i,
                           phi_end)
-        _, p = chisquare(heights, analytical_func(bin_centres))
+        expected = analytical_func(bin_centres)
+        # SciPy's chi-squared needs the sum to be the same, re normalising
+        heights = heights*(np.sum(expected)/np.sum(heights))
+        # SciPy's chi-squared also needs large values for effective test
+        _, p = chisquare(100*heights, 100*expected)
 
-        # For this mass, the p value should be 1
-        self.assertEqual(p, 1.)
+        # For this mass, the p value should be relatively large. Using the 0.5
+        # % threshold also used to test lognormality
+        self.assertTrue(p > 0.005)
 
 
 # We need the following to execute the tests when we run the file in python

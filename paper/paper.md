@@ -36,4 +36,4 @@ While PyFPT is designed to solve general FPT problems resulting from Langevin pr
 
 For invaluable contributions to both developing and physical understanding, I would like to thank for my supervisors David Wands, Vincent Vennin, Kazuya Koyama and Hooshyar Assadullahi. For making the code into a package, I would also like to thank Coleman Krawczyk and Ian Harry. This work was supported by the Science and Technology Facilities Council [grant numbers ST/S000550/1 and ST/W001225/1].
 
-# References
+

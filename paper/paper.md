@@ -29,7 +29,7 @@ For efficiency, both Cython and multiprocessing is used.
 First-passage time problems, can appear for many random processes, including modeling financial ruin for insurance purposes or the mean time for nuclear collisions, to name just a few. Although the statistics of the FPTs can often be calculated analytically, the probability of rare events requires numerical simulations. This can be computationally very expensive, as millions of simulations are required just to produce a few of the events of interest. Therefore, importance sampling is used.
 
 
-While PyFPT is designed to solve general FPT problems resulting from Langevin processes, it was developed in the context of stochastic inflation. Inflation is a period of accelerated expansion of spacetime near the beginning of the universe. Large, but rare, perturbations from this period can later form primordial black holes, which are of great theoretical interest. These perturbations can be modeled using FPT processes [@Vennin:2015hra]. Directly simulating these rare events often requires supercomputers, while importance sampling greatly improves the numerical efficiency.
+While PyFPT is designed to solve general FPT problems resulting from Langevin processes, it was developed in the context of stochastic inflation. Inflation is a period of accelerated expansion of spacetime near the beginning of the universe. Large, but rare, perturbations from this period can later form primordial black holes, which are of great theoretical interest. These perturbations can be modeled using FPT processes [@Vennin:2015hra, @Pattison:2017mbe]. Directly simulating these rare events often requires supercomputers, while importance sampling greatly improves the numerical efficiency.
 
 
 # Acknowledgements

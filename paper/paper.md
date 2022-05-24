@@ -1,112 +1,39 @@
 ---
-title: 'Gala: A Python package for galactic dynamics'
+title: 'PyFPT: A Python package for first-passage times'
 tags:
   - Python
-  - astronomy
-  - dynamics
-  - galactic dynamics
-  - milky way
+  - Cython
+  - first-passage times
+  - importance sampling
+  - cosmology
+  - inflation
 authors:
-  - name: Adrian M. Price-Whelan^[Co-first author] # note this makes a footnote saying 'Co-first author'
-    orcid: 0000-0000-0000-0000
-    affiliation: "1, 2" # (Multiple affiliations must be quoted)
-  - name: Author Without ORCID^[Co-first author] # note this makes a footnote saying 'Co-first author'
-    affiliation: 2
-  - name: Author with no affiliation^[Corresponding author]
-    affiliation: 3
+  - name: Joseph Jackson
+    affiliation: 1
 affiliations:
- - name: Lyman Spitzer, Jr. Fellow, Princeton University, USA
+ - name: Institute of Cosmology \& Gravitation, University of Portsmouth, Dennis Sciama Building, Burnaby Road, Portsmouth, PO1 3FX, United Kingdom
    index: 1
- - name: Institution Name, Country
-   index: 2
- - name: Independent Researcher, Country
-   index: 3
-date: 13 August 2017
+date: 24 May 20122
 bibliography: paper.bib
 
-# Optional fields if submitting to a AAS journal too, see this blog post:
-# https://blog.joss.theoj.org/2018/12/a-new-collaboration-with-aas-publishing
-aas-doi: 10.3847/xxxxx <- update this with the DOI from AAS once you know it.
-aas-journal: Astrophysical Journal <- The name of the AAS journal.
 ---
 
 # Summary
 
-The forces on stars, galaxies, and dark matter under external gravitational
-fields lead to the dynamical evolution of structures in the universe. The orbits
-of these bodies are therefore key to understanding the formation, history, and
-future state of galaxies. The field of "galactic dynamics," which aims to model
-the gravitating components of galaxies to study their structure and evolution,
-is now well-established, commonly taught, and frequently used in astronomy.
-Aside from toy problems and demonstrations, the majority of problems require
-efficient numerical tools, many of which require the same base code (e.g., for
-performing numerical orbit integration).
+This package uses importance sampling to estimate the probability of rare first-passage time events, or FPT for short, which is the time taken to cross some threshold during a Langevin process. This is done by introducing a bias to over sample the events of interest, then recording the relative probability (weight) of this path occurring without the bias, so the probability original process can be recovered by applying the weight. The required data analysis to reconstruct the original probability density function for binned FPT values is included. This package runs simulations of thousands of Langevin processes, such that the probability density of the FPTs can estimated from the peak of the distribution all the way down into the far tail. Even probabilities as rare as $10^{-40}$ can simulated.
+
+For efficiency, both Cython and multiprocessing is used.
 
 # Statement of need
 
-`Gala` is an Astropy-affiliated Python package for galactic dynamics. Python
-enables wrapping low-level languages (e.g., C) for speed without losing
-flexibility or ease-of-use in the user-interface. The API for `Gala` was
-designed to provide a class-based and user-friendly interface to fast (C or
-Cython-optimized) implementations of common operations such as gravitational
-potential and force evaluation, orbit integration, dynamical transformations,
-and chaos indicators for nonlinear dynamics. `Gala` also relies heavily on and
-interfaces well with the implementations of physical units and astronomical
-coordinate systems in the `Astropy` package [@astropy] (`astropy.units` and
-`astropy.coordinates`).
+First-passage time problems, can appear for many random processes, including modeling financial ruin for insurance purposes or the mean time for nuclear collisions, to name just a few. Although the statistics of the FPTs can often be calculated analytically, the probability of rare events requires numerical simulations. This can be computationally very expensive, as millions of simulations are required just to produce a few of the events of interest. Therefore, importance sampling is used.
 
-`Gala` was designed to be used by both astronomical researchers and by
-students in courses on gravitational dynamics or astronomy. It has already been
-used in a number of scientific publications [@Pearson:2017] and has also been
-used in graduate courses on Galactic dynamics to, e.g., provide interactive
-visualizations of textbook material [@Binney:2008]. The combination of speed,
-design, and support for Astropy functionality in `Gala` will enable exciting
-scientific explorations of forthcoming data releases from the *Gaia* mission
-[@gaia] by students and experts alike.
 
-# Mathematics
+While PyFPT is designed to solve general FPT problems resulting from Langevin processes, it was developed in the context of stochastic inflation. Inflation is a period of accelerated expansion of spacetime near the beginning of the universe. Large, but rare, perturbations from this period can later form primordial black holes, which are of great theoretical interest. These perturbations can be modeled using FPT processes [@Vennin:2015hra]. Directly simulating these rare events often requires supercomputers, while importance sampling greatly improves the numerical efficiency.
 
-Single dollars ($) are required for inline mathematics e.g. $f(x) = e^{\pi/x}$
-
-Double dollars make self-standing equations:
-
-$$\Theta(x) = \left\{\begin{array}{l}
-0\textrm{ if } x < 0\cr
-1\textrm{ else}
-\end{array}\right.$$
-
-You can also use plain \LaTeX for equations
-\begin{equation}\label{eq:fourier}
-\hat f(\omega) = \int_{-\infty}^{\infty} f(x) e^{i\omega x} dx
-\end{equation}
-and refer to \autoref{eq:fourier} from text.
-
-# Citations
-
-Citations to entries in paper.bib should be in
-[rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
-format.
-
-If you want to cite a software repository URL (e.g. something on GitHub without a preferred
-citation) then you can do it with the example BibTeX entry below for @fidgit.
-
-For a quick reference, the following citation commands can be used:
-- `@author:2001`  ->  "Author et al. (2001)"
-- `[@author:2001]` -> "(Author et al., 2001)"
-- `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)"
-
-# Figures
-
-Figures can be included like this:
-![Caption for example figure.\label{fig:example}](figure.png)
-and referenced from text using \autoref{fig:example}.
-
-Figure sizes can be customized by adding an optional second parameter:
-![Caption for example figure.](figure.png){ width=20% }
 
 # Acknowledgements
 
-We acknowledge contributions from Brigitta Sipocz, Syrtis Major, and Semyeong
-Oh, and support from Kathryn Johnston during the genesis of this project.
+For invaluable contributions to both developing and physical understanding, I would like to thank for my supervisors David Wands, Vincent Vennin, Kazuya Koyama and Hooshyar Assadullahi. For making the code into a package, I would also like to thank Coleman Krawczyk and Ian Harry. This work was supported by the Science and Technology Facilities Council [grant numbers ST/S000550/1 and ST/W001225/1].
 
 # References

@@ -5,12 +5,22 @@ Analytical Functions
 
 This page gives an overview of the different analytical functions available in PyFPT. 
 
-All but one of them are based on calculating the central moments of the FPTs using methods of `Vennin--Starobinsky 2015`_ in the low diffusion limit. The central moments not only give the mean, variance, skewness and kurtosis of the FPTs, but can also be used to add corrections to the Gaussian approximation for the probability density.
+Many of the calculations are based on calculating the central moments of the FPTs using methods of `Vennin--Starobinsky 2015`_ in the low diffusion limit. The central moments not only give the mean, variance, skewness and kurtosis of the FPTs, but can also be used to add corrections to the Gaussian approximation for the probability density.
 
 For diffusion dominated quadratic inflation, there are also :ref:`analytical expectations<quadratic_inflation_label>` for the probability density. Quadratic inflation is currently the only inflationary model included.
 
 
 .. _Vennin--Starobinsky 2015: https://arxiv.org/abs/1506.04732
+
+.. automodule:: analytics.slow_roll_drift
+    :members:
+
+----
+
+.. automodule:: analytics.slow_roll_diffusion
+    :members:
+
+----
 
 .. automodule:: analytics.classicality_criterion
     :members:

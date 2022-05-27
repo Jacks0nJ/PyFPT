@@ -24,8 +24,8 @@ if int(os.getenv("CYTHON_LINETRACE", "0")):
 # define compiled extensions
 exts = [
     Extension(
-        "pyfpt.numerics.importance_sampling_sr_cython",
-        ["pyfpt/numerics/importance_sampling_sr_cython.pyx"],
+        "pyfpt.numerics.importance_sampling_cython",
+        ["pyfpt/numerics/importance_sampling_cython.pyx"],
         language="c",
         extra_compile_args=cython_compile_args,
         extra_link_args=[],

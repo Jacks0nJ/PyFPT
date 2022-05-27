@@ -30,6 +30,14 @@ class TestIS_Simulation(unittest.TestCase):
             V_ddif = (m**2)
             return V_ddif
 
+        # Need to define the drift and diffusion as explicit functions
+        def drift_func(phi, N):
+            return -potential_dif(phi)/potential(phi)
+
+        def diffusion_func(phi, N):
+            H = (potential(phi)/3)**0.5
+            return H/(2*np.pi)
+
         bias_amp = 1.
         # As it is a highly composite number, so should work for any core count
         num_runs = 55440
@@ -37,8 +45,8 @@ class TestIS_Simulation(unittest.TestCase):
         # Let's run the simulation
 
         bin_centres, heights, errors =\
-            is_simulation(potential, potential_dif, potential_ddif, phi_i,
-                          phi_end, num_runs, bias_amp)
+            is_simulation(drift_func, diffusion_func, phi_i, phi_end,
+                          num_runs, bias_amp, 0.001)
         bin_centres = np.array(bin_centres)
         heights = np.array(heights)
         errors = np.array(errors)

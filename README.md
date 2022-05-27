@@ -25,16 +25,17 @@
 ## What is PyFPT?
 
 <p align="center">
-  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/stochastic_effects.png?raw=true" width="500"/>
+  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/stochastic_effects_general.png?raw=true" width="500"/>
 </p>
 
 PyFPT is Python/Cython package to run first-passage time (FPT) simulations using importance sampling.
 
-This package will let you numerically investigate the tail of the probability density for first passage times in the number of e-folds for a potential in slow-roll stochastic inflation inflation.
+This package will let you numerically investigate the tail of the probability density for first passage times for a general 1D Langevin equation.
 
-The tail of the probability density is investiated using the method of [importance sampling](https://arxiv.org/abs/nucl-th/9809075), where a bias increases the probability of large FPTs, resulting in a sample distribution, which are then weighted to reproduce the rare events of the target distribution. This allows very rare events (normally need supercomputers) to be simulate efficiently with just your laptop!
+The tail of the probability density is investigated using the method of [importance sampling](https://arxiv.org/abs/nucl-th/9809075), where a bias increases the probability of large FPTs, resulting in a sample distribution, which are then weighted to reproduce the rare events of the target distribution. This allows very rare events (normally need supercomputers) to be simulate efficiently with just your laptop!
 
-This package also comes with functionality to compare the numerical results with analytical expectations.
+
+Note, it was originally developed to find number of e-folds for a potential in slow-roll stochastic inflation inflation. As such, analytical functionality is also included for this particular problem in the [analytics module](https://pyfpt.readthedocs.io/en/latest/analytics.html).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -45,10 +46,10 @@ You can find the [latest documentation](https://pyfpt.readthedocs.io/en/latest/i
 
 ### Operating System
 
-As PyFPT uses [Cython](https://cython.readthedocs.io/en/latest/src/quickstart/install.html) to optimise the stochastic simulations, a C-compilier is required for installation. Therefore, PyFPT does not currently run (future releases hope to address this issue) on Windows directly. Windows uses can either install PyFPT on a virtual machine or use a cloud based service such as [SciServer](https://www.sciserver.org/). 
+As PyFPT uses [Cython](https://cython.readthedocs.io/en/latest/src/quickstart/install.html) to optimise the stochastic simulations, a C-compilier is required for installation. Therefore, PyFPT does not currently run (future releases hope to address this issue) on Windows directly. Windows uses can either install PyFPT on a virtual machine or use a cloud-based service such as [SciServer](https://www.sciserver.org/). 
 
 
-Mac and Linux user should be able to directly install PyFPT, as these operating systems have a C-compilier.
+Mac and Linux user should be able to directly install PyFPT, as these operating systems have a C-compiler.
 
 ### Packages
 The following packages are required to run PyFPT
@@ -87,7 +88,7 @@ You can also clone the PyFPT repository
 ```sh
 git clone https://github.com/Jacks0nJ/PyFPT.git
 ```
-to work on it locally. This would require compling the Cython code (the `.pyx` files) locally as well.
+to work on it locally. This would require compiling the Cython code (the `.pyx` files) locally as well.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -108,6 +109,7 @@ Or even deviations from Gaussianity!
   <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/publishable_error_bar_IS_near_10_dN_0.002_m_0.1_phi_UV_1.0phi_i_bias_3_iters_198234_bin_size_400_for_docs.png?raw=true" width="500"/>
 </p>
 
+In the above images `N' is the first-passage time in stochastic inflation.
 
 See the [user guides](https://pyfpt.readthedocs.io/en/latest/getting_started.html) for details on how you can make these figures yourself!
 
@@ -120,8 +122,8 @@ See the [user guides](https://pyfpt.readthedocs.io/en/latest/getting_started.htm
 ## Roadmap
 
 - [x] Simulate first-passage times of slow-roll inflation
-- [x] Use importance sampling to investigate rare realisations
-- [ ] Make general, for any 1D Langevin equation
+- [x] Use importance sampling to investigate rare realisations.
+- [x] Make general, for any 1D Langevin equation
 - [ ] Add multi-dimensionality
     - [ ] Add the acceleration of the field
     - [ ] Add more sophisticated noise models
@@ -148,7 +150,7 @@ And we will review your request!
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Bugs
-This is the initial release of PyFPT, so it is expected there will be some minor bugs. Feel free to either report by rasing an [Issue](https://github.com/Jacks0nJ/PyFPT/issues) on Github, emailing joseph.jackson@port.ac.uk or fork the repository with your fix. 
+This is the initial release of PyFPT, so it is expected there will be some minor bugs. Feel free to either report by raising an [Issue](https://github.com/Jacks0nJ/PyFPT/issues) on Github, emailing joseph.jackson@port.ac.uk or fork the repository with your fix. 
 
 Your feedback is very much appreciated! 
 
@@ -177,7 +179,7 @@ Project Link: [https://github.com/Jacks0nJ/PyFPT](https://github.com/Jacks0nJ/Py
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-We would like the following contributors to PyFPT, be it through phsyical understanding of first-passage time processes or help developing the package
+We would like the following contributors to PyFPT, be it through physical understanding of first-passage time processes or help developing the package
 
 #### The Physics
 

@@ -19,3 +19,5 @@ from .skewness_efolds import skewness_efolds
 from .third_central_moment_efolds import\
     third_central_moment_efolds
 from .variance_efolds import variance_efolds
+from .slow_roll_diffusion import slow_roll_diffusion
+from .slow_roll_drift import slow_roll_drift

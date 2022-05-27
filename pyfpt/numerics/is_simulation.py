@@ -8,7 +8,6 @@ processes and exports the data ready for plotting.
 from timeit import default_timer as timer
 import multiprocessing as mp
 from multiprocessing import Process, Queue
-from scipy import integrate
 
 import numpy as np
 
@@ -17,44 +16,50 @@ from .histogram_data_truncation import histogram_data_truncation
 from .save_data_to_file import save_data_to_file
 from .data_points_pdf import data_points_pdf
 
-from .importance_sampling_sr_cython import\
+from .importance_sampling_cython import\
     importance_sampling_simulations
 
 
-def is_simulation(potential, potential_dif, potential_ddif, phi_i, phi_end,
-                  num_runs, bias_amp, bins=50, delta_efolds=None,
-                  min_bin_size=400, num_sub_samples=20, estimator='lognormal',
-                  save_data=False, efolds_f=100, phi_uv=None):
+def is_simulation(drift, diffusion, x_in, x_end,
+                  num_runs, bias, time_step, bins=50, min_bin_size=400,
+                  num_sub_samples=20, estimator='lognormal',
+                  save_data=False, t_in=0., t_f=100, x_r=None):
     """Executes the simulation runs, then returns the histogram bin centres,
     heights and errors.
 
     Parameters
     ----------
-    potential : function
-        The potential.
-    potential_dif : function
-        The potential's first derivative.
-    potential_ddif : function
-        The potential second derivative.
-    phi_i : float
-        The initial scalar field value.
-    phi_end : float
-        The end scalar field value.
+    drift : function
+        The drift term of the simulated Langevin equation. Must take both x and
+        t as arguments in the format ``(x, t)``
+    diffusion : function
+        The diffusion term of the simulated Langevin equation. Must take both
+        x and t as arguments in the format ``(x, t)``
+    x_in : float
+        The initial position value.
+    x_end : float
+        The end position value, i.e. the threshold which defines the FPT
+        problem.
     num_runs : int
         The number of simulation runs.
-    bias_amp : float
-        The coefficent of the diffusion used define the bias. (In later
-        versions this can also be a function).
+    bias : scalar or function
+        The bias used in the simulated Langevin equation to achieve importance
+        sampling
+
+        If a scalar (float or int), this the bias amplitude, i.e. a coefficent
+        which mutiplies the the diffusion to define the bias.
+
+        If a function, this simply defines the bias used. Must take arguments
+        for both position and time in the format ``(x, t)``.
     bins : int or sequence, optional
         If bins is an integer, it defines the number equal width bins for the
         first-passage times. If bins is a list or numpy array, it defines the
         bin edges, including the left edge of the first bin and the right edge
         of the last bin. The widths can vary. Defaults to 50 evenly spaced
         bins.
-    delta_efolds : float or int, optional
-        The step size in e-folds N. This should be a small enough to accurately
-        bins the runs. Defaults to the standard deviation devided by the number
-        of bins.
+    time_step : float or int, optional
+        The time step. This should be at least smaller than the standard
+        deviation of the FPTs.
     min_bin_size : int, optional
         The minimum number of runs per bin to included in the data analysis.
         If a bin has less than this number, it is truncated. Defaults to 400.
@@ -70,13 +75,16 @@ def is_simulation(potential, potential_dif, potential_ddif, phi_i, phi_end,
     Save_data : bool, optional
         If ``True``, the first-passage times and the associated weights for
         each run is saved to a file.
-    efolds_f : float, optional
-        The maxiumum number of e-folds allowed per run. If this is exceded, the
-        simulation run ends and returns ``efolds_f``, which can then be
-        truncated. Defaults to 100 e-folds.
-    phi_uv : float, optional
-        The value of the reflective boundary. Must have a magntiude greater
-        than the magnitude of ``phi_i``. Defaults to no reflective boundary.
+    t_in : float, optional
+        The initial time value of simulation Defaults to 0.
+    t_f : float, optional
+        The maxiumum FPT allowed per run. If this is exceded, the
+        simulation run ends and returns ``t_f``, which can then be
+        truncated. Defaults to 100.
+    x_r : float, optional
+        The value of the reflective boundary. Must be compatible with the x_in
+        and x_end chosen. Defaults to unreachable value, effectively no
+        boundary.
     Returns
     -------
     bin_centres : list
@@ -86,45 +94,68 @@ def is_simulation(potential, potential_dif, potential_ddif, phi_i, phi_end,
     errors : list
         The errors in estimating the heights.
     """
-    # If no argument for delta_efolds is given, using the classical std to
-    # define it
-    if delta_efolds is None:
-        if isinstance(bins, int) is True:
-            std =\
-                variance_efolds(potential, potential_dif, potential_ddif,
-                                phi_i, phi_end)**0.5
-            delta_efolds = std/bins
-        elif isinstance(bins, int) is False:
-            std =\
-                variance_efolds(potential, potential_dif, potential_ddif,
-                                phi_i, phi_end)
-            num_bins = len(bins)-1
-            delta_efolds = std/(num_bins)
-    elif isinstance(delta_efolds, float) is not True\
-            and isinstance(delta_efolds, int) is not True:
-        raise ValueError('delta_efolds is not a number')
+    # Checking drift and diffusion are of the correct format
+    if callable(drift) is True:
+        if isinstance(drift(x_in, t_in), float) is True:
+            pass
+        else:
+            ValueError('Provided drift is not the format (x, t)')
+    else:
+        ValueError('Provided drift is not a function')
+    if callable(diffusion) is True:
+        if isinstance(diffusion(x_in, t_in), float) is True:
+            pass
+        else:
+            ValueError('Provided diffusion is not the format (x, t)')
+    else:
+        ValueError('Provided diffusion is not a function')
+
+    # Make sure provided values are floats for Cython
+    if isinstance(x_in, int) is True:
+        x_in = 1.0*x_in
+    if isinstance(x_end, int) is True:
+        x_end = 1.0*x_end
+    # Checking bias is of correct form
+    if isinstance(bias, float) is True or isinstance(bias, float) is True:
+        # If the bias argument is a scalar, use diffusion based bias
+        bias_type = 'diffusion'
+        if bias == 0:
+            estimator = 'naive'
+            print('As direct simulation, defaulting to naive estimator')
+    elif callable(bias):
+        # If a function is provided, check it is of the correct form
+        if isinstance(bias(x_in, t_in), float) is True:
+            bias_type = 'custom'
+        else:
+            ValueError('bias function must be of the form bias(x, t)')
+    else:
+        ValueError('Provided bias is not a number or function')
+
+    if isinstance(time_step, float) is not True\
+            and isinstance(time_step, int) is not True:
+        raise ValueError('time_step is not a number')
 
     # Check the user has provided a estimator
     if estimator != 'lognormal' and estimator != 'naive':
         print('Invalid estimator argument, defaulting to naive method')
         estimator = 'naive'
 
-    # If no phi_uv argument is provided, default to infinie boundary
-    if phi_uv is None:
-        phi_uv = 10000*phi_i
-    elif isinstance(phi_uv, float) is False:
-        if isinstance(phi_uv, int) is True:
-            if isinstance(phi_uv, bool) is True:
-                raise ValueError('phi_uv is not a number')
+    # If no x_r argument is provided, default to infinite boundary
+    if x_r is None:
+        # Set the reflective surface at an arbitrarily large value in the
+        # opposite direction to propagation
+        x_r = 10000*(x_in-x_end)
+    elif isinstance(x_r, float) is False:
+        if isinstance(x_r, int) is True:
+            if isinstance(x_r, bool) is True:
+                raise ValueError('x_r is not a number')
             else:
                 pass
         else:
-            raise ValueError('phi_uv is not a number')
-    elif np.abs(phi_uv) < np.abs(phi_i):
-        raise ValueError('phi_uv is smaller than phi_i')
-
-    if bias_amp == 0:
-        estimator = 'naive'
+            raise ValueError('x_r is not a number')
+    elif (x_r-x_in)*(x_in-x_end) < 0:
+        raise ValueError('End and relfective surfaces not compatible with' +
+                         ' initial value.')
 
     # The number of sims per core, so the total is correct
     num_runs_per_core = int(num_runs/mp.cpu_count())
@@ -132,19 +163,18 @@ def is_simulation(potential, potential_dif, potential_ddif, phi_i, phi_end,
     start = timer()
 
     # Using multiprocessing
-    def multi_processing_func(phi_i, phi_uv, phi_end, efolds_i, efolds_f,
-                              delta_efolds, bias_amp, num_runs, queue_efolds,
+    def multi_processing_func(x_in, x_r, x_end, t_in, t_f,
+                              time_step, bias, num_runs, queue_efolds,
                               queue_ws, queue_refs):
         results =\
-            importance_sampling_simulations(phi_i, phi_uv, phi_end, efolds_i,
-                                            efolds_f, delta_efolds, bias_amp,
-                                            num_runs, potential, potential_dif,
-                                            potential_ddif,
-                                            bias_type='diffusion',
+            importance_sampling_simulations(x_in, x_r, x_end, t_in,
+                                            t_f, time_step, bias,
+                                            num_runs, drift, diffusion,
+                                            bias_type=bias_type,
                                             count_refs=False)
-        efold_values = np.array(results[0][:])
+        fpt_values = np.array(results[0][:])
         ws = np.array(results[1][:])
-        queue_efolds.put(efold_values)
+        queue_efolds.put(fpt_values)
         queue_ws.put(ws)
 
     queue_efolds = Queue()
@@ -154,8 +184,8 @@ def is_simulation(potential, potential_dif, potential_ddif, phi_i, phi_end,
 
     print('Number of cores used: '+str(cores))
     processes = [Process(target=multi_processing_func,
-                         args=(phi_i, phi_uv,  phi_end, 0.0, efolds_f,
-                               delta_efolds, bias_amp, num_runs_per_core,
+                         args=(x_in, x_r,  x_end, t_in, t_f,
+                               time_step, bias, num_runs_per_core,
                                queue_efolds, queue_ws, queue_refs))
                  for i in range(cores)]
 
@@ -163,64 +193,41 @@ def is_simulation(potential, potential_dif, potential_ddif, phi_i, phi_end,
         p.start()
 
     # More efficient to work with numpy arrays
-    efolds_array = np.array([queue_efolds.get() for p in processes])
+    fpt_array = np.array([queue_efolds.get() for p in processes])
     ws_array = np.array([queue_ws.get() for p in processes])
 
     end = timer()
     print(f'The simulations took: {end - start} seconds')
 
     # Combine into columns into 1
-    efold_values = efolds_array.flatten()
+    fpt_values = fpt_array.flatten()
     w_values = ws_array.flatten()
 
     # Sort in order of increasing Ns
-    sort_idx = np.argsort(efold_values)
-    efold_values = efold_values[sort_idx]
+    sort_idx = np.argsort(fpt_values)
+    fpt_values = fpt_values[sort_idx]
     w_values = w_values[sort_idx]
 
     # Checking if multipprocessing error occured, by looking at correlation
-    _ = multi_processing_error(efold_values, w_values)
+    _ = multi_processing_error(fpt_values, w_values)
 
-    # Truncating any data which did not reach phi_end
-    efold_values, w_values =\
-        histogram_data_truncation(efold_values, efolds_f, weights=w_values,
+    # Truncating any data which did not reach x_end
+    fpt_values, w_values =\
+        histogram_data_truncation(fpt_values, t_f, weights=w_values,
                                   num_sub_samples=num_sub_samples)
     # Saving the data
     if save_data is True:
-        save_data_to_file(efold_values, w_values, phi_i, num_runs, bias_amp)
+        if bias_type == 'diffusion':
+            save_data_to_file(fpt_values, w_values, x_in, num_runs, bias)
+        else:
+            # Label the file differently if custom bias is used.
+            save_data_to_file(fpt_values, w_values, x_in, num_runs,
+                              bias(x_in, 0), extra_label='_custom_bias')
 
     # Now analysisng the data to creating the histogram/PDF data
     bin_centres, heights, errors, num_runs_used, bin_edges_untruncated =\
-        data_points_pdf(efold_values, w_values, estimator, bins=bins,
+        data_points_pdf(fpt_values, w_values, estimator, bins=bins,
                         min_bin_size=min_bin_size,
                         num_sub_samples=num_sub_samples)
     # Return data as lists
     return bin_centres.tolist(), heights.tolist(), errors.tolist()
-
-
-# Equation 3.35 in Vennin 2015
-def variance_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end):
-    pi = np.pi
-    planck_mass = 1
-
-    def v_func(phi):
-        return potential(phi)/(24*pi**2)
-
-    def v_dif_func(phi):
-        return potential_dif(phi)/(24*pi**2)
-
-    def v_ddif_func(phi):
-        return potential_ddif(phi)/(24*pi**2)
-
-    def integrand_calculator(phi):
-        # Pre calculating values
-        v = v_func(phi)
-        v_dif = v_dif_func(phi)
-        v_ddif = v_ddif_func(phi)
-        non_classical = 6*v-np.divide(5*(v**2)*v_ddif, v_dif**2)
-        constant_factor = 2/(planck_mass**4)
-
-        integrand = constant_factor*np.divide(v**4, v_dif**3)*(1+non_classical)
-        return integrand
-    var_efolds, er = integrate.quad(integrand_calculator, phi_end, phi_i)
-    return var_efolds

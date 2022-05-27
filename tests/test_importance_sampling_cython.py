@@ -1,7 +1,8 @@
 import unittest
 import numpy as np
 
-from pyfpt.numerics.importance_sampling_cython import importance_sampling_simulations
+from pyfpt.numerics.importance_sampling_cython\
+    import importance_sampling_simulations
 
 
 # This is the most basic initial test, needs further refinement

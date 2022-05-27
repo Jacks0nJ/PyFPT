@@ -13,7 +13,7 @@ class TestIS_Simulation(unittest.TestCase):
         # working correctly. This of course requires us to run a simulation.
         # The simulation can then be compared to the analytical expectation,
         # which is checked in a seperate test
-        m = 0.05
+        m = 0.1
         N_starting = 10
         phi_end = 2**0.5
         phi_i = (4*N_starting+2)**0.5
@@ -32,13 +32,14 @@ class TestIS_Simulation(unittest.TestCase):
 
         # Need to define the drift and diffusion as explicit functions
         def drift_func(phi, N):
-            return -potential_dif(phi)/potential(phi)
+            return -2/phi
 
         def diffusion_func(phi, N):
-            H = (potential(phi)/3)**0.5
-            return H/(2*np.pi)
+            pi = 3.141592653589793
+            sqirt_6 = 2.449489742783178
+            return (m*phi)/(2*pi*sqirt_6)
 
-        bias_amp = 1.
+        bias_amp = 0.6
         # As it is a highly composite number, so should work for any core count
         num_runs = 55440
 

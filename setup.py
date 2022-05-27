@@ -1,4 +1,4 @@
-# Most of the code is copied from sbank's repository
+# Most of the code is copied (with permission) from sbank's repository
 import os
 
 from setuptools import setup, Extension

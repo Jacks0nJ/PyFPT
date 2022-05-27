@@ -22,13 +22,13 @@ class TestSaveDataToFile(unittest.TestCase):
         save_data_to_file(data[:, 0], data[:, 1], x_i, num_data_points, bias)
 
         # Now lets read the back
-        raw_file_name = 'IS_data_phi_i_' + ('%s' % float('%.3g' % x_i)) +\
+        raw_file_name = 'IS_data_x_in_' + ('%s' % float('%.3g' % x_i)) +\
             '_iterations_' + str(num_data_points) + '_bias_' +\
             ('%s' % float('%.3g' % bias)) + '.csv'
         # Remembering to remove column numbering
         data_read = pd.read_csv(raw_file_name, index_col=0)
-        data_read_column1 = np.array(data_read['N'])
-        data_read_column2 = np.array(data_read['w'])
+        data_read_column1 = np.array(data_read['FPTs'])
+        data_read_column2 = np.array(data_read['ws'])
 
         # Rather than check all of the data is the same, just check if the mean
         # is the same. This is a similair method to data hashing.

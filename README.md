@@ -25,7 +25,7 @@
 ## What is PyFPT?
 
 <p align="center">
-  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/stochastic_effects_general.png?raw=true" width="500"/>
+  <img src="https://github.com/Jacks0nJ/PyFPT/blob/GeneralFPTandJOSS/docs/images/stochastic_effects_general.png?raw=true" width="500"/>
 </p>
 
 PyFPT is Python/Cython package to run first-passage time (FPT) simulations using importance sampling.

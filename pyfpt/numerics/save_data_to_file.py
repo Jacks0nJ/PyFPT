@@ -12,6 +12,8 @@ import pandas as pd
 def save_data_to_file(data, weights, x_in, num_runs, bias, extra_label=None):
     """Saves the provided data and the associated weights to a file, titled
     "IS_data_x_in_<x_in>_iterations_<num_runs>_bias_<bias>(<extra_label>).csv"
+    The first-passage time data is stored as 'FPTs' and the associated weights
+    as 'ws'/
 
     Parameters
     ----------

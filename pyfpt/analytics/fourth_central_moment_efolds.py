@@ -20,7 +20,7 @@ planck_mass = 1
 
 # This is done using Vincent's calculations he gave me
 def fourth_central_moment_efolds(potential, potential_dif, potential_ddif,
-                                 phi_i, phi_end):
+                                 phi_in, phi_end):
     """Returns the fourth central moment of the number of e-folds.
 
     Parameters
@@ -31,7 +31,7 @@ def fourth_central_moment_efolds(potential, potential_dif, potential_ddif,
         The potential's first derivative
     potential_ddif : function
         The potential second derivative
-    phi_i : float
+    phi_in : float
         The initial scalar field value
     phi_end : float
         The end scalar field value
@@ -53,11 +53,11 @@ def fourth_central_moment_efolds(potential, potential_dif, potential_ddif,
 
         integrand = constant_factor*np.divide(v**10, v_dif**7)
         return integrand
-    non_guassian, er = integrate.quad(integrand_calculator, phi_end, phi_i)
+    non_guassian, er = integrate.quad(integrand_calculator, phi_end, phi_in)
     # As Vincent's method explicitly calculates the excess kurtosis, need to
     # add Wick's theorem term
     gaussian_4th_moment =\
-        3*variance_efolds(potential, potential_dif, potential_ddif, phi_i,
+        3*variance_efolds(potential, potential_dif, potential_ddif, phi_in,
                           phi_end)**2
 
     fourth_moment_efolds = gaussian_4th_moment+non_guassian

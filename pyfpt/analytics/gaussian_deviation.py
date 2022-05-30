@@ -27,8 +27,8 @@ from .kurtosis_efolds import kurtosis_efolds
 # classical deviation from a gaussian. This is done by finding x such that the
 # higher order terms of the edgeworth expanion are
 # nu is the amount pf deviation from a Gaussian.
-def gaussian_deviation(potential, potential_dif, potential_ddif, phi_i,
-                       phi_end, nu=1., phi_interval=None):
+def gaussian_deviation(potential, potential_dif, potential_ddif, phi_in,
+                       phi_end, nu=1., phi_innterval=None):
     """Returns the skewness of the number of e-folds.
 
     Parameters
@@ -39,11 +39,11 @@ def gaussian_deviation(potential, potential_dif, potential_ddif, phi_i,
         The potential's first derivative.
     potential_ddif : function
         The potential second derivative.
-    phi_i : float
+    phi_in : float
         The initial scalar field value.
     nu : float, optional
         The decimal threshold of the deviation from Gaussianity. Defaults to 1
-    phi_interval : list, optional.
+    phi_innterval : list, optional.
         The field interval which contains the root. Defaults to between 0 and
         10000 standard deviations from the mean.
 
@@ -54,15 +54,15 @@ def gaussian_deviation(potential, potential_dif, potential_ddif, phi_i,
 
     """
     mean =\
-        mean_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end)
+        mean_efolds(potential, potential_dif, potential_ddif, phi_in, phi_end)
     std =\
-        variance_efolds(potential, potential_dif, potential_ddif, phi_i,
+        variance_efolds(potential, potential_dif, potential_ddif, phi_in,
                         phi_end)**0.5
     skewness =\
-        skewness_efolds(potential, potential_dif, potential_ddif, phi_i,
+        skewness_efolds(potential, potential_dif, potential_ddif, phi_in,
                         phi_end)
     kurtosis =\
-        kurtosis_efolds(potential, potential_dif, potential_ddif, phi_i,
+        kurtosis_efolds(potential, potential_dif, potential_ddif, phi_in,
                         phi_end)
 
     def higher_order_egdeworth_term(y):
@@ -73,13 +73,13 @@ def gaussian_deviation(potential, potential_dif, potential_ddif, phi_i,
             np.divide(hermite_poly6(norm_y)*skewness**2, 72)
         return (skew_term+kurtosis_term+skew_squared_term)-nu
 
-    if phi_interval is None:
+    if phi_innterval is None:
         sol = optimize.root_scalar(higher_order_egdeworth_term,
                                    method='brentq',
                                    bracket=[mean, mean+10000*std])
     else:
         sol = optimize.root_scalar(higher_order_egdeworth_term,
-                                   method='brentq', bracket=phi_interval)
+                                   method='brentq', bracket=phi_innterval)
     # The root is the position of when deviation occurs
     deviation_point = sol.root
     return deviation_point

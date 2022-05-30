@@ -96,3 +96,9 @@ For diffusion dominated quadratic inflation, there are also :ref:`analytical exp
 .. automodule:: analytics.quadratic_inflation_near_tail_pdf
     :members:
 
+----
+
+.. automodule:: analytics.optimal_bias_amplitude
+    :members: 
+
+

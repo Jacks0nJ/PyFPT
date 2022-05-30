@@ -18,7 +18,7 @@ planck_mass = 1
 
 # Using the standard relation between the central moments and the kurtosis.
 # Fisher is an optional argument
-def kurtosis_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end,
+def kurtosis_efolds(potential, potential_dif, potential_ddif, phi_in, phi_end,
                     Fisher=True):
     """Returns the kurtosis of the number of e-folds.
 
@@ -30,7 +30,7 @@ def kurtosis_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end,
         The potential's first derivative.
     potential_ddif : function
         The potential second derivative.
-    phi_i : float
+    phi_in : float
         The initial scalar field value
     phi_end : float
         The end scalar field value.
@@ -46,9 +46,9 @@ def kurtosis_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end,
     # The excess kurtosis over the expected Gaussian amount
     fourth_moment =\
         fourth_central_moment_efolds(potential, potential_dif, potential_ddif,
-                                     phi_i, phi_end)
+                                     phi_in, phi_end)
     var =\
-        variance_efolds(potential, potential_dif, potential_ddif, phi_i,
+        variance_efolds(potential, potential_dif, potential_ddif, phi_in,
                         phi_end)
 
     if Fisher is False:

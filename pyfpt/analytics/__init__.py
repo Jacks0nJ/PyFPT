@@ -21,3 +21,5 @@ from .third_central_moment_efolds import\
 from .variance_efolds import variance_efolds
 from .slow_roll_diffusion import slow_roll_diffusion
 from .slow_roll_drift import slow_roll_drift
+from .optimal_bias_amplitude import\
+	optimal_bias_amplitude

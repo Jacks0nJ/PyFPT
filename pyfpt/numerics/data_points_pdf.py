@@ -51,11 +51,18 @@ def data_points_pdf(data, weights, estimator,
     Returns
     -------
     bin_centres : numpy.ndarray
-        The centres of the histogram bins.
+        The centres of the histogram bins (after truncation of undefilled
+        bins).
     heights : numpy.ndarray
-        The heights of the normalised histogram bars.
+        The heights of the normalised histogram bars (after truncation of
+        undefilled bins).
     errors : numpy.ndarray
-        The errors in estimating the heights.
+        The errors in estimating the heights (after truncation).
+    num_runs_used : int
+        The number of runs used (after truncation of undefilled bins).
+    bins : numpy.ndarray
+        The untruncated bin edges.
+
     """
     num_runs = len(data)
 

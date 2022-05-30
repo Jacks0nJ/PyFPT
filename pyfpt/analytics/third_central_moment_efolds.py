@@ -20,7 +20,7 @@ planck_mass = 1
 
 # Equation 3.37 in Vennin 2015
 def third_central_moment_efolds(potential, potential_dif, potential_ddif,
-                                phi_i, phi_end):
+                                phi_in, phi_end):
     """Returns the third central moment of the number of e-folds.
 
     Parameters
@@ -31,7 +31,7 @@ def third_central_moment_efolds(potential, potential_dif, potential_ddif,
         The potential's first derivative
     potential_ddif : function
         The potential second derivative
-    phi_i : float
+    phi_in : float
         The initial scalar field value
     phi_end : float
         The end scalar field value
@@ -57,6 +57,6 @@ def third_central_moment_efolds(potential, potential_dif, potential_ddif,
         integrand = constant_factor*np.divide(v**7, v_dif**5)*(1+non_classical)
         return integrand
     third_moment_efolds, er = integrate.quad(integrand_calculator, phi_end,
-                                             phi_i)
+                                             phi_in)
 
     return third_moment_efolds

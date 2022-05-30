@@ -20,7 +20,7 @@ pi = np.pi
 planck_mass = 1
 
 
-def quadratic_inflation_large_mass_pdf(efolds, m, phi_i, phi_end=2**0.5):
+def quadratic_inflation_large_mass_pdf(efolds, m, phi_in, phi_end=2**0.5):
     """ Returns PDF of quadratic inflation in the large mass case.
 
     Parameters
@@ -29,7 +29,7 @@ def quadratic_inflation_large_mass_pdf(efolds, m, phi_i, phi_end=2**0.5):
         The first-passage times where the PDF is to be calculated.
     m : float
         The mass of quadratic inflation potential.
-    phi_i : float
+    phi_in : float
         The initial field value.
     phi_end : float, optional
         The end scalar field value. Defaults to a value such that the first
@@ -45,7 +45,7 @@ def quadratic_inflation_large_mass_pdf(efolds, m, phi_i, phi_end=2**0.5):
         return 0.5*(m*phi)**2
 
     def chi(t):
-        return quadratic_inflation_characteristic_function(t, phi_i, phi_end,
+        return quadratic_inflation_characteristic_function(t, phi_in, phi_end,
                                                            potential)
 
     # Use integral symmetric to simplfy to only do the positive half,
@@ -53,7 +53,7 @@ def quadratic_inflation_large_mass_pdf(efolds, m, phi_i, phi_end=2**0.5):
     # Remember they use a different fourier 2pi convention to be,
     # hence the extra one.
     v0 = (m**2)/(48*pi**2)
-    v = v0*phi_i**2
+    v = v0*phi_in**2
 
     # Stolen from Chris' quadratic code, no idea why this is a thing!
     if v < 10:

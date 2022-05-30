@@ -15,7 +15,7 @@ from .reduced_potential_diff import reduced_potential_diff
 from .reduced_potential_ddiff import reduced_potential_ddiff
 
 
-def classicality_criterion(potential, potential_dif, potential_ddif, phi_i):
+def classicality_criterion(potential, potential_dif, potential_ddif, phi_in):
     """ Returns eta for the provided potential.
 
     Parameters
@@ -26,7 +26,7 @@ def classicality_criterion(potential, potential_dif, potential_ddif, phi_i):
         The potential's first derivative
     potential_ddif : function
         The potential second derivative
-    phi_i : float
+    phi_in : float
         The initial field value
 
     Returns
@@ -40,9 +40,9 @@ def classicality_criterion(potential, potential_dif, potential_ddif, phi_i):
     v_dif_func = reduced_potential_diff(potential_dif)
     v_ddif_func = reduced_potential_ddiff(potential_ddif)
 
-    v = v_func(phi_i)
-    v_dif = v_dif_func(phi_i)
-    v_ddif = v_ddif_func(phi_i)
+    v = v_func(phi_in)
+    v_dif = v_dif_func(phi_in)
+    v_ddif = v_ddif_func(phi_in)
 
     eta = abs(2*v - (v_ddif*v**2)/(v_dif**2))
     return eta

@@ -6,10 +6,7 @@ used in numerics module, the function depends both on ``phi`` and ``N``.
 '''
 
 
-planck_mass = 1
-
-
-def slow_roll_drift(potential, potential_dif):
+def slow_roll_drift(potential, potential_dif, planck_mass=1):
     """Returns the slow-roll drift as a function.
 
     Parameters
@@ -19,6 +16,9 @@ def slow_roll_drift(potential, potential_dif):
     potential_dif : function
         The first derivative of the potential of the slow-roll inflation
         simulated.
+    planck_mass : scalar, optional
+        The Planck mass used in the calculations. The standard procedure is to
+        set it to 1. The default is 1.
     Returns
     -------
     drift_func : function

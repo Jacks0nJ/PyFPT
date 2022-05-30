@@ -18,7 +18,7 @@ planck_mass = 1
 
 
 # Equation 3.35 in Vennin 2015
-def variance_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end):
+def variance_efolds(potential, potential_dif, potential_ddif, phi_in, phi_end):
     """Returns the variance of the number of e-folds.
 
     Parameters
@@ -29,7 +29,7 @@ def variance_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end):
         The potential's first derivative.
     potential_ddif : function
         The potential second derivative.
-    phi_i : float
+    phi_in : float
         The initial scalar field value.
     phi_end : float
         The end scalar field value.
@@ -54,5 +54,5 @@ def variance_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end):
 
         integrand = constant_factor*np.divide(v**4, v_dif**3)*(1+non_classical)
         return integrand
-    var_efolds, er = integrate.quad(integrand_calculator, phi_end, phi_i)
+    var_efolds, er = integrate.quad(integrand_calculator, phi_end, phi_in)
     return var_efolds

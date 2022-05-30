@@ -17,7 +17,7 @@ pi = np.pi
 planck_mass = 1
 
 
-def quadratic_inflation_near_tail_pdf(efolds, m, phi_i, phi_end=2**0.5,
+def quadratic_inflation_near_tail_pdf(efolds, m, phi_in, phi_end=2**0.5,
                                       numerical_integration=False):
     """ Returns PDF of quadratic inflation for the near tail.
 
@@ -27,7 +27,7 @@ def quadratic_inflation_near_tail_pdf(efolds, m, phi_i, phi_end=2**0.5,
         The first-passage times where the PDF is to be calculated.
     m : float
         The mass of quadratic inflation potential.
-    phi_i : float
+    phi_in : float
         The initial field value.
     phi_end : float, optional
         The end scalar field value. Defaults to value such that the first
@@ -42,8 +42,8 @@ def quadratic_inflation_near_tail_pdf(efolds, m, phi_i, phi_end=2**0.5,
 
     """
     v0 = (m**2)/(48*pi**2)
-    v = v0*phi_i**2
-    efolds_cl = 0.25*phi_i**2-0.25*phi_end**2
+    v = v0*phi_in**2
+    efolds_cl = 0.25*phi_in**2-0.25*phi_end**2
     ve = v0*phi_end**2
     if numerical_integration is False:
 

@@ -18,7 +18,7 @@ planck_mass = 1
 
 
 # Equation 3.28 in Vennin 2015
-def mean_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end):
+def mean_efolds(potential, potential_dif, potential_ddif, phi_in, phi_end):
     """Returns the mean number of e-folds.
 
     Parameters
@@ -29,7 +29,7 @@ def mean_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end):
         The potential's first derivative
     potential_ddif : function
         The potential second derivative
-    phi_i : float
+    phi_in : float
         The initial scalar field value
     phi_end : float
         The end scalar field value
@@ -55,6 +55,6 @@ def mean_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end):
         integrand = constant_factor*np.divide(v, v_dif)*(1+non_classical)
         return integrand
 
-    mean_efolds, er = integrate.quad(integrand_calculator, phi_end, phi_i)
+    mean_efolds, er = integrate.quad(integrand_calculator, phi_end, phi_in)
 
     return mean_efolds

@@ -19,7 +19,7 @@ pi = np.pi
 
 
 # This returns a function which returns the Edgeworth expansion
-def edgeworth_pdf(potential, potential_dif, potential_ddif, phi_i, phi_end):
+def edgeworth_pdf(potential, potential_dif, potential_ddif, phi_in, phi_end):
     """ Returns the Edgeworth expansion in the low-diffusion limit.
 
     Parameters
@@ -30,7 +30,7 @@ def edgeworth_pdf(potential, potential_dif, potential_ddif, phi_i, phi_end):
         The potential's first derivative
     potential_ddif : function
         The potential second derivative
-    phi_i : float
+    phi_in : float
         The initial field value
     phi_end : float
         The end scalar field value.
@@ -42,15 +42,15 @@ def edgeworth_pdf(potential, potential_dif, potential_ddif, phi_i, phi_end):
 
     """
     mean =\
-        mean_efolds(potential, potential_dif, potential_ddif, phi_i, phi_end)
+        mean_efolds(potential, potential_dif, potential_ddif, phi_in, phi_end)
     std =\
-        variance_efolds(potential, potential_dif, potential_ddif, phi_i,
+        variance_efolds(potential, potential_dif, potential_ddif, phi_in,
                         phi_end)**0.5
     skewness =\
-        skewness_efolds(potential, potential_dif, potential_ddif, phi_i,
+        skewness_efolds(potential, potential_dif, potential_ddif, phi_in,
                         phi_end)
     kurtosis =\
-        kurtosis_efolds(potential, potential_dif, potential_ddif, phi_i,
+        kurtosis_efolds(potential, potential_dif, potential_ddif, phi_in,
                         phi_end)
 
     def edgeworth_function(efolds):

@@ -31,10 +31,10 @@ def is_simulation(drift, diffusion, x_in, x_end,
     ----------
     drift : function
         The drift term of the simulated Langevin equation. Must take both x and
-        t as arguments in the format ``(x, t)``
+        t as arguments in the format ``(x, t)``.
     diffusion : function
         The diffusion term of the simulated Langevin equation. Must take both
-        x and t as arguments in the format ``(x, t)``
+        x and t as arguments in the format ``(x, t)``.
     x_in : float
         The initial position value.
     x_end : float

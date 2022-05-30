@@ -67,7 +67,7 @@ def optimal_bias_amplitude(N_target, phi_in, phi_end, potential,
     elif callable(bias_function):
         def efolds(A):
             def integrand(phi):
-                classical_drift = -(planck_mass**2)*potential_diff(phi) /\
+                classical_drift = (planck_mass**2)*potential_diff(phi) /\
                     potential(phi)
                 return (classical_drift-A*bias_function(phi))**-1
 
@@ -76,7 +76,7 @@ def optimal_bias_amplitude(N_target, phi_in, phi_end, potential,
 
         def efolds_derivative(A):
             def integrand(phi):
-                classical_drift = -(planck_mass**2)*potential_diff(phi) /\
+                classical_drift = (planck_mass**2)*potential_diff(phi) /\
                     potential(phi)
                 return -bias_function(phi) *\
                     (classical_drift-A*bias_function(phi))**-2

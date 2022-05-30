@@ -36,8 +36,8 @@ class TestOptimalBiasAmplitude(unittest.TestCase):
                                     bias_function=bias_func)
              for N_target in N_target_values]
         expected = 1-(phi_in**2-phi_end**2)/(4*N_target_values)
-        differance = np.abs(expected-results)
-        self.assertTrue(all(differance < 10**-6))
+        differance = np.abs((expected-results)/expected)
+        self.assertTrue(all(differance < 10**-4))
 
 
 # We need the following to execute the tests when we run the file in python

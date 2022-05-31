@@ -23,7 +23,7 @@ def multi_processing_error(data, weights):
         Input first-passage time data.
     weights: numpy.ndarray
         Associated weights to the first-passage time data. Must be a one-to-one
-        correspondance between them.
+        correspondence between them.
     """
     # Checking if multipprocessing error occured, by looking at correlation
     pearson_corr = np.corrcoef(data, np.log10(weights))

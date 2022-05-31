@@ -2,7 +2,7 @@
 Jackknife Errors
 ----------------
 This module calculates the errors of the histogram bars by using a
-implified jackknife resampling method. The data is sub-sampled into many
+simplified jackknife resampling method. The data is sub-sampled into many
 histograms with the same bins. This way a distribution of heights, for each
 bin, can be made. The standard deviation of the distribution of heights for as
 bin, by the central limit theorem, then gives error when divided root of the
@@ -26,7 +26,7 @@ def jackknife_errors(data_input, weights_input, bins, num_sub_samps):
         Input first-passage time data.
     weights: numpy.ndarray
         Associated weights to the first-passage time data. Must be a one-to-one
-        correspondance between them.
+        correspondence between them.
     bins : sequence
         Defines the bin edges of the histogram, including the left edge of the
         first bin and the right edge of the last bin. The widths can vary.

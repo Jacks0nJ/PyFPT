@@ -1,7 +1,7 @@
 '''
 Lognormal Error
 ---------------------
-This module calculates the unnormalised error of the estimation of the
+This module calculates the unnormalized error of the estimation of the
 probability density of the target distribution from the sample distribution
 using the lognormal method. This calculation is taken from `Zhou--Gao 1997`_.
 
@@ -13,14 +13,14 @@ import numpy as np
 
 
 def log_normal_error(weights, z_alpha=1):
-    """Returns the unnormalised errors on the estimation of the probability
+    """Returns the unnormalized errors on the estimation of the probability
     density using the lognormal method.
 
     Parameters
     ----------
     weights: numpy.ndarray
         Associated weights to the first-passage time data. Must be a one-to-one
-        correspondance between them.
+        correspondence between them.
         bin edges used if a sequence.
     num_runs : int or float, optional
         The numer of standard errors in the returned quantity. Defaults to 1

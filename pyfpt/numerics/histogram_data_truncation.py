@@ -2,7 +2,7 @@
 Histogram Data Truncation
 -------------------------
 This module truncates the first-passage time data (and its associated weights)
-above the specified threshold. The mian purpose is to truncate runs which
+above the specified threshold. The main purpose is to truncate runs which
 exceeded the maximum time.
 '''
 
@@ -24,10 +24,10 @@ def histogram_data_truncation(data, threshold, weights=0,
         ``data`` below the threshold will be kept, above it will be truncated.
     weights: numpy.ndarray, optional
         Associated weights to the first-passage time data. Must be a one-to-one
-        correspondance between them.
+        correspondence between them.
     num_sub_samples : int, optional
         The number of subsamples if the naive estimator error estimation is
-        used. This means the truncated data will awlays be an integrer multiple
+        used. This means the truncated data will always be an integer multiple
         of ``num_sub_samples``, such that jackknife resampling can be done.
     -------
     truncated_data : numpy.ndarray

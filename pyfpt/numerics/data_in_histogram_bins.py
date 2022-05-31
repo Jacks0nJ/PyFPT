@@ -1,7 +1,7 @@
 '''
 Data in Histogram Bins
 ----------------------
-This module subdivides the first-passage time data and its asociated weights
+This module subdivides the first-passage time data and its associated weights
 according to the first-passage time bins used in the estimation of the target
 distribution.
 '''
@@ -20,17 +20,17 @@ def data_in_histogram_bins(data, weights, bin_edges):
         Input first-passage time data.
     weights: numpy.ndarray
         Associated weights to the first-passage time data. Must be a one-to-one
-        correspondance between them.
+        correspondence between them.
     bin_edges : sequence of scalars
         The bin edges of the histogram used in the estimation of the target
         distribution.
     Returns
     -------
     data_columned : numpy.ndarray
-        The data seperated into coloumns, with the data in each column
+        The data separated into columns, with the data in each column
         corresponding to a particular bin.
     weights_columned : numpy.ndarray
-        The weights seperated into coloumns, with the weights in each column
+        The weights separated into columns, with the weights in each column
         corresponding to the associated data in a particular bin.
     """
     # Create empty arrays large enough to store all of the data, as it is

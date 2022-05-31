@@ -2,7 +2,7 @@
 Histogram Normalisation
 -------------------------------
 This module calculates the histogram normalisation using the formula
-``num_runs*bin_width``. Thererfore, the total area of the histogram may not be
+``num_runs*bin_width``. Therefore, the total area of the histogram may not be
 1. Instead, each bin is normalised.
 '''
 from numpy import diff
@@ -11,7 +11,7 @@ from numpy import diff
 # Returns the normalisation factor for a histogram, including one with weights
 def histogram_normalisation(bins, num_runs):
     """Returns histogram normalisation. If evenly spaced bins are used, then a
-    scalar is resturned. Otherwise the correct normalisation for each bin is
+    scalar is returned. Otherwise, the correct normalisation for each bin is
     returned.
 
     Parameters

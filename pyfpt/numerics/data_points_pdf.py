@@ -1,7 +1,7 @@
 '''
 Probability Density of the Data
 -------------------------------
-This module post proceeses the first-passage times and weights to estimate the
+This module post processes the first-passage times and weights to estimate the
 probability density of the target distribution.
 '''
 
@@ -29,12 +29,12 @@ def data_points_pdf(data, weights, estimator,
         Input first-passage time data.
     weights : numpy.ndarray
         Associated weights to the first-passage time data. Must be a one-to-one
-        correspondance between them.
+        correspondence between them.
     estimator : string
-        The estimator used ot reconstruct the target distribution probability
+        The estimator used to reconstruct the target distribution probability
         density from the importance sample. If ``'lognormal'``, it assumes the
         weights in each bin follow a lognomral distribution. If ``'naive'``, no
-        assumption is made but more runs are required for convergance.
+        assumption is made but more runs are required for convergence.
     bins : int or list, optional
         If bins is an integer, it defines the number equal width bins for the
         first-passage times. If bins is a list or numpy array, it defines the
@@ -42,7 +42,7 @@ def data_points_pdf(data, weights, estimator,
         of the last bin. The widths can vary. Defaults to 50 evenly spaced
         bins.
     min_bin_size : int, optional
-        The minimum number of runs per bin to included in the data analysis.
+        The minimum number of runs per bin included in the data analysis.
         If a bin has less than this number, it is truncated. Defaults to 400.
     num_sub_samples : int, optional
         The number of subsamples used in jackknife estimation of the errors
@@ -51,15 +51,16 @@ def data_points_pdf(data, weights, estimator,
     Returns
     -------
     bin_centres : numpy.ndarray
-        The centres of the histogram bins (after truncation of undefilled
+        The centres of the histogram bins (after truncation of underfilled
         bins).
     heights : numpy.ndarray
         The heights of the normalised histogram bars (after truncation of
-        undefilled bins).
+        underfilled bins).
     errors : numpy.ndarray
-        The errors in estimating the heights (after truncation).
+        The errors in estimating the heights (after truncation of
+        underfilled bins).
     num_runs_used : int
-        The number of runs used (after truncation of undefilled bins).
+        The number of runs used (after truncation of underfilled bins).
     bins : numpy.ndarray
         The untruncated bin edges.
 

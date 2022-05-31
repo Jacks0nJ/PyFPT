@@ -2,7 +2,7 @@
 Save Data to File
 -----------------
 This module saves the raw first-passage time data and its associated weights to
-a comma seperated value file using pandas in the same directory as where PyFPT
+a comma separated value file using pandas in the same directory as where PyFPT
 is run from.
 '''
 
@@ -27,7 +27,7 @@ def save_data_to_file(data, weights, x_in, num_runs, bias, extra_label=None):
     num_runs : int
         The number of simulation runs.
     bias : float
-        The coefficent of the diffusion used define the bias.
+        The coefficient of the diffusion used define the bias.
     extra_label: string, optional
         Optional extra string to label file.
     """

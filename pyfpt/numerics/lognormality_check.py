@@ -1,11 +1,11 @@
 '''
-Lognormalality Check
+Lognormality Check
 --------------------
-This module checks if assuming the wieghts within each first-passage time bin
+This module checks if assuming the weights within each first-passage time bin
 are drawn from an underlying lognormal distribution is correct, by calculating
 the p-values using  `D’Agostino & Pearson's method`_. If any p-value is below
 the 0.5% threshold, plots comparing the p-values of the data and the
-theoretical predictions are given. If many p-avlues are less than 0.5%, or some
+theoretical predictions are given. If many p-values are less than 0.5%, or some
 are much, much less than this value, it is likely the assumption is incorrect.
 
 .. _D’Agostino & Pearson's method: https://en.wikipedia.org/wiki/D%27Agostino%\
@@ -26,7 +26,7 @@ def lognormality_check(bin_centres, weights_in_bins, display=True):
     bin_centres : numpy.ndarray
         The centres of the histogram bins.
     weights_columned : numpy.ndarray
-        The associated weights to these bins seperated into coloumns, with each
+        The associated weights to these bins separated into columns, with each
         column containing the weights of that bin.
     display : bool, optional
         If True, p-value plots of both the real data, and the theoretical

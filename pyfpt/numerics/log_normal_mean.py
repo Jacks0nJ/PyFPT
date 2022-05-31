@@ -1,8 +1,8 @@
 '''
 Lognormal Mean
 --------------
-This module estimates the mean of a lognormal distribution using the maxiumum
-liklihood method from `Shen--Brown--Zhi 2006`_.
+This module estimates the mean of a lognormal distribution using the maximum
+likelihood method from `Shen--Brown--Zhi 2006`_.
 
 .. _Shen--Brown--Zhi 2006: https://pubmed.ncbi.nlm.nih.gov/16345103/
 '''

@@ -1,8 +1,8 @@
 '''
 Lognormal Height
 ----------------
-This module estimates the unnormalised histogram bar height for a bin of
-first-passage times of weighted data, assuming the weights are drwan from an
+This module estimates the unnormalized histogram bar height for a bin of
+first-passage times of weighted data, assuming the weights are drawn from an
 underlying lognormal distribution.
 '''
 
@@ -11,7 +11,7 @@ from .log_normal_mean import log_normal_mean
 
 
 def log_normal_height(weights):
-    """Returns the unnoramlised height of the histogram bar.
+    """Returns the unnormalized height of the histogram bar.
 
     Parameters
     ----------

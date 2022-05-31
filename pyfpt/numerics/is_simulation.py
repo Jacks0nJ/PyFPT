@@ -46,8 +46,8 @@ def is_simulation(drift, diffusion, x_in, x_end,
         The bias used in the simulated Langevin equation to achieve importance
         sampling
 
-        If a scalar (float or int), this the bias amplitude, i.e. a coefficent
-        which mutiplies the the diffusion to define the bias.
+        If a scalar (float or int), this the bias amplitude, i.e. a coefficient
+        which multiplies the diffusion to define the bias.
 
         If a function, this simply defines the bias used. Must take arguments
         for both position and time in the format ``(x, t)``.
@@ -61,13 +61,13 @@ def is_simulation(drift, diffusion, x_in, x_end,
         The time step. This should be at least smaller than the standard
         deviation of the FPTs.
     min_bin_size : int, optional
-        The minimum number of runs per bin to included in the data analysis.
+        The minimum number of runs per bin included in the data analysis.
         If a bin has less than this number, it is truncated. Defaults to 400.
     estimator : string, optional
         The estimator used to reconstruct the target distribution probability
         density from the importance sample. If ``'lognormal'``, it assumes the
         weights in each bin follow a lognomral distribution. If ``'naive'``, no
-        assumption is made but more runs are required for convergance.
+        assumption is made but more runs are required for convergence.
     num_sub_samples : int, optional
         The number of subsamples used in jackknife estimation of the errors
         used for the ``'naive'`` estimator. Defaults to 20 when ``estimator``
@@ -78,7 +78,7 @@ def is_simulation(drift, diffusion, x_in, x_end,
     t_in : float, optional
         The initial time value of simulation Defaults to 0.
     t_f : float, optional
-        The maxiumum FPT allowed per run. If this is exceded, the
+        The maximum FPT allowed per run. If this is exceeded, the
         simulation run ends and returns ``t_f``, which can then be
         truncated. Defaults to 100.
     x_r : float, optional

@@ -15,13 +15,13 @@ from scipy.optimize import root_scalar
 def optimal_bias_amplitude(N_target, phi_in, phi_end, potential,
                            potential_diff, bias_function=None,
                            planck_mass=1):
-    """Returns bias ampltude for the provided target number of e-folds
+    """Returns bias amplitude for the provided target number of e-folds
     ``N_target`` and bias.
 
     Parameters
     ----------
     N_target : scalar
-        The number of e-folds of interest which are to be investiagted- the
+        The number of e-folds of interest which are to be investigated- the
         target.
         The potential second derivative.
     phi_in : float

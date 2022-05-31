@@ -19,12 +19,12 @@ def reduced_potential(potential):
     Parameters
     ----------
     potential : function
-        The potential
+        The potential.
 
     Returns
     -------
     v : function
-        the reduced potential
+        the reduced potential.
 
     """
     def v(phi):

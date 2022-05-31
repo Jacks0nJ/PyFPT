@@ -26,15 +26,15 @@ def third_central_moment_efolds(potential, potential_dif, potential_ddif,
     Parameters
     ----------
     potential : function
-        The potential
+        The potential.
     potential_dif : function
-        The potential's first derivative
+        The potential's first derivative.
     potential_ddif : function
-        The potential second derivative
+        The potential's second derivative.
     phi_in : float
-        The initial scalar field value
+        The initial scalar field value.
     phi_end : float
-        The end scalar field value
+        The end scalar field value.
 
     Returns
     -------

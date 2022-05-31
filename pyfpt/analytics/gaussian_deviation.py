@@ -6,7 +6,7 @@ first-passage times in the number of e-folds for a provided threshold value
 using the `Edgeworth series`_ in low diffusion limit
 and the relations for the central moments given in `Vennin--Starobinsky 2015`_.
 This is calculated by using root finding to find the point at which the higher
-order terms of the Edgeworth series first equals the threshold.
+order terms of the Edgeworth series first equal the threshold.
 
 .. _Edgeworth series: https://en.wikipedia.org/wiki/Edgeworth_series
 .. _Vennin--Starobinsky 2015: https://arxiv.org/abs/1506.04732
@@ -28,7 +28,7 @@ from .kurtosis_efolds import kurtosis_efolds
 # higher order terms of the edgeworth expanion are
 # nu is the amount pf deviation from a Gaussian.
 def gaussian_deviation(potential, potential_dif, potential_ddif, phi_in,
-                       phi_end, nu=1., phi_innterval=None):
+                       phi_end, nu=1., phi_interval=None):
     """Returns the skewness of the number of e-folds.
 
     Parameters
@@ -38,12 +38,12 @@ def gaussian_deviation(potential, potential_dif, potential_ddif, phi_in,
     potential_dif : function
         The potential's first derivative.
     potential_ddif : function
-        The potential second derivative.
+        The potential's second derivative.
     phi_in : float
         The initial scalar field value.
     nu : float, optional
         The decimal threshold of the deviation from Gaussianity. Defaults to 1
-    phi_innterval : list, optional.
+    phi_interval : list, optional.
         The field interval which contains the root. Defaults to between 0 and
         10000 standard deviations from the mean.
 
@@ -73,13 +73,13 @@ def gaussian_deviation(potential, potential_dif, potential_ddif, phi_in,
             np.divide(hermite_poly6(norm_y)*skewness**2, 72)
         return (skew_term+kurtosis_term+skew_squared_term)-nu
 
-    if phi_innterval is None:
+    if phi_interval is None:
         sol = optimize.root_scalar(higher_order_egdeworth_term,
                                    method='brentq',
                                    bracket=[mean, mean+10000*std])
     else:
         sol = optimize.root_scalar(higher_order_egdeworth_term,
-                                   method='brentq', bracket=phi_innterval)
+                                   method='brentq', bracket=phi_interval)
     # The root is the position of when deviation occurs
     deviation_point = sol.root
     return deviation_point

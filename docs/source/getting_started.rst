@@ -4,9 +4,9 @@
 Getting Started
 ===============
 
-Here is a series of user guides designed to get you started using PyFPT!
+Here is a series of user guides designed to get you started using PyFPT! They are show how to use PyFPT in the context of stochastic inflation, but many of the techniques used could be applied to other first-passage time problems.
 
-They are also available to download as interatcive Jupyter Notebooks in the 'User Guide' folder of the `Gitbub page`_.
+They are also available to download as interactive Jupyter Notebooks in the 'User Guide' folder of the `Gitbub page`_. 
 
 .. _Gitbub page: https://github.com/Jacks0nJ/PyFPT
 .. toctree::

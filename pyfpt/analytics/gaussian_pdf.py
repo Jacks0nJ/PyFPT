@@ -3,7 +3,7 @@ Gaussian PDF
 -------------
 This module returns the Gaussian probability density function (PDF)
 for first-passage times in the low-diffusion limit, using the results from
-`Vennin--Starobinsky 2015`_ to calcuate the required moments, as a function.
+`Vennin--Starobinsky 2015`_ to calculate the required moments, as a function.
 
 .. _Vennin--Starobinsky 2015: https://arxiv.org/abs/1506.04732
 '''
@@ -17,18 +17,18 @@ pi = np.pi
 
 # This returns a function which returns the Edgeworth expansion
 def gaussian_pdf(potential, potential_dif, potential_ddif, phi_in, phi_end):
-    """ Returns the Gaussian approximation in the low-diffusion limit.
+    """Returns the Gaussian approximation in the low-diffusion limit.
 
     Parameters
     ----------
     potential : function
-        The potential
+        The potential.
     potential_dif : function
-        The potential's first derivative
+        The potential's first derivative.
     potential_ddif : function
-        The potential second derivative
+        The potential's second derivative/
     phi_in : float
-        The initial field value
+        The initial field value.
     phi_end : float
         The end scalar field value.
 

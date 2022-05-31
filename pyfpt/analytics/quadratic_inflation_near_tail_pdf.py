@@ -19,7 +19,7 @@ planck_mass = 1
 
 def quadratic_inflation_near_tail_pdf(efolds, m, phi_in, phi_end=2**0.5,
                                       numerical_integration=False):
-    """ Returns PDF of quadratic inflation for the near tail.
+    """Returns PDF of quadratic inflation for the near tail.
 
     Parameters
     ----------
@@ -38,7 +38,7 @@ def quadratic_inflation_near_tail_pdf(efolds, m, phi_in, phi_end=2**0.5,
     Returns
     -------
     pdf : list
-        The probability density function at efolds values.
+        The probability density function at e-folds values.
 
     """
     v0 = (m**2)/(48*pi**2)

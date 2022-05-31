@@ -38,7 +38,7 @@ def quadratic_inflation_large_mass_pdf(efolds, m, phi_in, phi_end=2**0.5):
     Returns
     -------
     pdf : list
-        The probability density function at the provided efold values.
+        The probability density function at the provided e-fold values.
 
     """
     def potential(phi):

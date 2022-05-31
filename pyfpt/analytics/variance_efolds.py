@@ -28,7 +28,7 @@ def variance_efolds(potential, potential_dif, potential_ddif, phi_in, phi_end):
     potential_dif : function
         The potential's first derivative.
     potential_ddif : function
-        The potential second derivative.
+        The potential's second derivative.
     phi_in : float
         The initial scalar field value.
     phi_end : float

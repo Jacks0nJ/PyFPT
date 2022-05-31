@@ -19,12 +19,12 @@ def reduced_potential_ddiff(potential_ddiff):
     Parameters
     ----------
     potential_ddif : function
-        The potential's second derivative
+        The potential's second derivative.
 
     Returns
     -------
     v_ddif : function
-        the reduced potential second derivative
+        the reduced potential second derivative.
 
     """
     def v_ddiff(phi):

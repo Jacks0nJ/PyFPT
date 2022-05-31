@@ -22,7 +22,7 @@ def slow_roll_drift(potential, potential_dif, planck_mass=1):
     Returns
     -------
     drift_func : function
-        A function dependent on ``(phi, N)`` which returns the slow-roll drift
+        A function dependent on ``(phi, N)`` which returns the slow-roll drift.
 
     """
     def drift_func(phi, N):

@@ -23,7 +23,7 @@ def slow_roll_diffusion(potential, potential_dif, planck_mass=1):
     -------
     drift_func : function
         A function dependent on ``(phi, N)`` which returns the slow-roll
-        diffusion
+        diffusion.
 
     """
     def diffusion_func(phi, N):

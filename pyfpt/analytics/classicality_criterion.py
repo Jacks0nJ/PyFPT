@@ -21,13 +21,13 @@ def classicality_criterion(potential, potential_dif, potential_ddif, phi_in):
     Parameters
     ----------
     potential : function
-        The potential
+        The potential.
     potential_dif : function
-        The potential's first derivative
+        The potential's first derivative.
     potential_ddif : function
-        The potential second derivative
+        The potential's second derivative.
     phi_in : float
-        The initial field value
+        The initial field value.
 
     Returns
     -------

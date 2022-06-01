@@ -1,11 +1,4 @@
 <div id="top"></div>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
 
 
 
@@ -25,7 +18,7 @@
 ## What is PyFPT?
 
 <p align="center">
-  <img src="https://github.com/Jacks0nJ/PyFPT/blob/GeneralFPTandJOSS/docs/images/stochastic_effects_general.png?raw=true" width="500"/>
+  <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/stochastic_effects_general.png?raw=true" width="500"/>
 </p>
 
 PyFPT is Python/Cython package to run first-passage time (FPT) simulations using importance sampling.
@@ -61,7 +54,7 @@ The following packages are required to run PyFPT
 * [mpmath](https://mpmath.org/doc/current/setup.html)
 * [pandas](https://pandas.pydata.org/docs/getting_started/install.html)
 
-Many of which are included common Python distributions like [Anaconda](https://www.anaconda.com/products/distribution). You can check which packages you already have installed with `pip list`.
+Many of which are included in common Python distributions like [Anaconda](https://www.anaconda.com/products/distribution). You can check which packages you already have installed with `pip list`.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

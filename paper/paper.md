@@ -26,14 +26,14 @@ bibliography: paper.bib
 
 This package uses importance sampling to estimate the probability of rare first-passage time events, or FPT for short, which is the time taken to cross some threshold during a Langevin process [@Redner2001qk]. This is done by introducing a bias to over sample the events of interest, then recording the relative probability (weight) of this path occurring without the bias, so the probability original process can be recovered by applying the weight [@Mazonka1998]. The required data analysis to reconstruct the original probability density function for binned FPT values is included. This package runs simulations of thousands of Langevin processes, such that the probability density of the FPTs can estimated from the peak of the distribution all the way down into the far tail. Even probabilities as rare as $10^{-40}$ can simulated.
 
-For efficiency, both [Cython](https://cython.org/) and multiprocessing is used.
+For efficiency, both [Cython](https://cython.org/) and multiprocessing are used.
 
 # Statement of need
 
 First-passage time problems can appear for many random processes, including pricing options for finance or the mean time for nuclear collisions, to name just a few. Although the statistics of the FPTs can often be calculated analytically, the probability of rare events requires numerical simulations. This can be computationally very expensive, as millions of simulations are required just to produce a few of the events of interest. Therefore, importance sampling is used.
 
 
-While PyFPT is designed to solve general FPT problems resulting from Langevin processes, it was developed in the context of stochastic inflation. Inflation is a period of accelerated expansion of spacetime near the beginning of the universe [@Baumann:2009ds]. Large, but rare, perturbations from this period can later form primordial black holes, which are of great theoretical interest [@Green:2020jor]. These perturbations can be modelled using FPT processes [@Vennin:2015hra]. Directly simulating these rare events often requires supercomputers, while importance sampling greatly improves the numerical efficiency, meaning only a laptop is required.
+While PyFPT is designed to solve general FPT problems resulting from Langevin processes, it was developed in the context of stochastic inflation. Inflation is a period of accelerated expansion of spacetime near the beginning of the universe [@Baumann:2009ds]. Large, but rare, perturbations from this period can later form primordial black holes, which are of great theoretical interest [@Green:2020jor]. These perturbations can be modelled using FPT processes [@Vennin:2015hra]. Directly simulating these rare events often requires supercomputers, while with importance sampling only a laptop is required.
 
 # State of Field
 

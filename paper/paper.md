@@ -42,6 +42,6 @@ To the authors knowledge, this is the first open-source program simulating FPT p
 
 # Acknowledgements
 
-For invaluable contributions to both developing and physical understanding, JJ would like to thank for his supervisors David Wands, Vincent Vennin, Kazuya Koyama and Hooshyar Assadullahi. This work was supported by the Science and Technology Facilities Council [grant numbers ST/S000550/1 and ST/W001225/1].
+For invaluable contributions to both developing and physical understanding, JJ would like to thank his supervisors David Wands, Vincent Vennin, Kazuya Koyama and Hooshyar Assadullahi. This work was supported by the Science and Technology Facilities Council [grant numbers ST/S000550/1 and ST/W001225/1].
 
 # References

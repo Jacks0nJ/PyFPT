@@ -10,6 +10,10 @@ tags:
 authors:
   - name: Joseph Jackson
     affiliation: 1
+  - name: Ian Harry
+    affiliation: 1
+  - name: Coleman Krawczyk
+    affiliation: 1
 affiliations:
  - name: Institute of Cosmology \& Gravitation, University of Portsmouth, Dennis Sciama Building, Burnaby Road, Portsmouth, PO1 3FX, United Kingdom
    index: 1
@@ -26,14 +30,18 @@ For efficiency, both [Cython](https://cython.org/) and multiprocessing is used.
 
 # Statement of need
 
-First-passage time problems, can appear for many random processes, including modeling financial ruin for insurance purposes or the mean time for nuclear collisions, to name just a few. Although the statistics of the FPTs can often be calculated analytically, the probability of rare events requires numerical simulations. This can be computationally very expensive, as millions of simulations are required just to produce a few of the events of interest. Therefore, importance sampling is used.
+First-passage time problems can appear for many random processes, including pricing options for finance or the mean time for nuclear collisions, to name just a few. Although the statistics of the FPTs can often be calculated analytically, the probability of rare events requires numerical simulations. This can be computationally very expensive, as millions of simulations are required just to produce a few of the events of interest. Therefore, importance sampling is used.
 
 
-While PyFPT is designed to solve general FPT problems resulting from Langevin processes, it was developed in the context of stochastic inflation. Inflation is a period of accelerated expansion of spacetime near the beginning of the universe [@Baumann:2009ds]. Large, but rare, perturbations from this period can later form primordial black holes, which are of great theoretical interest [@Green:2020jor]. These perturbations can be modeled using FPT processes [@Vennin:2015hra]. Directly simulating these rare events often requires supercomputers, while importance sampling greatly improves the numerical efficiency.
+While PyFPT is designed to solve general FPT problems resulting from Langevin processes, it was developed in the context of stochastic inflation. Inflation is a period of accelerated expansion of spacetime near the beginning of the universe [@Baumann:2009ds]. Large, but rare, perturbations from this period can later form primordial black holes, which are of great theoretical interest [@Green:2020jor]. These perturbations can be modelled using FPT processes [@Vennin:2015hra]. Directly simulating these rare events often requires supercomputers, while importance sampling greatly improves the numerical efficiency, meaning only a laptop is required.
+
+# State of Field
+
+To the authors knowledge, this is the first open-source program simulating FPT problems using importance sampling. While there many open-source codes to [solve stochastic differential equations](https://github.com/topics/stochastic-differential-equations), they are not specialised to realising rare FPT events in Langevin processes. Conversely, there are also codes which do solve FPT problems in stochastic inflation, but they are not open-source, see for example [@Figueroa:2021zah] and [@Mahbub:2022osb].
 
 
 # Acknowledgements
 
-For invaluable contributions to both developing and physical understanding, I would like to thank for my supervisors David Wands, Vincent Vennin, Kazuya Koyama and Hooshyar Assadullahi. For making the code into a package, I would also like to thank Coleman Krawczyk and Ian Harry. This work was supported by the Science and Technology Facilities Council [grant numbers ST/S000550/1 and ST/W001225/1].
+For invaluable contributions to both developing and physical understanding, JJ would like to thank for his supervisors David Wands, Vincent Vennin, Kazuya Koyama and Hooshyar Assadullahi. This work was supported by the Science and Technology Facilities Council [grant numbers ST/S000550/1 and ST/W001225/1].
 
 # References

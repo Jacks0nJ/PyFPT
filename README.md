@@ -186,6 +186,10 @@ We would like the following contributors to PyFPT, be it through physical unders
 * Coleman Krawczyk
 * Ian Harry
 
+#### Logo
+
+* Will Jackson
+
 #### Resources
 
 The following resoucres were instrumental in developing the project into a package usable by the community:

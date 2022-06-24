@@ -25,10 +25,10 @@ PyFPT is Python/Cython package to run first-passage time (FPT) simulations using
 
 This package will let you numerically investigate the tail of the probability density for first passage times for a general 1D Langevin equation.
 
-The tail of the probability density is investigated using the method of [importance sampling](https://arxiv.org/abs/nucl-th/9809075), where a bias increases the probability of large FPTs, resulting in a sample distribution, which are then weighted to reproduce the rare events of the target distribution. This allows very rare events (normally need supercomputers) to be simulate efficiently with just your laptop!
+The tail of the probability density is investigated using the method of [importance sampling](https://arxiv.org/abs/nucl-th/9809075), where a bias increases the probability of large FPTs, resulting in a sample distribution, which are then weighted to reproduce the rare events of the target distribution. This allows very rare events (normally needing supercomputers) to be simulate efficiently with just your laptop!
 
 
-Note, it was originally developed to find the number of e-folds for a potential in slow-roll stochastic inflation inflation. As such, analytical functionality is also included for this particular problem in the [analytics module](https://pyfpt.readthedocs.io/en/latest/analytics.html).
+Note, it was originally developed to find the local number of e-folds in slow-roll stochastic inflation. As such, analytical functionality is also included for this particular problem in the [analytics module](https://pyfpt.readthedocs.io/en/latest/analytics.html).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -42,7 +42,7 @@ You can find the [latest documentation](https://pyfpt.readthedocs.io/en/latest/i
 As PyFPT uses [Cython](https://cython.readthedocs.io/en/latest/src/quickstart/install.html) to optimise the stochastic simulations, a C-compilier is required for installation. Therefore, PyFPT does not currently run (future releases hope to address this issue) on Windows directly. Windows uses can either install PyFPT on a virtual machine or use a cloud-based service such as [SciServer](https://www.sciserver.org/). 
 
 
-Mac and Linux user should be able to directly install PyFPT, as these operating systems have a C-compiler.
+Mac and Linux user should be able to directly install PyFPT, as these operating systems have a C-compiler. Do feel free to raise an issue or contact us if you have any issues.
 
 ### Packages
 The following packages are required to run PyFPT

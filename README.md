@@ -28,7 +28,7 @@ This package will let you numerically investigate the tail of the probability de
 The tail of the probability density is investigated using the method of [importance sampling](https://arxiv.org/abs/nucl-th/9809075), where a bias increases the probability of large FPTs, resulting in a sample distribution, which are then weighted to reproduce the rare events of the target distribution. This allows very rare events (normally need supercomputers) to be simulate efficiently with just your laptop!
 
 
-Note, it was originally developed to find number of e-folds for a potential in slow-roll stochastic inflation inflation. As such, analytical functionality is also included for this particular problem in the [analytics module](https://pyfpt.readthedocs.io/en/latest/analytics.html).
+Note, it was originally developed to find the number of e-folds for a potential in slow-roll stochastic inflation inflation. As such, analytical functionality is also included for this particular problem in the [analytics module](https://pyfpt.readthedocs.io/en/latest/analytics.html).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

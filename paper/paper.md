@@ -24,7 +24,7 @@ bibliography: paper.bib
 
 # Summary
 
-This package uses importance sampling to estimate the probability of rare first-passage time events, or FPT for short, which is the time taken to cross a threshold during a one-dimensional Langevin process [@Redner2001qk]. This is done by introducing a bias to over sample the events of interest, then recording the relative probability (weight) of this path occurring without the bias, so the probability of the original process is recovered [@Mazonka1998]. The required data analysis to reconstruct the original probability density function for binned FPT values is included. This package runs simulations of thousands of Langevin processes, such that the probability density of the FPTs can estimated from the peak of the distribution all the way down into the far tail. Even probabilities as rare as $10^{-40}$ can simulated.
+This package uses importance sampling to estimate the probability of rare first-passage time events, or FPT for short, which is the time taken to cross a threshold during a Langevin process [@Redner2001qk]. This is done by introducing a bias to over sample the events of interest, then recording the relative probability (weight) of this path occurring without the bias, so the probability of the original process is recovered [@Mazonka1998]. The required data analysis to reconstruct the original probability density function for binned FPT values is included. This package runs simulations of thousands of Langevin processes, such that the probability density of the FPTs can estimated from the peak of the distribution all the way down into the far tail. Even probabilities as rare as $10^{-40}$ can simulated.
 
 For efficiency, both [Cython](https://cython.org/) and multiprocessing are used.
 

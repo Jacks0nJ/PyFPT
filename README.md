@@ -42,7 +42,7 @@ You can find the [latest documentation](https://pyfpt.readthedocs.io/en/latest/i
 As PyFPT uses [Cython](https://cython.readthedocs.io/en/latest/src/quickstart/install.html) to optimise the stochastic simulations, a C-compilier is required for installation. Therefore, PyFPT does not currently run (future releases hope to address this issue) on Windows directly. Windows uses can either install PyFPT on a virtual machine or use a cloud-based service such as [SciServer](https://www.sciserver.org/). 
 
 
-Mac and Linux user should be able to directly install PyFPT, as these operating systems have a C-compiler. Do feel free to raise an issue or contact us if you have any issues.
+Mac and Linux user should be able to directly install PyFPT, as these operating systems have a C-compiler. Do feel free to raise an issue or contact us if you have any problems.
 
 ### Packages
 The following packages are required to run PyFPT

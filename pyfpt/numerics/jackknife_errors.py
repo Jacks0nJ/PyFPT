@@ -48,6 +48,19 @@ def jackknife_errors(data_input, weights_input, bins, num_sub_samps):
 
     height_array = np.zeros((num_bins, num_sub_samps))  # Storage
 
+    # Need to check that the data can be evenly divided
+    if len(data)/num_sub_samps == 0:
+        pass
+
+    else:
+        # If the data canot be evenly divided, must truncate it to work. This
+        # will remove data randomly
+        overspill = len(data) % num_sub_samps
+        data = data[:-overspill]
+        weights = weights[:-overspill]
+        print("Data which could not be evenly divided " +
+              "into the subsamples given. Randomly truncating to fit.")
+
     # Next organise into subsamples
     data =\
         np.reshape(data, (int(data.shape[0]/num_sub_samps), num_sub_samps))

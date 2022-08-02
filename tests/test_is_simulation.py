@@ -47,7 +47,7 @@ class TestIS_Simulation(unittest.TestCase):
 
         bin_centres, heights, errors =\
             is_simulation(drift_func, diffusion_func, phi_i, phi_end,
-                          num_runs, bias_amp, 0.001)
+                          num_runs, bias_amp, 0.001, display=False)
         bin_centres = np.array(bin_centres)
         heights = np.array(heights)
         errors = np.array(errors)

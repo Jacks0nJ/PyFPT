@@ -13,8 +13,8 @@ They are also available to download as interactive Jupyter Notebooks in the 'Use
    :maxdepth: 3
    :caption: Contents:
    
-   Installing and First Simulation
-   Understanding the Data
-   Diffusion Domination
+   User_guide1
+   User_guide2
+   User_guide3
 
    

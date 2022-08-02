@@ -19,7 +19,8 @@ from .lognormality_check import lognormality_check
 
 
 def data_points_pdf(data, weights, estimator,
-                    bins=50, min_bin_size=400, num_sub_samples=20):
+                    bins=50, min_bin_size=400, num_sub_samples=20,
+                    display=True):
     """Returns the (truncated) histogram bin centres, heights and errors, using
     the provided estimator method.
 
@@ -48,6 +49,11 @@ def data_points_pdf(data, weights, estimator,
         The number of subsamples used in jackknife estimation of the errors
         used for the ``'naive'`` estimator. Defaults to 20 when ``estimator``
         is ``'naive'``.
+    display : bool, optional
+        If True, p-value plots of both the real data, and the theoretical
+        expectation if the underlying distribution is truly lognormal, are
+        displayed using ``fpt.numerics.lognormality_check`` if a p-value is
+        below the specified threshold.
     Returns
     -------
     bin_centres : numpy.ndarray
@@ -153,7 +159,8 @@ def data_points_pdf(data, weights, estimator,
 
         # Checking p-values if lognormal was used.
         # Need to provide only weights of the filled bins
-        _ = lognormality_check(bin_centres, weights_in_bins[:, filled_bins])
+        _ = lognormality_check(bin_centres, weights_in_bins[:, filled_bins],
+                               display=display)
 
     else:
         raise ValueError('Not valid estimator method')

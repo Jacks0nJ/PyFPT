@@ -18,6 +18,7 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../../pyfpt'))
+sys.path.insert(0, os.path.abspath('../../User guides'))
 
 
 # -- Project information -----------------------------------------------------
@@ -27,7 +28,7 @@ copyright = '2022, Joe Jackson'
 author = 'Joe Jackson'
 
 # The full version, including alpha/beta/rc tags
-release = '0.7s'
+release = '1.0.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -35,7 +36,7 @@ release = '0.7s'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'nbsphinx']
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'nbsphinx', 'nbsphinx_link']
 napoleon_google_docstring = False
 napoleon_use_param = False
 napoleon_use_ivar = True

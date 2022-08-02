@@ -23,7 +23,7 @@ from .importance_sampling_cython import\
 def is_simulation(drift, diffusion, x_in, x_end,
                   num_runs, bias, time_step, bins=50, min_bin_size=400,
                   num_sub_samples=20, estimator='lognormal',
-                  save_data=False, t_in=0., t_f=100, x_r=None):
+                  save_data=False, t_in=0., t_f=100, x_r=None, display=True):
     """Executes the simulation runs, then returns the histogram bin centres,
     heights and errors.
 
@@ -85,6 +85,11 @@ def is_simulation(drift, diffusion, x_in, x_end,
         The value of the reflective boundary. Must be compatible with the x_in
         and x_end chosen. Defaults to unreachable value, effectively no
         boundary.
+    display : bool, optional
+        If True, p-value plots of both the real data, and the theoretical
+        expectation if the underlying distribution is truly lognormal, are
+        displayed using ``fpt.numerics.lognormality_check`` if a p-value is
+        below the specified threshold.
     Returns
     -------
     bin_centres : list
@@ -228,6 +233,6 @@ def is_simulation(drift, diffusion, x_in, x_end,
     bin_centres, heights, errors, num_runs_used, bin_edges_untruncated =\
         data_points_pdf(fpt_values, w_values, estimator, bins=bins,
                         min_bin_size=min_bin_size,
-                        num_sub_samples=num_sub_samples)
+                        num_sub_samples=num_sub_samples, display=display)
     # Return data as lists
     return bin_centres.tolist(), heights.tolist(), errors.tolist()

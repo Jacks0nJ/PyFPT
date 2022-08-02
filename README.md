@@ -21,11 +21,11 @@
   <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/PyFPT_logo.png?raw=true" width="500"/>
 </p>
 
-PyFPT is Python/Cython package to run first-passage time (FPT) simulations using importance sampling.
+PyFPT is Python/Cython package to run first-passage time (FPT) simulations using importance sampling. An FPT problem is about finding the time taken to cross some threshold during a stochastic process.
 
 This package will let you numerically investigate the tail of the probability density for first passage times for a general 1D Langevin equation.
 
-The tail of the probability density is investigated using the method of [importance sampling](https://arxiv.org/abs/nucl-th/9809075), where a bias increases the probability of large FPTs, resulting in a sample distribution, which are then weighted to reproduce the rare events of the target distribution. This allows very rare events (normally needing supercomputers) to be simulate efficiently with just your laptop!
+The tail of the probability density is investigated using the method of [importance sampling](https://arxiv.org/abs/nucl-th/9809075), where a bias increases the probability of large FPTs, resulting in a sample distribution, which are then weighted to reproduce the rare events of the target distribution. This allows very rare events (normally needing supercomputers) to be simulated efficiently with just your laptop!
 
 
 Note, it was originally developed to find the local number of e-folds in slow-roll stochastic inflation. As such, analytical functionality is also included for this particular problem in the [analytics module](https://pyfpt.readthedocs.io/en/latest/analytics.html).
@@ -109,7 +109,16 @@ See the [user guides](https://pyfpt.readthedocs.io/en/latest/getting_started.htm
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+<!-- TESTING -->
+## Unit Testing
+PyFPT uses the [unittest module](https://docs.python.org/3/library/unittest.html) to maintain the code. Almost all functions have some form of basic unit testing, which hopefully will be further developed as the project continues. The tests can all be found in the [tests](https://github.com/Jacks0nJ/PyFPT/tree/main/tests) folder.
 
+If unittest is installed, then the tests can be run locally using 
+
+```sh
+pytest -v
+```
+This tests the functions which have been installed using pip. The easiest way to run the test suite on any modified functions is to upload to your branch to the repo, as (the uploaded) tests run every commit on the code uploaded.
 
 <!-- ROADMAP -->
 ## Roadmap

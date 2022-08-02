@@ -49,7 +49,7 @@ def jackknife_errors(data_input, weights_input, bins, num_sub_samps):
     height_array = np.zeros((num_bins, num_sub_samps))  # Storage
 
     # Need to check that the data can be evenly divided
-    if len(data)/num_sub_samps == 0:
+    if len(data) % num_sub_samps == 0:
         pass
 
     else:

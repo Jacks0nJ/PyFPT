@@ -10,7 +10,9 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+[![PyPI version](https://badge.fury.io/py/pyfpt.svg)](http://badge.fury.io/py/pyfpt)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/Jacks0nJ/PyFPT/blob/main/LICENSE)
+![example workflow](https://github.com/Jacks0nJ/PyFPT/actions/workflows/python-app.yml/badge.svg)
 
 
 
@@ -119,6 +121,8 @@ If unittest is installed, then the tests can be run locally using
 pytest -v
 ```
 This tests the functions which have been installed using pip. The easiest way to run the test suite on any modified functions is to upload to your branch to the repo, as (the uploaded) tests run every commit on the code uploaded.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ROADMAP -->
 ## Roadmap

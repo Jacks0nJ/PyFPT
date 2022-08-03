@@ -1,6 +1,7 @@
 <div id="top"></div>
 
-
+<!-- Pytest Coverage Comment:Begin -->
+<!-- Pytest Coverage Comment:End -->
 
 <!-- PROJECT SHIELDS -->
 <!--

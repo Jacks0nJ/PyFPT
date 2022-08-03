@@ -1,9 +1,5 @@
 <div id="top"></div>
 
-<!-- Pytest Coverage Comment:Begin -->
-\n
-<!-- Pytest Coverage Comment:End -->
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.

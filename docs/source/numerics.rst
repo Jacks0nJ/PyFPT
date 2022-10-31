@@ -17,6 +17,12 @@ The simulations are run using :ref:`Importance Sampling Simulation<is_simulation
 
 .. automodule:: numerics.data_points_pdf
     :members:
+
+----
+
+
+.. automodule:: numerics.re_processing
+    :members:
     
 ----
 

@@ -137,6 +137,11 @@ See the [open issues](https://github.com/Jacks0nJ/PyFPT/issues) for a full list 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+<!-- DEVELOPMENT BRANCHES -->
+## Development branches
+As different contributors continue to development the code, they will do so in several different branches. Therefore, it cannot be guaranteed that any branch, other than the [main](https://github.com/Jacks0nJ/PyFPT/tree/main), will be fully functional at any one time. The main branch will be the correct release of the code available on [PyPI](https://pypi.org/project/PyFPT/) and what you will install using pip.
+
+
 
 <!-- CONTRIBUTING -->
 ## Contributing

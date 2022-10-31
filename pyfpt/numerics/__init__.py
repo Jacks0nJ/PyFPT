@@ -1,5 +1,6 @@
 # flake8: noqa
 from .data_points_pdf import data_points_pdf
+from .re_processing import re_processing
 from .histogram_normalisation import\
     histogram_normalisation
 from .data_in_histogram_bins import data_in_histogram_bins

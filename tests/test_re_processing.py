@@ -23,6 +23,9 @@ class TestReProcessing(unittest.TestCase):
         # Using PyFPT's data analysis
         bin_centres_naive, heights_naive, _ =\
             re_processing(data, bins=num_bins, estimator='naive')
+
+        bin_centres_naive = np.array(bin_centres_naive)
+        heights_naive = np.array(heights_naive)
         # Only check filled bins, which can be determined by comparing the bin
         # centre values. Checking if the truncation is correct is another test
         # script.
@@ -65,6 +68,8 @@ class TestReProcessing(unittest.TestCase):
         bin_centres_naive, heights_naive, _ =\
             re_processing(data, weights=weights, estimator='naive',
                           bins=num_bins)
+        bin_centres_naive = np.array(bin_centres_naive)
+        heights_naive = np.array(heights_naive)
         # Only check filled bins, which can be determined by comparing the bin
         # centre values. Checking if the truncation is correct is another test
         # script.
@@ -86,6 +91,8 @@ class TestReProcessing(unittest.TestCase):
         bin_centres_lognormal, heights_lognormal, _ =\
             re_processing(data, weights=weights, estimator='lognormal',
                           bins=num_bins)
+        bin_centres_lognormal = np.array(bin_centres_naive)
+        heights_lognormal = np.array(heights_naive)
         # Only check filled bins, which can be determined by comparing the bin
         # centre values. Checking if the truncation is correct is another test
         # script.

@@ -90,4 +90,4 @@ def re_processing(data, weights=None, bins=50, min_bin_size=400,
                         min_bin_size=min_bin_size,
                         num_sub_samples=num_sub_samples, display=display)
     # Return data as lists
-    return bin_centres, heights, errors
+    return bin_centres.tolist(), heights.tolist(), errors.tolist()

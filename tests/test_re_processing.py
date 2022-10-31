@@ -91,8 +91,8 @@ class TestReProcessing(unittest.TestCase):
         bin_centres_lognormal, heights_lognormal, _ =\
             re_processing(data, weights=weights, estimator='lognormal',
                           bins=num_bins)
-        bin_centres_lognormal = np.array(bin_centres_naive)
-        heights_lognormal = np.array(heights_naive)
+        bin_centres_lognormal = np.array(bin_centres_lognormal)
+        heights_lognormal = np.array(heights_lognormal)
         # Only check filled bins, which can be determined by comparing the bin
         # centre values. Checking if the truncation is correct is another test
         # script.

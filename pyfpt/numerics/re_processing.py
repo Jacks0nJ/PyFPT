@@ -83,10 +83,12 @@ def re_processing(data, weights=None, bins=50, min_bin_size=400,
         data =\
             histogram_data_truncation(data, t_f,
                                       num_sub_samples=num_sub_samples)
+        # Assuming trivial weights if none provided
+        weights = np.zeros(len(data))+1
 
     # Now analysisng the data to creating the histogram/PDF data
     bin_centres, heights, errors, num_runs_used, bin_edges_untruncated =\
-        data_points_pdf(data, weights=weights, estimator=estimator, bins=bins,
+        data_points_pdf(data, weights, estimator, bins=bins,
                         min_bin_size=min_bin_size,
                         num_sub_samples=num_sub_samples, display=display)
     # Return data as lists

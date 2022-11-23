@@ -8,7 +8,7 @@ tags:
   - cosmology
   - inflation
 authors:
-  - name: Joseph Jackson
+  - name: Joseph H. P. Jackson
     affiliation: 1
   - name: Ian Harry
     affiliation: 1
@@ -24,7 +24,7 @@ bibliography: paper.bib
 
 # Summary
 
-This package uses importance sampling to estimate the probability of rare first-passage time events, or FPT for short. First-passage time problems can appear for many random processes, including pricing options for finance or the mean time for nuclear collisions, to name just a few. The FPT is the time taken to cross a threshold during a random process [@Redner2001qk]. Although the statistics of FPTs can often be calculated analytically, the probability of very rare events requires numerical simulations. This can be computationally very expensive, as millions of simulations are required just to produce a few of the events of interest. Therefore, importance sampling is used. This is done by introducing a bias to oversample the events of interest, then recording the relative probability (weight) of this path occurring without the bias, so the probability of the original process is recovered [@Mazonka1998].
+This package uses importance sampling to estimate the probability of rare first-passage time events, or FPT for short. The FPT is the time taken to cross a threshold during a random process [@Redner2001qk] and can appear for many random processes, including pricing options for finance or the mean time for nuclear collisions, to name just a few. Although the statistics of FPTs can often be calculated analytically, the probability of very rare events in general requires numerical simulations. This can be computationally very expensive, as millions of simulations are required just to produce a few of the events of interest. Therefore, importance sampling is used. This is done by introducing a bias to oversample the events of interest, then recording the relative probability (weight) of this path occurring without the bias, so the probability of the original process is recovered [@Mazonka1998].
 
 The required data analysis to reconstruct the original probability density function for binned FPT values is included. This package runs simulations of thousands of Langevin processes, such that the probability density of the FPTs can be estimated from the peak of the distribution all the way down into the far tail. Even probabilities as rare as $10^{-40}$ can be simulated.
 
@@ -41,6 +41,6 @@ To the authors' knowledge, this is the first open-source program simulating FPT 
 
 # Acknowledgements
 
-For invaluable contributions to both developing and physical understanding, JJ would like to thank his supervisors David Wands, Vincent Vennin, Kazuya Koyama and Hooshyar Assadullahi. This work was supported by the Science and Technology Facilities Council [grant numbers ST/S000550/1 and ST/W001225/1].
+For invaluable contributions to both developing and physical understanding, JJ would like to thank his supervisors David Wands, Vincent Vennin, Kazuya Koyama and Hooshyar Assadullahi. This work was supported by the Science and Technology Facilities Council [grant numbers ST/T506345/1, ST/S000550/1 and ST/W001225/1].
 
 # References

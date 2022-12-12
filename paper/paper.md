@@ -10,10 +10,13 @@ tags:
 authors:
   - name: Joseph H. P. Jackson
     affiliation: 1
+    orcid: 0000-0002-1564-1607
   - name: Ian Harry
     affiliation: 1
+    orcid: 0000-0002-5304-9372
   - name: Coleman Krawczyk
     affiliation: 1
+    orcid: 0000-0001-9233-2341
 affiliations:
  - name: Institute of Cosmology \& Gravitation, University of Portsmouth, Dennis Sciama Building, Burnaby Road, Portsmouth, PO1 3FX, United Kingdom
    index: 1

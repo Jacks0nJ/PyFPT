@@ -11,6 +11,7 @@
 [![PyPI version](https://badge.fury.io/py/pyfpt.svg)](http://badge.fury.io/py/pyfpt)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/Jacks0nJ/PyFPT/blob/main/LICENSE)
 ![example workflow](https://github.com/Jacks0nJ/PyFPT/actions/workflows/python-app.yml/badge.svg)
+[![DOI](https://zenodo.org/badge/464403583.svg)](https://zenodo.org/badge/latestdoi/464403583)
 
 
 

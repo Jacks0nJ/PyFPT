@@ -39,7 +39,7 @@ While PyFPT is designed to solve general one-dimensional FPT problems resulting 
 
 # State of Field
 
-To the authors' knowledge, this is the first open-source program simulating FPT problems using importance sampling. While there are many open-source codes to [solve stochastic differential equations](https://github.com/topics/stochastic-differential-equations), they are not specialised to realising rare FPT events in Langevin processes. Conversely, there are also codes which do solve FPT problems in stochastic inflation, but they are not open-source, see for example [@Figueroa:2021zah] and [@Mahbub:2022osb].
+To the authors' knowledge, this is the first open-source program simulating FPT problems using importance sampling. While there are many open-source codes to [solve stochastic differential equations](https://github.com/topics/stochastic-differential-equations), they are not specialised to realising rare FPT events in Langevin processes. Conversely, there are also codes which do solve FPT problems in stochastic inflation, but they are not open-source, see for example @Figueroa:2021zah and @Mahbub:2022osb.
 
 
 # Acknowledgements

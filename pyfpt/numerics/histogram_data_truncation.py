@@ -77,7 +77,7 @@ def histogram_data_truncation(data, threshold, weights=0,
                 rounded_num_above_threshold = rounded*num_sub_samples
                 truncated_data = data[:-rounded_num_above_threshold]
                 truncated_weights = weights[:-rounded_num_above_threshold]
-                return data[:-rounded_num_above_threshold],\
+                return data[:-rounded_num_above_threshold], \
                     weights[:-rounded_num_above_threshold]
             else:
                 # If none above the thresold, retuurn all of the data.

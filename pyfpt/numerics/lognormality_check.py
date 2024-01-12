@@ -77,10 +77,9 @@ def lognormality_check(bin_centres, weights_in_bins, display=True):
             plt.yscale('log')
             plt.title('Theoretical: p-values with bin centres')
             plt.legend(fontsize=22)
-            plt.xlabel(r'$\mathcal{N}$', fontsize=22)
-            plt.ylabel('p-values', fontsize=22)
+            plt.xlabel(r'$\mathcal{N}$', fontsize=20)
+            plt.ylabel('p-values', fontsize=20)
             plt.show()
-            plt.clf()
         else:
             print('Possibly not lognormal distribution. Smallest p-value is:')
             print(np.min(p_values))

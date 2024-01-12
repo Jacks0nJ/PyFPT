@@ -8,6 +8,23 @@ class TestJackknifeErrors(unittest.TestCase):
     def test_jackknife_errors(self):
         num_bins = 50
         num_sub_samples = 20
+        # First, let's test unweighted data
+        # Need to draw the same random numbers each time, for consistent tests
+        np.random.seed(0)
+        # Look at large sample first, to use the same bins as small sample
+        dist_large_sample = np.random.normal(0, 1, size=100000)
+        heights_large_sample, bins_large_sample =\
+            np.histogram(dist_large_sample, bins=num_bins, density=True)
+        errors_large_sample =\
+            jackknife_errors(dist_large_sample, bins_large_sample,
+                             num_sub_samples)
+        # The well sampled bins should have errors less than a percent of the
+        # height of the bar. Let's just look at the bins with the largest
+        # number of samples
+        error_fraction_large_sample =\
+            errors_large_sample[20:30]/heights_large_sample[20:30]
+        self.assertTrue(all(error_fraction_large_sample < 0.1))
+
         # Comparing correlated data, seeing if the error size is reasonable
         # and the error approximately scales with sqrt(#samples)
 
@@ -21,8 +38,9 @@ class TestJackknifeErrors(unittest.TestCase):
             np.histogram(dist_large_sample[:, 0], bins=num_bins,
                          weights=dist_large_sample[:, 1], density=True)
         errors_large_sample =\
-            jackknife_errors(dist_large_sample[:, 0], dist_large_sample[:, 1],
-                             bins_large_sample, num_sub_samples)
+            jackknife_errors(dist_large_sample[:, 0], bins_large_sample,
+                             num_sub_samples,
+                             weights_input=dist_large_sample[:, 1])
         # The well sampled bins should have errors less than a percent of the
         # height of the bar. Let's just look at the bins with the largest
         # number of samples
@@ -39,8 +57,9 @@ class TestJackknifeErrors(unittest.TestCase):
             np.histogram(dist_small_sample[:, 0], bins=num_bins,
                          weights=dist_small_sample[:, 1], density=True)
         errors_small_sample =\
-            jackknife_errors(dist_small_sample[:, 0], dist_small_sample[:, 1],
-                             bins_large_sample, num_sub_samples)
+            jackknife_errors(dist_small_sample[:, 0], bins_large_sample,
+                             num_sub_samples,
+                             weights_input=dist_small_sample[:, 1])
         # The well sampled bins should have errors less than a percent of the
         # height of the bar. Let's just look at the bins with the largest
         # number of samples

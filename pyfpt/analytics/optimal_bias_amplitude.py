@@ -13,7 +13,7 @@ from scipy.optimize import root_scalar
 
 
 def optimal_bias_amplitude(N_target, phi_in, phi_end, potential,
-                           potential_diff, bias_function=None,
+                           potential_dif, bias_function=None,
                            planck_mass=1):
     """Returns bias amplitude for the provided target number of e-folds
     ``N_target`` and bias.
@@ -29,6 +29,11 @@ def optimal_bias_amplitude(N_target, phi_in, phi_end, potential,
         simulated.
     phi_end : float
         The end scalar field value.
+    potential : function
+        The potential of the slow-roll inflation simulated.
+    potential_dif : function
+        The first derivative of the potential of the slow-roll inflation
+        simulated.
     bias_function : function, optional
         The functional form of the bias used. The default is to use the
         diffusion amplitude.
@@ -48,7 +53,7 @@ def optimal_bias_amplitude(N_target, phi_in, phi_end, potential,
             def integrand(phi):
                 H_squared = potential(phi)/(3*planck_mass**2)
                 H = H_squared**0.5
-                classical_drift = potential_diff(phi)/(3*H_squared)
+                classical_drift = potential_dif(phi)/(3*H_squared)
                 return (classical_drift-A*H/(2*pi))**-1
 
             integral, _ = quad(integrand, phi_end, phi_in)
@@ -58,7 +63,7 @@ def optimal_bias_amplitude(N_target, phi_in, phi_end, potential,
             def integrand(phi):
                 H_squared = potential(phi)/(3*planck_mass**2)
                 H = H_squared**0.5
-                classical_drift = potential_diff(phi)/(3*H_squared)
+                classical_drift = potential_dif(phi)/(3*H_squared)
                 return -H/(2*pi)*(classical_drift-A*H/(2*pi))**-2
 
             integral, _ = quad(integrand, phi_end, phi_in)
@@ -67,7 +72,7 @@ def optimal_bias_amplitude(N_target, phi_in, phi_end, potential,
     elif callable(bias_function):
         def efolds(A):
             def integrand(phi):
-                classical_drift = (planck_mass**2)*potential_diff(phi) /\
+                classical_drift = (planck_mass**2)*potential_dif(phi) /\
                     potential(phi)
                 return (classical_drift-A*bias_function(phi))**-1
 
@@ -76,7 +81,7 @@ def optimal_bias_amplitude(N_target, phi_in, phi_end, potential,
 
         def efolds_derivative(A):
             def integrand(phi):
-                classical_drift = (planck_mass**2)*potential_diff(phi) /\
+                classical_drift = (planck_mass**2)*potential_dif(phi) /\
                     potential(phi)
                 return -bias_function(phi) *\
                     (classical_drift-A*bias_function(phi))**-2

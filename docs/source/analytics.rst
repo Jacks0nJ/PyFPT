@@ -7,7 +7,7 @@ This page gives an overview of the different analytical functions available in P
 
 Many of the calculations are based on calculating the central moments of the FPTs using methods of `Vennin--Starobinsky 2015`_ in the low diffusion limit. The central moments not only give the mean, variance, skewness and kurtosis of the FPTs, but can also be used to add corrections to the Gaussian approximation for the probability density.
 
-For diffusion dominated quadratic inflation, there are also :ref:`analytical expectations<quadratic_inflation_label>` for the probability density. Quadratic inflation is currently the only inflationary model included.
+For diffusion dominated quadratic inflation, there are also analytical expectations for the probability density for the :ref:`single<quadratic_inflation_label>` and :ref:`multi-field<_quadratic_inflation_multi_filed_label>` cases. Quadratic inflation is currently the only inflationary model included.
 
 
 .. _Vennin--Starobinsky 2015: https://arxiv.org/abs/1506.04732
@@ -98,7 +98,28 @@ For diffusion dominated quadratic inflation, there are also :ref:`analytical exp
 
 ----
 
+.. _quadratic_inflation_multi_filed_label:
+.. automodule:: analytics.quadratic_inflation_multi_field_pdf
+    :members:
+
+----
+
 .. automodule:: analytics.optimal_bias_amplitude
+    :members:
+
+----
+
+.. automodule:: analytics.usr_diffusion_dom_pdf
+    :members:
+
+----
+
+.. automodule:: analytics.usr_mean_efolds_drift_dom
+    :members: 
+
+----
+
+.. automodule:: analytics.usr_mean_efolds_diffusion_dom
     :members: 
 
 

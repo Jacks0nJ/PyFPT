@@ -25,7 +25,7 @@ def quadratic_inflation_large_mass_pdf(efolds, m, phi_in, phi_end=2**0.5):
 
     Parameters
     ----------
-    efolds : list
+    efolds : list or np.ndarray
         The first-passage times where the PDF is to be calculated.
     m : float
         The mass of quadratic inflation potential.
@@ -34,10 +34,13 @@ def quadratic_inflation_large_mass_pdf(efolds, m, phi_in, phi_end=2**0.5):
     phi_end : float, optional
         The end scalar field value. Defaults to a value such that the first
         slow-roll parameter is 1.
+    t0_max: int, optional
+        The maximum value for dummy variable t used in the numerical
+        integration, as a proxy for infinity.
 
     Returns
     -------
-    pdf : list
+    pdf : np.ndarray
         The probability density function at the provided e-fold values.
 
     """

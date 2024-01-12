@@ -2,7 +2,6 @@ import unittest
 import numpy as np
 
 from pyfpt.numerics import re_processing
-from scipy.interpolate import interp1d
 
 
 class TestReProcessing(unittest.TestCase):
@@ -24,21 +23,19 @@ class TestReProcessing(unittest.TestCase):
         # Using PyFPT's data analysis
         bin_centres_naive, heights_naive, _ =\
             re_processing(data, bins=num_bins, estimator='naive')
-
-        bin_centres_naive = np.array(bin_centres_naive)
-        heights_naive = np.array(heights_naive)
-        # As the bin centres might be different, need to use an interpolation
-        # to compare
-        interpolatent = interp1d(bin_centres_expected, heights_expected)
-        # Need to have the unfilled values not be 0
-        diff_naive = np.zeros(len(heights_naive))+1
-        for i in range(len(heights_naive)):
-            expected = float(interpolatent(bin_centres_naive[i]))
-            if expected < 10**-5:
-                diff_naive[i] = np.abs((expected-heights_naive[i]))
-            else:
-                diff_naive[i] = np.abs((expected-heights_naive[i])/expected)
-        self.assertTrue(all(diff_naive < 0.1))
+        # Only check filled bins, which can be determined by comparing the bin
+        # centre values. Checking if the truncation is correct is another test
+        # script.
+        diff_naive = np.zeros(len(heights_naive))
+        for i, bin_centre in enumerate(bin_centres_naive):
+            # The smallest differance should correspond to the same bin
+            bin_diff = np.abs((bin_centres_expected-bin_centre)/bin_centre)
+            j = np.argmin(bin_diff)
+            diff_naive[i] =\
+                np.abs((heights_naive[i]-heights_expected[j]) /
+                       heights_expected[j])
+        # Now check that differance is very small, as it should be identical
+        self.assertTrue(all(diff_naive < 0.00001))
 
         # Testing this function y using mock data, where although data is
         # weighted, the outcome should be the same as if all weights were 1.
@@ -68,22 +65,20 @@ class TestReProcessing(unittest.TestCase):
         bin_centres_naive, heights_naive, _ =\
             re_processing(data, weights=weights, estimator='naive',
                           bins=num_bins)
-        bin_centres_naive = np.array(bin_centres_naive)
-        heights_naive = np.array(heights_naive)
-        # As the bin centres might be different, need to use an interpolation
-        # to compare
-        interpolatent = interp1d(bin_centres_expected, heights_expected)
-        # Need to have the unfilled values not be 0
-        diff_naive = np.zeros(len(heights_naive))+1
-        for i in range(len(heights_naive)):
-            expected = float(interpolatent(bin_centres_naive[i]))
-            if expected < 10**-5:
-                diff_naive[i] = np.abs((expected-heights_naive[i]))
-            else:
-                diff_naive[i] = np.abs((expected-heights_naive[i])/expected)
+        # Only check filled bins, which can be determined by comparing the bin
+        # centre values. Checking if the truncation is correct is another test
+        # script.
+        diff_naive = np.zeros(len(heights_naive))
+        for i, bin_centre in enumerate(bin_centres_naive):
+            # The smallest differance should correspond to the same bin
+            bin_diff = np.abs((bin_centres_expected-bin_centre)/bin_centre)
+            j = np.argmin(bin_diff)
+            diff_naive[i] =\
+                np.abs((heights_naive[i]-heights_expected[j]) /
+                       heights_expected[j])
         # Now check that differance is small. A small differance is expected
         # as comparing weighted data against unweighted expectation.
-        self.assertTrue(all(diff_naive < 0.1))
+        self.assertTrue(all(diff_naive < 0.05))
 
         # Now let's do the same for the lognormal distribution
 
@@ -91,18 +86,19 @@ class TestReProcessing(unittest.TestCase):
         bin_centres_lognormal, heights_lognormal, _ =\
             re_processing(data, weights=weights, estimator='lognormal',
                           bins=num_bins)
-        bin_centres_lognormal = np.array(bin_centres_lognormal)
-        heights_lognormal = np.array(heights_lognormal)
-
-        diff_lognormal = np.zeros(len(heights_lognormal))+1
-        for i in range(len(heights_lognormal)):
-            expected = float(interpolatent(bin_centres_lognormal[i]))
-            if expected < 10**-5:
-                diff_lognormal[i] = np.abs((expected-heights_lognormal[i]))
-            else:
-                diff_lognormal[i] =\
-                    np.abs((expected-heights_lognormal[i])/expected)
-        self.assertTrue(all(diff_lognormal < 0.1))
+        # Only check filled bins, which can be determined by comparing the bin
+        # centre values. Checking if the truncation is correct is another test
+        # script.
+        diff_lognormal = np.zeros(len(heights_lognormal))
+        for i, bin_centre in enumerate(bin_centres_lognormal):
+            # The smallest differance should correspond to the same bin
+            bin_diff = np.abs((bin_centres_expected-bin_centre)/bin_centre)
+            j = np.argmin(bin_diff)
+            diff_lognormal[i] =\
+                np.abs((heights_lognormal[i]-heights_expected[j]) /
+                       heights_expected[j])
+        # Now check that differance is small
+        self.assertTrue(all(diff_lognormal < 0.05))
 
 
 # We need the following to execute the tests when we run the file in python

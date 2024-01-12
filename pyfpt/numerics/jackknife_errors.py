@@ -16,7 +16,7 @@ from .histogram_normalisation import histogram_normalisation
 from .data_in_histogram_bins import data_in_histogram_bins
 
 
-def jackknife_errors(data_input, weights_input, bins, num_sub_samps):
+def jackknife_errors(data_input, bin_edges, num_sub_samps, weights_input=None):
     """Returns the jackknife resampling errors for the estimation of histogram
     bar height, for the provided weighted data and bin edges.
 
@@ -24,16 +24,16 @@ def jackknife_errors(data_input, weights_input, bins, num_sub_samps):
     ----------
     data : numpy.ndarray
         Input first-passage time data.
-    weights: numpy.ndarray
-        Associated weights to the first-passage time data. Must be a one-to-one
-        correspondence between them.
-    bins : sequence
+    bin_edges : sequence
         Defines the bin edges of the histogram, including the left edge of the
         first bin and the right edge of the last bin. The widths can vary.
     num_sub_samples : int
         The number of subsamples used in jackknife estimation of the errors
         used for the ``'naive'`` estimator. Must divide into number of data
         points with no remainder.
+    weights_input: numpy.ndarray, optional
+        Associated weights to the first-passage time data. Must be a one-to-one
+        correspondence between them. Defaults to ``None``.
     -------
     errors : numpy.ndarray
         The jackknife errors.
@@ -43,8 +43,13 @@ def jackknife_errors(data_input, weights_input, bins, num_sub_samps):
     np.random.shuffle(indx)
     # This allows the data to be randomised and keep the weights matched
     data = data_input[indx]
-    weights = weights_input[indx]
-    num_bins = len(bins)-1  # bins is an array of the side, so one less
+
+    if isinstance(weights_input, np.ndarray) is True:
+        weights_used = True
+        weights = weights_input[indx]
+    else:
+        weights_used = False
+    num_bins = len(bin_edges)-1  # bin_edges is an array of the sides
 
     height_array = np.zeros((num_bins, num_sub_samps))  # Storage
 
@@ -57,24 +62,34 @@ def jackknife_errors(data_input, weights_input, bins, num_sub_samps):
         # will remove data randomly
         overspill = len(data) % num_sub_samps
         data = data[:-overspill]
-        weights = weights[:-overspill]
+
+        if weights_used is True:
+            weights = weights[:-overspill]
+
         print("Data which could not be evenly divided " +
               "into the subsamples given. Randomly truncating to fit.")
 
     # Next organise into subsamples
     data =\
         np.reshape(data, (int(data.shape[0]/num_sub_samps), num_sub_samps))
-    weights =\
-        np.reshape(weights, (int(weights.shape[0]/num_sub_samps),
-                             num_sub_samps))
+    if weights_used is True:
+        weights =\
+            np.reshape(weights, (int(weights.shape[0]/num_sub_samps),
+                                 num_sub_samps))
 
     # Find the heights of the histograms, for each sample
     for i in range(num_sub_samps):
-        # We need to manually calculate the bin height, as numpy's scheme does
-        # not have the precision when weights are very small.
-        _, ws = data_in_histogram_bins(data[:, i], weights[:, i], bins)
-        height_raw = np.sum(ws, axis=0)
-        norm = histogram_normalisation(bins, len(data[:, i]))
+        if weights_used is True:
+            # We need to manually calculate the bin height, as numpy's scheme
+            # does not have the precision when weights are very small.
+            _, ws = data_in_histogram_bins(data[:, i], bin_edges,
+                                           weights=weights[:, i])
+            height_raw = np.sum(ws, axis=0)
+        else:
+            height_raw, _ =\
+                np.histogram(data[:, i], bins=bin_edges)
+
+        norm = histogram_normalisation(bin_edges, len(data[:, i]))
         height_array[:, i] = height_raw/norm
 
     # To store the errors

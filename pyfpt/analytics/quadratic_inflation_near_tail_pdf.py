@@ -4,10 +4,10 @@ Quadratic Inflation Near Tail PDF
 This module calculates the near tail of the probability density function (PDF)
 for first-passage time of the number of e-folds for quadratic inflation in the
 large mass case. The large mass case corresponds to diffusion domination. This
-is done using the results of appendix in `<insert our paper>`_, and therefore
+is done using the results of appendix in `Jackson et al 2022`_, and therefore
 assumes UV cutoff at infinity.
 
-.. _<insert our paper>: https://arxiv.org/abs/1707.00537
+.. _Jackson et al 2022: https://arxiv.org/abs/2206.11234
 '''
 
 import numpy as np

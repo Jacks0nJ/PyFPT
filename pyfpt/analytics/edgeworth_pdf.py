@@ -38,7 +38,8 @@ def edgeworth_pdf(potential, potential_dif, potential_ddif, phi_in, phi_end):
     Returns
     -------
     edgeworth_function : function
-        The Edgeworth expansion.
+        The Edgeworth expansion for the probability density function at the
+        provided e-fold values, i.e. a function of ``(N)``.
 
     """
     mean =\

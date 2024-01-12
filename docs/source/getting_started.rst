@@ -16,5 +16,6 @@ They are also available to download as interactive Jupyter Notebooks in the 'Use
    User_guide1
    User_guide2
    User_guide3
+   User_guide4
 
    

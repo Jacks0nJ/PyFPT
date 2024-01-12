@@ -12,6 +12,8 @@ from .quadratic_inflation_large_mass_pdf import\
     quadratic_inflation_large_mass_pdf
 from .quadratic_inflation_near_tail_pdf import\
     quadratic_inflation_near_tail_pdf
+from .quadratic_inflation_multi_field_pdf import\
+    quadratic_inflation_multi_field_pdf
 from .reduced_potential import reduced_potential
 from .reduced_potential_ddiff import reduced_potential_ddiff
 from .reduced_potential_diff import reduced_potential_diff
@@ -23,3 +25,8 @@ from .slow_roll_diffusion import slow_roll_diffusion
 from .slow_roll_drift import slow_roll_drift
 from .optimal_bias_amplitude import\
 	optimal_bias_amplitude
+from .usr_mean_efolds_drift_dom import\
+	usr_mean_efolds_drift_dom
+from .usr_mean_efolds_diffusion_dom import\
+	usr_mean_efolds_diffusion_dom
+from .usr_diffusion_dom_pdf import usr_diffusion_dom_pdf

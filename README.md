@@ -11,7 +11,6 @@
 [![PyPI version](https://badge.fury.io/py/pyfpt.svg)](http://badge.fury.io/py/pyfpt)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/Jacks0nJ/PyFPT/blob/main/LICENSE)
 ![example workflow](https://github.com/Jacks0nJ/PyFPT/actions/workflows/python-app.yml/badge.svg)
-[![DOI](https://zenodo.org/badge/464403583.svg)](https://zenodo.org/badge/latestdoi/464403583)
 
 
 
@@ -22,14 +21,14 @@
   <img src="https://github.com/Jacks0nJ/PyFPT/blob/main/docs/images/PyFPT_logo.png?raw=true" width="500"/>
 </p>
 
-PyFPT is Python/Cython package to run first-passage time (FPT) simulations using importance sampling. An FPT problem is about finding the time taken to cross some threshold during a stochastic process.
+PyFPT is Python/Cython package to run first-passage time (FPT) simulations using importance sampling. A FPT problem is about finding the time taken to cross some threshold during a stochastic process.
 
-This package will let you numerically investigate the tail of the probability density for first passage times for a general 1D Langevin equation.
+This package will let you numerically investigate the tail of the probability density for first passage times for both general 1D, 2D and even n-D Langevin equations (with a little work). The 2D and n-D case requires more prior knowledge from the user.
 
 The tail of the probability density is investigated using the method of [importance sampling](https://arxiv.org/abs/nucl-th/9809075), where a bias increases the probability of large FPTs, resulting in a sample distribution, which are then weighted to reproduce the rare events of the target distribution. This allows very rare events (normally needing supercomputers) to be simulated efficiently with just your laptop!
 
 
-Note, it was originally developed to find the local number of e-folds in slow-roll stochastic inflation. As such, analytical functionality is also included for this particular problem in the [analytics module](https://pyfpt.readthedocs.io/en/latest/analytics.html).
+Note, it was originally developed to find the local number of e-folds in stochastic inflation. As such, analytical functionality is also included for this particular problem in the [analytics module](https://pyfpt.readthedocs.io/en/latest/analytics.html).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -129,18 +128,13 @@ This tests the functions which have been installed using pip. The easiest way to
 - [x] Simulate first-passage times of slow-roll inflation
 - [x] Use importance sampling to investigate rare realisations.
 - [x] Make general, for any 1D Langevin equation
-- [ ] Add multi-dimensionality
+- [x] Add multi-dimensionality
     - [ ] Add the acceleration of the field
     - [ ] Add more sophisticated noise models
 
 See the [open issues](https://github.com/Jacks0nJ/PyFPT/issues) for a full list of known issues.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-<!-- DEVELOPMENT BRANCHES -->
-## Development branches
-As different contributors continue to development the code, they will do so in several different branches. Therefore, it cannot be guaranteed that any branch, other than the [main](https://github.com/Jacks0nJ/PyFPT/tree/main), will be fully functional at any one time. The main branch will be the correct release of the code available on [PyPI](https://pypi.org/project/PyFPT/) and what you will install using pip.
 
 
 
@@ -202,6 +196,7 @@ We would like the following contributors to PyFPT, be it through physical unders
 
 * Coleman Krawczyk
 * Ian Harry
+* Xan Morice-Atkinson
 
 #### Logo
 

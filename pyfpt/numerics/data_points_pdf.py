@@ -18,7 +18,7 @@ from .log_normal_error import log_normal_error
 from .lognormality_check import lognormality_check
 
 
-def data_points_pdf(data, weights, estimator,
+def data_points_pdf(data, weights=None, estimator='naive',
                     bins=50, min_bin_size=400, num_sub_samples=20,
                     display=True):
     """Returns the (truncated) histogram bin centres, heights and errors, using
@@ -28,14 +28,15 @@ def data_points_pdf(data, weights, estimator,
     ----------
     data : numpy.ndarray
         Input first-passage time data.
-    weights : numpy.ndarray
+    weights : numpy.ndarray, optional
         Associated weights to the first-passage time data. Must be a one-to-one
-        correspondence between them.
-    estimator : string
+        correspondence between them. Defaults to ``None``.
+    estimator : string, optional
         The estimator used to reconstruct the target distribution probability
         density from the importance sample. If ``'lognormal'``, it assumes the
         weights in each bin follow a lognomral distribution. If ``'naive'``, no
-        assumption is made but more runs are required for convergence.
+        assumption is made but more runs are required for convergence. Defaults
+        to 'naive'.
     bins : int or list, optional
         If bins is an integer, it defines the number equal width bins for the
         first-passage times. If bins is a list or numpy array, it defines the
@@ -72,6 +73,15 @@ def data_points_pdf(data, weights, estimator,
 
     """
     num_runs = len(data)
+    if isinstance(weights, np.ndarray) is True:
+        weights_used = True
+    else:
+        print("Note, no provided weights. Unweighted data used.")
+        weights = None
+        weights_used = False
+        if estimator != 'naive':
+            estimator = 'naive'
+            print("As no weights provided, defaulting to naive estimator.")
 
     # If the number of bins used has been specified
     if isinstance(bins, int) is True:
@@ -90,9 +100,13 @@ def data_points_pdf(data, weights, estimator,
     histogram_norm =\
         histogram_normalisation(bins, num_runs)
 
-    # Need to know the data and weights in each bin to estimate the errors
-    data_in_bins, weights_in_bins =\
-        data_in_histogram_bins(data, weights, bins)
+    if weights_used is True:
+        # Need to know the data and weights in each bin to estimate the errors
+        data_in_bins, weights_in_bins =\
+            data_in_histogram_bins(data, bins, weights=weights)
+    else:
+        data_in_bins =\
+            data_in_histogram_bins(data, bins)
 
     # Predictions need the bin centre to make comparison
     bin_centres = np.array([(bins[i]+bins[i+1])/2 for i in range(len(bins)-1)])
@@ -124,7 +138,8 @@ def data_points_pdf(data, weights, estimator,
     # Now estimating the probability density function
     if estimator == 'naive':
         heights = heights_raw/histogram_norm
-        errors = jackknife_errors(data, weights, bins, num_sub_samples)
+        errors = jackknife_errors(data, bins, num_sub_samples,
+                                  weights_input=weights)
         if isinstance(min_bin_size, int) is True:
             heights = heights[filled_bins]
             errors = errors[filled_bins]

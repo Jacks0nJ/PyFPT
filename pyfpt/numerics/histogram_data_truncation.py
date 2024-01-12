@@ -44,13 +44,16 @@ def histogram_data_truncation(data, threshold, weights=0,
         elif isinstance(num_sub_samples, int):
             data = np.sort(data)
             num_above_threshold = len(data[data > threshold])
-            # Want to remove a full subsamples worth, so can be subdivided
-            # later. So rounding the number removed up.
-            rounded =\
-                round(num_above_threshold/num_sub_samples)+1
-            # Removing a full subsample
-            rounded_num_above_threshold = rounded*num_sub_samples
-            truncated_data = data[:-rounded_num_above_threshold]
+            if num_above_threshold > 0:
+                # Want to remove a full subsamples worth, so can be subdivided
+                # later. So rounding the number removed up.
+                rounded =\
+                    round(num_above_threshold/num_sub_samples)+1
+                # Removing a full subsample
+                rounded_num_above_threshold = rounded*num_sub_samples
+                truncated_data = data[:-rounded_num_above_threshold]
+            else:  # None above threshold, so no truncation
+                truncated_data = data
         return truncated_data
 
     else:

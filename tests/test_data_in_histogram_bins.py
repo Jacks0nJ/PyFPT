@@ -22,7 +22,7 @@ class TestDataInHistogramBins(unittest.TestCase):
         # Remove zeros
         expected = expected[expected > 0]
         data_columned, weights_columned =\
-            data_in_histogram_bins(data[:, 0], data[:, 1], bins)
+            data_in_histogram_bins(data[:, 0], bins, weights=data[:, 1])
 
         result = np.sum(weights_columned, axis=0)
         # Remove zeros

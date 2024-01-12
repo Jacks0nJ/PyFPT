@@ -35,7 +35,8 @@ def gaussian_pdf(potential, potential_dif, potential_ddif, phi_in, phi_end):
     Returns
     -------
     gaussian_function : function
-        The Gaussian approximation.
+        The Gaussian approximation for the probability density function at the
+        provided e-fold values, i.e. a function of ``(N)``.
 
     """
     mean =\

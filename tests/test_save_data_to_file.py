@@ -18,13 +18,12 @@ class TestSaveDataToFile(unittest.TestCase):
         data[:, 1] = np.exp(data[:, 1])
         x_i = 10**0.5
         num_data_points = len(data[:, 1])
-        bias = 4.
-        save_data_to_file(data[:, 0], data[:, 1], x_i, num_data_points, bias)
+        save_data_to_file(data[:, 0], x_i, num_data_points,
+                          weights=data[:, 1], extra_label='_test')
 
         # Now lets read the back
         raw_file_name = 'IS_data_x_in_' + ('%s' % float('%.3g' % x_i)) +\
-            '_iterations_' + str(num_data_points) + '_bias_' +\
-            ('%s' % float('%.3g' % bias)) + '.csv'
+            '_iterations_' + str(num_data_points) + '_test' + '.csv'
         # Remembering to remove column numbering
         data_read = pd.read_csv(raw_file_name, index_col=0)
         data_read_column1 = np.array(data_read['FPTs'])

@@ -33,6 +33,7 @@ class TestEdgeworthPdf(unittest.TestCase):
         expected = [6.50049510, 2282.31131, 15629.1737, 2306.95516, 8.09054141]
         for i in range(len(result)):
             result[i] = round(result[i], 5)
+            expected[i] = round(expected[i], 5)
             self.assertEqual(result[i], expected[i])
 
 

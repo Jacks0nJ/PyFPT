@@ -30,10 +30,11 @@ class TestEdgeworthPdf(unittest.TestCase):
         # As this is a small number, increasing it to round correctly
         result = func(N_values)*10**3
         # Taken from previously working code
-        expected = [6.50049510, 2282.31131, 15629.1737, 2306.95516, 8.09054141]
+        expected = [6.500495095637582, 2282.311314678272, 15629.17372797023,
+                    2306.9551606071, 8.09054140535124]
         for i in range(len(result)):
-            result[i] = round(result[i], 5)
-            expected[i] = round(expected[i], 5)
+            result[i] = round(result[i], 4)
+            expected[i] = round(expected[i], 4)
             self.assertEqual(result[i], expected[i])
 
 

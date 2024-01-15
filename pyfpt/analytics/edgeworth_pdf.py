@@ -70,19 +70,19 @@ def edgeworth_pdf(potential, potential_dif, potential_ddif, phi_in, phi_end):
 # This is the "probabilist's Hermite polynomial", which is different to the
 # "physicist's Hermite polynomials" used by SciPy
 def hermite_poly3(y):
-    hermite_poly3 = y**3-3*y
+    hermite_poly3 = y**3 - 3*y
     return hermite_poly3
 
 
 # This is the "probabilist's Hermite polynomial", which is different to the
 # "physicist's Hermite polynomials" used by SciPy
 def hermite_poly4(y):
-    hermite_poly4 = y**4-6*y+3
+    hermite_poly4 = y**4 - 6*y**2 + 3
     return hermite_poly4
 
 
 # This is the "probabilist's Hermite polynomial", which is different to the
 # "physicist's Hermite polynomials" used by SciPy
 def hermite_poly6(y):
-    hermite_poly6 = y**6-15*y**4+45*y**2-15
+    hermite_poly6 = y**6 - 15*y**4 + 45*y**2 - 15
     return hermite_poly6

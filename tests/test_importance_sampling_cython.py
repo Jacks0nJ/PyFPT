@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 
 from pyfpt.numerics.importance_sampling_cython\
-    import importance_sampling_simulations
+    import importance_sampling_simulations_1dim
 
 
 # This is the most basic initial test, needs further refinement
@@ -35,7 +35,7 @@ class TestImportanceSamplingCython(unittest.TestCase):
             return expectation
 
         ts, ws =\
-            importance_sampling_simulations(x_in, x_r, x_end, 0, t_f, dt,
+            importance_sampling_simulations_1dim(x_in, x_r, x_end, 0, t_f, dt,
                                             bias_amp, num_runs, drift_func,
                                             diffusion_func)
         # The ws should all be 1
@@ -51,7 +51,7 @@ class TestImportanceSamplingCython(unittest.TestCase):
         x_r = 5
         x_end = -2
         ts, ws =\
-            importance_sampling_simulations(x_in, x_r, x_end, 0, t_f, dt,
+            importance_sampling_simulations_1dim(x_in, x_r, x_end, 0, t_f, dt,
                                             bias_amp, num_runs, drift_func,
                                             diffusion_func)
         # The ws should all be 1
@@ -66,7 +66,7 @@ class TestImportanceSamplingCython(unittest.TestCase):
         drift_amp = -1.
         num_runs = 10**1
         ts, ws =\
-            importance_sampling_simulations(x_in, x_r, x_end, 0, t_f, dt,
+            importance_sampling_simulations_1dim(x_in, x_r, x_end, 0, t_f, dt,
                                             bias_amp, num_runs, drift_func,
                                             diffusion_func)
         # All of these simulations should take the classical amount of time
@@ -87,7 +87,7 @@ class TestImportanceSamplingCython(unittest.TestCase):
         # Only using a small bias
         bias_amp = 1.0
         ts, ws =\
-            importance_sampling_simulations(x_in, x_r, x_end, 0, t_f, dt,
+            importance_sampling_simulations_1dim(x_in, x_r, x_end, 0, t_f, dt,
                                             bias_amp, num_runs, drift_func,
                                             diffusion_func)
         # The mean of the sample distrbution should be a few std from the

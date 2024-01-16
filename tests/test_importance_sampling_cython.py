@@ -36,8 +36,8 @@ class TestImportanceSamplingCython(unittest.TestCase):
 
         ts, ws =\
             importance_sampling_simulations_1dim(x_in, x_r, x_end, 0, t_f, dt,
-                                            bias_amp, num_runs, drift_func,
-                                            diffusion_func)
+                                                 bias_amp, num_runs,
+                                                 drift_func, diffusion_func)
         # The ws should all be 1
         self.assertTrue(all(np.array(ws) == 1))
         # There is also an analytical expectation for the mean.
@@ -52,8 +52,8 @@ class TestImportanceSamplingCython(unittest.TestCase):
         x_end = -2
         ts, ws =\
             importance_sampling_simulations_1dim(x_in, x_r, x_end, 0, t_f, dt,
-                                            bias_amp, num_runs, drift_func,
-                                            diffusion_func)
+                                                 bias_amp, num_runs,
+                                                 drift_func, diffusion_func)
         # The ws should all be 1
         self.assertTrue(all(np.array(ws) == 1))
         # There is also an analytical expectation for the mean.
@@ -67,8 +67,8 @@ class TestImportanceSamplingCython(unittest.TestCase):
         num_runs = 10**1
         ts, ws =\
             importance_sampling_simulations_1dim(x_in, x_r, x_end, 0, t_f, dt,
-                                            bias_amp, num_runs, drift_func,
-                                            diffusion_func)
+                                                 bias_amp, num_runs,
+                                                 drift_func, diffusion_func)
         # All of these simulations should take the classical amount of time
         expectation = np.abs(np.diff((x_in, x_end))/drift_amp)
         differance = np.abs((expectation-ts))
@@ -88,8 +88,8 @@ class TestImportanceSamplingCython(unittest.TestCase):
         bias_amp = 1.0
         ts, ws =\
             importance_sampling_simulations_1dim(x_in, x_r, x_end, 0, t_f, dt,
-                                            bias_amp, num_runs, drift_func,
-                                            diffusion_func)
+                                                 bias_amp, num_runs,
+                                                 drift_func, diffusion_func)
         # The mean of the sample distrbution should be a few std from the
         # target mean.
         expectation_mean = np.abs(np.diff((x_in, x_end))/drift_amp)

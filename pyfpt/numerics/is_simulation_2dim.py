@@ -39,11 +39,12 @@ def is_simulation_2dim(update, x_in, y_in, time_step, num_runs, end_cond,
     Parameters
     ----------
     update : function
-        Updates both the propagated variable ``x`` and the importance sampling
-        variable ``A`` at each step. Must take both (array-type) ``x``, (float)
-        ``t``, (float) ``dt`` and (array-type) ``dW`` as arguments in the
-        format ``(x, t, dt, dW)``. Here ``dW`` is Weiner step, i.e. normally
-        distributed random numbers of zero mean and variance ``dt``.
+        Updates both the propagated variables ``x, y`` and the importance
+        sampling variable ``A`` at each step. Must take both ``x`` and ``y``
+        (float), ``t``, (float) ``dt`` and (float) ``dW`` as arguments in the
+        format ``(x, y, A, t, dt, dW)``. Here ``dW`` is Weiner step, i.e.
+        normally distributed random numbers of zero mean and variance ``dt``.
+        It should return ``x, y, A``.
     x_in : float
         The initial position value as an array.
     y_in : float
@@ -63,6 +64,12 @@ def is_simulation_2dim(update, x_in, y_in, time_step, num_runs, end_cond,
         This is to prevent the simulation run over-stepping the end surface
         and creating a small systematic error. This functionality is not
         available for the simpler float end surface.
+    bins : int or list, optional
+        If bins is an integer, it defines the number equal width bins for the
+        first-passage times. If bins is a list or numpy array, it defines the
+        bin edges, including the left edge of the first bin and the right edge
+        of the last bin. The widths can vary. Defaults to 50 evenly spaced
+        bins.
     min_bin_size : int, optional
         The minimum number of runs per bin included in the data analysis.
         If a bin has less than this number, it is truncated. Defaults to 400.
@@ -75,7 +82,7 @@ def is_simulation_2dim(update, x_in, y_in, time_step, num_runs, end_cond,
         The number of subsamples used in jackknife estimation of the errors
         used for the ``'naive'`` estimator. Defaults to 20 when ``estimator``
         is ``'naive'``.
-    Save_data : bool, optional
+    save_data : bool, optional
         If ``True``, the first-passage times and the associated weights for
         each run is saved to a file.
     t_in : float, optional
@@ -105,6 +112,10 @@ def is_simulation_2dim(update, x_in, y_in, time_step, num_runs, end_cond,
     # Checking drift and diffusion are of the correct format
     if callable(update) is False:
         raise ValueError('Provided update is not a function')
+
+    # Crude test to make sure function is of the correct form
+    _, _, _ =\
+        update(x_in, y_in, 0., 0, time_step, [time_step**0.5, time_step**0.5])
 
     if isinstance(x_in, float) is not True:
         raise ValueError('x_in is not a float or int.')

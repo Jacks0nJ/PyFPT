@@ -7,6 +7,7 @@ from scipy.stats import chisquare
 
 
 # This is the most basic initial test, needs further refinement
+# It uses the pure USR inflation case, see https://arxiv.org/pdf/2101.05741.pdf
 class TestIS_Simulation1Dim(unittest.TestCase):
     def test_is_simulation_1dim(self):
         # This tests needs to look at the numerical output to determine if it
@@ -23,26 +24,27 @@ class TestIS_Simulation1Dim(unittest.TestCase):
 
         bias = 0.5
 
-        def update_func(vec, N, dN, dW):
+        def update_func(x, y, A, N, dN, dW):
             # Update x
-            vec[0] += (-3 * vec[1] + bias * diff_const) * dN +\
+            x += (-3 * y + bias * diff_const) * dN +\
                 diff_const * dW[0]
-            if vec[0] > x_r:
-                vec[0] = 2*x_r - vec[0]
+            if x > x_r:
+                x = 2*x_r - x
             # Update y
-            vec[1] += (-3 * vec[1]) * dN
-
-            return bias*(0.5*bias*dN + dW[0])
+            y += (-3 * y) * dN
+            # Update the log of the weight
+            A += bias*(0.5*bias*dN + dW[0])
+            return x, y, A
 
         # Time step
         dN = 0.001
         # This let's us define the near end surface, as 2 std away from the end
         x_near_end = x_end + 2*diff_const*(dN**0.5)
 
-        def end_cond(vec, t):
-            if vec[0] <= x_end:
+        def end_cond(x, y, t):
+            if x <= x_end:
                 return 1
-            elif vec[0] <= x_near_end:
+            elif x <= x_near_end:
                 return -1
             else:
                 return 0

@@ -30,7 +30,7 @@ class TestImportanceSamplingNDim(unittest.TestCase):
             x += drift_amp*dt + diffusion_amp*dW[0] +\
                 bias_amp*diffusion_amp*dt
             # Also need to apply reflective boundary here
-            if direction*x[0] > direction*x_r:
+            if direction*x > direction*x_r:
                 x = 2*x_r - x
             A += bias_amp*(0.5*bias_amp*dt + dW[0])
 

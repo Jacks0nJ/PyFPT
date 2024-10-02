@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Nov  3 14:14:09 2020
-@author: user
-"""
+# flake8: noqa
+
 from cycler import cycler
 # box style
 paper_style = {
